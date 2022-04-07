@@ -1,0 +1,224 @@
+* {
+    box-sizing: border-box;
+    font-family: sans-serif;
+    font-weight: 400;
+}
+
+/* logo */
+.logo {
+    text-align: center;
+    padding: 20px;
+}
+.logo img {
+    width: 250px;
+}
+
+/* nav-bar */
+.nav-link.active {
+    font-weight: bolder;
+}
+
+/* carousel */
+.carousel-dark-background {
+    background: black;
+}
+.carousel-dark-background img {
+    opacity: 0.6;
+}
+.slide-label {
+    font-family: 'Mitr', sans-serif;
+    font-size: 30px;
+}
+.slide-description {
+    font-family: 'Mitr', sans-serif;
+    font-size: 35px;
+}
+.btn.btn-slide {
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #d2a451;
+    color: #fff;
+    border-radius: 14px;
+    padding: 10px 20px;
+}
+
+/* about brand */
+.main-title {
+    font-size: 30px;
+    font-weight: bolder;
+    margin: 70px;
+    text-align: center;
+}
+.title-right {
+    font-size: 36px;
+    text-align: right;
+    width: 100%;
+    margin-bottom: 40px;
+    border-bottom: 1px solid #d2a451;
+}
+.title-left {
+    font-size: 36px;
+    text-align: left;
+    width: 100%;
+    margin-bottom: 40px;
+    border-bottom: 1px solid #d2a451;
+}
+
+.grid-brand {
+    display: flex;
+    flex-wrap: wrap;
+}
+.grid-brand-item {
+    width: 50%;
+    padding: 20px;
+}
+.grid-brand-item img {
+    width: 100%;
+    height: 100%;
+}
+
+/* about system */
+.about-system-bg-content {
+    background-color: #d4a651;
+    min-height: 300px;
+    text-align: center;
+}
+.about-system-img {
+    position: relative;
+    top: -100px;
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+.about-system-container {
+    position: relative;
+    top: -50px;
+}
+.about-system-title {
+    font-size: 20px;
+}
+.about-system-spotlight {
+    font-size: 35px;
+    font-weight: bolder;
+}
+.about-system-description {
+    color: #fff;
+}
+
+/* opening activities */
+.grid {
+    display: flex;
+    justify-content: center;
+}
+.grid-item {
+    margin: 20px;
+}
+
+/* register phone */
+.register-phone-area {
+    padding: 40px;
+    background-color: #d2a451;
+    text-align: center;
+    color: #fff;
+    margin: 20px 0 20px 0;
+}
+.rpa-title {
+    font-size: 26px;
+    font-weight: bolder;
+}
+.rpa-spot {
+    font-size: 26px;
+    font-weight: bolder;
+}
+.input-group {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 100%;
+}
+.rpa-submit {
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    background-color: #282828;
+    color: #fff;
+    font-weight: bold;
+}
+.rpa-phone {
+    border-top-left-radius: 40px;
+    border-bottom-left-radius: 40px;
+}
+
+/* collaborate */
+.colla-item {
+    padding: 10px;
+}
+.colla-lbl {
+    font-size: 32px;
+    font-weight: bolder;
+    width: 50px;
+    text-align: center;
+    background-color: #d2a451;
+    border-radius: 50%;
+    color: #fff;
+}
+.colla-title {
+    color: #ff0000;
+    font-size: 20px;
+    margin: 10px;
+    font-weight: bolder;
+}
+.colla-description {
+    font-weight: bolder;
+}
+
+/* register form */
+.rf-title {
+    font-size: 25px;
+    font-weight: bolder;
+}
+.rf-all-area {
+    background-color: #d2a451;
+    border-radius: 40px;
+    padding: 40px;
+}
+.rf-main-title {
+    font-size: 25px;
+    font-weight: bolder;
+    text-align: center;
+}
+.btn-rf-info {
+    width: 100%;
+    font-size: 24px;
+    font-weight: bolder;
+    text-align: center;
+    background-color: #282828;
+    color: #fff;
+    border-radius: 40px;
+}
+
+/* customer satisfaction */
+.cusa-title {
+    font-size: 24px;
+    font-weight: bolder;
+    padding: 20px;
+    text-align: center;
+}
+.cusa-description {
+    text-align: center;
+}
+
+/* partners */
+.partners-type {
+    font-size: 24px;
+    font-weight: bolder;
+    text-align: center;
+    margin: 20px;
+}
+.prt-items {
+    padding: 10px;
+}
+.prt-items img {
+    width: 100%;
+    border: 1px solid #ccc;
+}
