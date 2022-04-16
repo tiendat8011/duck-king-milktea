@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const User = require('../models/User');
 const asyncHandle = require('../middlewares/asyncHandle');
 const ErrorResponse = require('../common/ErrorResponse');
+const sendMail = require('../common/sendMail');
 
 // [GET] /auth/register
 module.exports.registerSite = asyncHandle(async (req, res, next) => {
@@ -46,9 +47,14 @@ module.exports.forgetPassword = asyncHandle(async (req, res, next) => {
     const user = await User.findOne({ email });
     if (!user) return next(new ErrorResponse('Not found email', 401));
     await user.createResetPasswordToken();
-    return res
-        .status(200)
-        .redirect(`/auth/change-password?tk=${user.reset_password_token}`);
+    const linkToReset = `https//localhost:3000/auth/change-password?tk=${user.reset_password_token}`;
+    const htmlContent = `<h3>Click this link to reset your password</h3> ${linkToReset}`;
+    await sendMail(
+        'phamtranlinhchi02@gmail.com',
+        'Reset Password',
+        htmlContent
+    );
+    return res.redirect('/auth/login');
 });
 
 // [GET] auth/change-password?tk=....
