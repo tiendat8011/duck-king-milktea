@@ -1,10 +1,11 @@
 const nodeMailer = require('nodemailer');
 const smtpTransport = require('nodemailer-smtp-transport');
+const { getMaxListeners } = require('npmlog');
 
 module.exports = async (to, subject, htmlContent) => {
-    const transporter = nodeMailer.createTransport(
+    const transporter = await nodeMailer.createTransport(
         smtpTransport({
-            host: process.env.MAIL_HOST,
+            service: 'gmail',
             port: 587,
             secure: false,
             auth: {
@@ -13,13 +14,13 @@ module.exports = async (to, subject, htmlContent) => {
             },
         })
     );
-    console.log(transporter);
+    // console.log(transporter);
     let info = await transporter.sendMail({
         from: process.env.ADMIN_MAIL,
         to: to,
         subject: subject,
         html: htmlContent,
     });
-    console.log(info);
+    // console.log(info);
     console.log('successfully send email');
 };

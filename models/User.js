@@ -2,13 +2,14 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const validator = require('validator');
 const crypto = require('crypto');
+const jwt = require('jsonwebtoken');
 
 const userSchema = new mongoose.Schema({
     avatar: {
         data: Buffer,
         contentType: String,
     },
-    name: {
+    full_name: {
         type: String,
         required: [true, 'Require name'],
     },
@@ -66,6 +67,12 @@ userSchema.methods.createResetPasswordToken = async function () {
         Date.now() + process.env.RESET_TOKEN_EXPIRE * 60 * 1000 ||
         5 * 60 * 1000;
     await this.save();
+};
+
+userSchema.methods.signToken = async function () {
+    return jwt.sign({ username: this.username }, process.env.PRIVATE_KEY, {
+        expiresIn: '1h',
+    });
 };
 const User = mongoose.model('User', userSchema);
 

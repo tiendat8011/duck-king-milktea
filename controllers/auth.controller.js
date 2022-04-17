@@ -1,4 +1,3 @@
-const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
 const User = require('../models/User');
@@ -6,75 +5,97 @@ const asyncHandle = require('../middlewares/asyncHandle');
 const ErrorResponse = require('../common/ErrorResponse');
 const sendMail = require('../common/sendMail');
 
-// [GET] /auth/register
-module.exports.registerSite = asyncHandle(async (req, res, next) => {
-    res.render('register');
-});
+module.exports = {
+    // [GET] /auth/register
+    registerSite: asyncHandle(async (req, res, next) => {
+        res.render('auth/register');
+    }),
 
-// [GET] /auth/login
-module.exports.loginSite = asyncHandle(async (req, res, next) => {
-    res.render('login');
-});
+    // [POST] /auth/register
+    createUser: asyncHandle(async (req, res, next) => {
+        await User.create({
+            full_name: req.body.full_name,
+            phone_number: req.body.phone_number,
+            username: req.body.username,
+            password: req.body.password,
+            email: req.body.email,
+        });
+        res.status(201).redirect('/auth/login');
+    }),
 
-// [POST] /auth/login
-module.exports.login = asyncHandle(async (req, res, next) => {
-    const { username, password } = req.body;
+    // [GET] /auth/login
+    loginSite: asyncHandle(async (req, res, next) => {
+        res.render('auth/login');
+    }),
 
-    const user = await User.findOne({ username });
+    // [POST] /auth/login
+    login: asyncHandle(async (req, res, next) => {
+        const { username, password } = req.body;
 
-    if (!user) {
-        return next(new ErrorResponse('Not found user', 401));
-    }
-    if (!(await user.isPasswordMatch(password))) {
-        return next(new ErrorResponse('Invalid password', 401));
-    }
+        const user = await User.findOne({ username });
 
-    const token = jwt.sign({ username }, process.env.PRIVATE_KEY, {
-        expiresIn: '1h',
-    });
+        if (!user) {
+            return next(new ErrorResponse('Not found user', 401));
+        }
+        if (!(await user.isPasswordMatch(password))) {
+            return next(new ErrorResponse('Invalid password', 401));
+            // res.render('auth/login');
+        }
 
-    res.status(200).json({ token });
-});
+        user.signToken();
 
-// [GET] auth/forget-password
-module.exports.forgetPasswordSite = asyncHandle(async (req, res, next) => {
-    res.render('forget-password');
-});
+        res.render('home');
+    }),
 
-// [POST] auth/forget-password
-module.exports.forgetPassword = asyncHandle(async (req, res, next) => {
-    const { email } = req.body;
-    const user = await User.findOne({ email });
-    if (!user) return next(new ErrorResponse('Not found email', 401));
-    await user.createResetPasswordToken();
-    const linkToReset = `https//localhost:3000/auth/change-password?tk=${user.reset_password_token}`;
-    const htmlContent = `<h3>Click this link to reset your password</h3> ${linkToReset}`;
-    await sendMail(
-        'phamtranlinhchi02@gmail.com',
-        'Reset Password',
-        htmlContent
-    );
-    return res.redirect('/auth/login');
-});
+    // [GET] /auth/forget-password
+    forgetPasswordSite: asyncHandle(async (req, res, next) => {
+        res.render('auth/forget-password', { msg: '' });
+    }),
 
-// [GET] auth/change-password?tk=....
-module.exports.changePasswordSite = asyncHandle(async (req, res, next) => {
-    const token = req.query.tk;
-    res.render('change-password', { token });
-});
+    // [POST] /auth/forget-password
+    forgetPassword: asyncHandle(async (req, res, next) => {
+        const { email } = req.body;
+        const user = await User.findOne({ email });
+        // if (!user) return next(new ErrorResponse('Not found email', 401));
+        if (!user)
+            res.render('auth/forget-password', {
+                msg: 'Not found email. Please enter the email which was registered!',
+            });
 
-// [PUT] auth/change-password?tk=...
-module.exports.changePassword = asyncHandle(async (req, res, next) => {
-    const token = req.query.tk;
+        await user.createResetPasswordToken();
 
-    const user = await User.findOne({ reset_password_token: token });
-    if (!user) return next(new ErrorResponse('Invalid token', 401));
+        const linkToReset = `http://${process.env.BASE_URL}/auth/change-password?tk=${user.reset_password_token}`;
+        const htmlContent = `<h3>Click to this link to reset your password</h3> <a href='${linkToReset}'>${linkToReset}</a>`;
+        await sendMail(user.email, 'Reset Password', htmlContent);
 
-    if (Date.now() > user.reset_password_token_expired)
-        return next(new ErrorResponse('Expired token', 401));
+        return res.redirect('/auth/reset-password-successfully');
+    }),
 
-    const { newPassword } = req.body;
-    const hashNewPassword = await bcrypt.hash(newPassword, 10);
-    await User.findByIdAndUpdate(user._id, { password: hashNewPassword });
-    res.status(200).redirect('/auth/login');
-});
+    // [GET] /auth/reset-password-successfully
+    successfullyReset: asyncHandle(async (req, res, next) => {
+        res.render('auth/successfully-reset-pw');
+    }),
+
+    // [GET] /auth/change-password?tk=....
+    changePasswordSite: asyncHandle(async (req, res, next) => {
+        const token = req.query.tk;
+        res.render('auth/change-password', { token });
+    }),
+
+    // [PUT] /auth/change-password?tk=...
+    changePassword: asyncHandle(async (req, res, next) => {
+        const token = req.query.tk;
+
+        const user = await User.findOne({ reset_password_token: token });
+        if (!user) return next(new ErrorResponse('Invalid token', 401));
+
+        if (Date.now() > user.reset_password_token_expired)
+            return next(new ErrorResponse('Expired token', 401));
+
+        const { newPassword } = req.body;
+        const hashNewPassword = await bcrypt.hash(newPassword, 10);
+        await User.findByIdAndUpdate(user._id, { password: hashNewPassword });
+
+        res.status(200).redirect('/auth/login');
+    }),
+};
