@@ -21,6 +21,6 @@ module.exports = async (to, subject, htmlContent) => {
         subject: subject,
         html: htmlContent,
     });
-    // console.log(info);
+    console.log(info);
     console.log('successfully send email');
 };
