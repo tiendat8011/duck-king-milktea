@@ -14,7 +14,7 @@ function route(app) {
     app.use('/auth', authRouter);
     app.use('/franchise', franchiseRouter);
     app.use('/introduce', introduceRouter);
-    app.use('/product', productRouter);
+    app.use('/products', productRouter);
     app.use('/news', newsRouter);
     app.use('/store', storeRouter);
     app.use('/recruitment', recruitmentRouter);

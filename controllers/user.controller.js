@@ -4,13 +4,13 @@ const ErrorResponse = require('../common/ErrorResponse');
 
 module.exports = {
     // [GET] /users/
-    getAllUsersAndPosts: asyncHandle(async (req, res, next) => {
+    getAllUsers: asyncHandle(async (req, res, next) => {
         const users = await User.find();
         res.status(200).json(users);
     }),
 
     // [GET] /users/:id
-    getUserAndPosts: asyncHandle(async (req, res, next) => {
+    getUser: asyncHandle(async (req, res, next) => {
         let { id } = req.params;
         const user = await User.findById(id);
         res.status(200).json(user);
@@ -27,6 +27,6 @@ module.exports = {
     deleteUserById: asyncHandle(async (req, res, next) => {
         let { id } = req.params;
         await User.findByIdAndDelete(id);
-        res.status(204).json({ message: 'successful' });
+        res.status(204).json({ message: 'successfully delete' });
     }),
 };

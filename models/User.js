@@ -4,44 +4,53 @@ const validator = require('validator');
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 
-const userSchema = new mongoose.Schema({
-    avatar: {
-        data: Buffer,
-        contentType: String,
+const userSchema = new mongoose.Schema(
+    {
+        avatar: {
+            data: Buffer,
+            contentType: String,
+        },
+        full_name: {
+            type: String,
+            required: [true, 'Require full name'],
+            trim: true,
+        },
+        year_of_birth: { type: Number, trim: true },
+        phone_number: {
+            type: String,
+            required: [true, 'Require phone number'],
+            trim: true,
+        },
+        shift: String,
+        role: {
+            type: String,
+            enum: ['user', 'admin'],
+            default: 'user',
+        },
+        username: {
+            type: String,
+            required: [true, 'Require username'],
+            unique: true,
+            trim: true,
+        },
+        password: {
+            type: String,
+            required: [true, 'Require password'],
+        },
+        email: {
+            type: String,
+            required: [true, 'Require email'],
+            unique: true,
+            validate: [validator.isEmail, 'Invalid email'],
+            trim: true,
+        },
+        reset_password_token: String,
+        reset_password_token_expired: Date,
     },
-    full_name: {
-        type: String,
-        required: [true, 'Require name'],
-    },
-    year_of_birth: Number,
-    phone_number: {
-        type: String,
-        required: [true, 'Require phone number'],
-    },
-    shift: String,
-    role: {
-        type: String,
-        enum: ['user', 'admin'],
-        default: 'user',
-    },
-    username: {
-        type: String,
-        required: [true, 'Require username'],
-        unique: true,
-    },
-    password: {
-        type: String,
-        required: [true, 'Require password'],
-    },
-    email: {
-        type: String,
-        required: [true, 'Require email'],
-        unique: true,
-        validate: [validator.isEmail, 'Invalid email'],
-    },
-    reset_password_token: String,
-    reset_password_token_expired: Date,
-});
+    {
+        timestamps: true,
+    }
+);
 
 userSchema.pre('save', async function (next) {
     this.password = await bcrypt.hash(this.password, 10);
@@ -70,10 +79,26 @@ userSchema.methods.createResetPasswordToken = async function () {
 };
 
 userSchema.methods.signToken = async function () {
-    return jwt.sign({ username: this.username }, process.env.PRIVATE_KEY, {
-        expiresIn: '1h',
-    });
+    const token = jwt.sign(
+        { username: this.username },
+        process.env.PRIVATE_KEY,
+        {
+            expiresIn: '1h',
+        }
+    );
+    return token;
 };
+
+userSchema.statics.isEmailExisted = async function (email) {
+    const user = await this.findOne({ email });
+    return !!user;
+};
+
+userSchema.statics.isUsernameExisted = async function (username) {
+    const user = await this.findOne({ username });
+    return !!user;
+};
+
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;

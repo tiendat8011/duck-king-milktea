@@ -8,6 +8,7 @@ authRouter
     .route('/login')
     .get(authController.loginSite)
     .post(authController.login);
+authRouter.route('/logout').get(authController.logout);
 authRouter
     .route('/register')
     .get(authController.registerSite)

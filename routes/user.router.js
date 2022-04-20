@@ -5,14 +5,14 @@ const userController = require('../controllers/user.controller');
 
 const userRouter = express.Router();
 
-userRouter
-    .route('/')
-    .get(authMiddleware.protect, userController.getAllUsersAndPosts);
+userRouter.use(authMiddleware.protect);
 
 userRouter
     .route('/:id')
-    .get(userController.getUserAndPosts)
-    .put(userController.updateUserById)
-    .delete(userController.deleteUserById);
+    .get(userController.getUser)
+    .put(authMiddleware.admin, userController.updateUserById)
+    .delete(authMiddleware.admin, userController.deleteUserById);
+
+userRouter.route('/').get(authMiddleware.admin, userController.getAllUsers);
 
 module.exports = userRouter;

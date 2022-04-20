@@ -196,6 +196,9 @@
     color: #fff;
     border-radius: 40px;
 }
+.btn-rf-info:hover {
+    color: #d4a651;
+}
 
 /* customer satisfaction */
 .cusa-title {

@@ -1,6 +1,5 @@
 const nodeMailer = require('nodemailer');
 const smtpTransport = require('nodemailer-smtp-transport');
-const { getMaxListeners } = require('npmlog');
 
 module.exports = async (to, subject, htmlContent) => {
     const transporter = await nodeMailer.createTransport(
@@ -15,12 +14,13 @@ module.exports = async (to, subject, htmlContent) => {
         })
     );
     // console.log(transporter);
-    let info = await transporter.sendMail({
+    // let info = await transporter.sendMail({
+    await transporter.sendMail({
         from: process.env.ADMIN_MAIL,
         to: to,
         subject: subject,
         html: htmlContent,
     });
-    console.log(info);
+    // console.log(info);
     console.log('successfully send email');
 };

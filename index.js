@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const methodOverride = require('method-override');
+const cookieParser = require('cookie-parser');
 
 require('dotenv').config();
 
@@ -14,6 +15,7 @@ const route = require('./routes/index');
 
 connectToMongoDB();
 
+app.use(cookieParser(process.env.PRIVATE_MESSAGE));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(
