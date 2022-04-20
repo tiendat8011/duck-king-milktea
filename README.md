@@ -1,4 +1,4 @@
-# DUCK KING
+# King Duck Milktea
 
 ## Tech
 
