@@ -1,13 +1,13 @@
 # DUCK KING
 
-## TECH
+## Tech
 
 <ul>
     <li>Node v16.14.0</li>
     <li>MongoDB</li>
 </ul>
 
-## SET UP FILE .ENV
+## Set up file .env
 
 ```text
 BASE_URL = localhost:3000
