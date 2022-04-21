@@ -4,7 +4,8 @@ const Product = require('../models/Product');
 module.exports = {
     // [GET] /products
     renderSite: asyncHandle(async (req, res) => {
-        res.render('product');
+        const products = await Product.find();
+        res.render('product', { products });
     }),
 
     //[GET] /products/:id

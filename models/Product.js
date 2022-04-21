@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+// const Size = require('./Size');
+
 const productSchema = new mongoose.Schema(
     {
         name: {
@@ -21,6 +23,12 @@ const productSchema = new mongoose.Schema(
             type: String,
             trim: true,
         },
+        // size: [
+        //     {
+        //         type: mongoose.Schema.Types.ObjectId,
+        //         ref: 'Size',
+        //     },
+        // ],
     },
     {
         timestamps: true,
