@@ -1,19 +1,434 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Home</title>
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-            crossorigin="anonymous"
-        />
-    </head>
-    <body>
-        <h2>Home Page</h2>
-        <a href="/franchise">Nhuong Quyen(git)</a>
-    </body>
-</html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>Tra Sữa BOBO</title>
+</head>
+<body>
+    <%- include('../partials/header'); %>
+    <section id="trang_chu">
+        <!-- thân -->
+        <main class="mail_home">
+            <section class="home" id="home">
+                <div class="container">
+                    <div class="main">
+                            <img src="/images/slideshow1_2.jpg" class="img-feature img-feature_bs">
+                    </div>
+                    <div class="main_tr">
+                        <div class="main_tr_text">
+                            <div class="main_tr_text_bs">
+                                <div class="control prev">
+                                    <i class="fas fa-angle-left"></i>
+                                </div>
+                                <div class="main_dy">
+                                    <h2>ToCoToCo Tea</h2>
+                                    <h1>ĐẬM VỊ THIÊN NHIÊN TRỌNG VỊ HÀNH PHÚC</h1>
+                                    <p class="text" >Với sứ mệnh mang tói niềm vui và hạnh phúc, TocoToco hy vọng sẽ tạo nên một nét văn hóa giái trị bên cạnh ly trà sữa ngon - sạch - tươi</p>
+                                    <div>
+                                        <div class="dh">
+                                            <a href="#">ĐẶT HÀNG NGAY</a>
+                                        </div>
+                                    </div>
+                                    <div class="moust">
+                                        <i class="fa-solid fa-computer-mouse-scrollwheel"></i>
+                                        <i class="fa-solid fa-computer-mouse tx"></i>
+                                        <p class="text-2">cuộn xuống</p>
+                                    </div>
+                                </div>
+                                <div class="control next">
+                                        <i class="fas fa-angle-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-image list-image_bs">
+                        <div><img src="/images/slideshow1_2.jpg" alt=""></div>
+                        <div><img src="/images/about-banner-main.png" alt=""></div>
+                        <div><img src="/images/slideshow1_1.jpg" alt=""></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <section id="San_pham" class="San_pham">
+            <div class="product">
+                <div class="product_stat">
+                    <div class="product_stat_top">
+                        <p class="top_1">ToCoToCo Menu</p>
+                        <p class="top_2">SẢN PHẨM NỔI BẬT</p>
+                    </div>
+                    <div class="product_mail">
+                        <div class="product_mail_sc">
+                            <div class="product_mail_sc_s">
+                                <div class="product_mail_img">
+                                    <img src="/images/ts1.jpg" alt="">
+                                </div>
+                                <div class="product_mail_text">
+                                    <p class="product_mail_text_1 ts">Choco Ngũ Cốc Kem Cafe</p>
+                                    <p class="product_mail_text_2 ts">44,000đ</p>
+                                    <div class="product_mail_dh">
+                                        <div class="text_cr_dh">
+                                            <a href="#">Đặt hàng</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product_mail_sc_s">
+                                <div class="product_mail_img">
+                                    <img src="/images/ts2.png" alt="">
+                                </div>
+                                <div class="product_mail_text">
+                                    <p class="product_mail_text_1 ts">Hồng Trà Ngũ Cốc Kem Cafe</p>
+                                    <p class="product_mail_text_2 ts">44,000đ</p>
+                                    <div class="product_mail_dh">
+                                        <div class="text_cr_dh">
+                                            <a href="#">Đặt hàng</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product_mail_sc_s">
+                                <div class="product_mail_img">
+                                    <img src="/images/ts3.png" alt="">
+                                </div>
+                                <div class="product_mail_text">
+                                    <p class="product_mail_text_1 ts">Royal Pearl Milk Coffee</p>
+                                    <p class="product_mail_text_2 ts">38,000đ</p>
+                                    <div class="product_mail_dh">
+                                        <div class="text_cr_dh">
+                                            <a href="#">Đặt hàng</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product_mail_sc_s">
+                                <div class="product_mail_img">
+                                    <img src="/images/ts4.png" alt="">
+                                </div>
+                                <div class="product_mail_text">
+                                    <p class="product_mail_text_1 ts">Grass Jelly Milk Coffee</p>
+                                    <p class="product_mail_text_2 ts">38,000đ</p>
+                                    <div class="product_mail_dh">
+                                        <div class="text_cr_dh">
+                                            <a href="#">Đặt hàng</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product_mail">
+                        <div class="product_mail_sc">
+                            <div class="product_mail_sc_s">
+                                <div class="product_mail_img">
+                                    <img src="/images/ts5.jpg" alt="">
+                                </div>
+                                <div class="product_mail_text">
+                                    <p class="product_mail_text_1 ts">Tiger Sugar</p>
+                                    <p class="product_mail_text_2 ts">52,000đ</p>
+                                    <div class="product_mail_dh">
+                                        <div class="text_cr_dh">
+                                            <a href="#">Đặt hàng</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product_mail_sc_s">
+                                <div class="product_mail_img">
+                                    <img src="/images/ts6.jpg" alt="">
+                                </div>
+                                <div class="product_mail_text">
+                                    <p class="product_mail_text_1 ts">Trà Sữa Trân Châu Hoàng</p>
+                                    <p class="product_mail_text_2 ts">46,000đ</p>
+                                    <div class="product_mail_dh">
+                                        <div class="text_cr_dh">
+                                            <a href="#">Đặt hàng</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product_mail_sc_s">
+                                <div class="product_mail_img">
+                                    <img src="/images/ts7.png" alt="">
+                                </div>
+                                <div class="product_mail_text">
+                                    <p class="product_mail_text_1 ts">Choco Creamcake Hạt</p>
+                                    <p class="product_mail_text_2 ts">38,000đ</p>
+                                    <div class="product_mail_dh">
+                                        <div class="text_cr_dh">
+                                            <a href="#">Đặt hàng</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product_mail_sc_s">
+                                <div class="product_mail_img">
+                                    <img src="/images/ts8.jpg" alt="">
+                                </div>
+                                <div class="product_mail_text">
+                                    <p class="product_mail_text_1 ts">Ruby Creamcake Hạt dẻ</p>
+                                    <p class="product_mail_text_2 ts">48,000đ</p>
+                                    <div class="product_mail_dh">
+                                        <div class="text_cr_dh">
+                                            <a href="#">Đặt hàng</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product_mail_bs">
+                        <div class="product_mail_bs_sc">
+                            <a href="#">XEM TẤT CẢ</a>
+                        </div>
+                    </div>
+                    <div class="product_mail_article">
+                        <div class="product_mail_article_img">
+                            <img src="/images/banner_about_us.png" alt="">
+                        </div>
+                        <div class="product_mail_article_text">
+                            <div class="product_mail_article_text_top">
+                                <div class="top_1">ToCoToCo Story</div>
+                                <div class="top_2">VỀ CHÚNG TÔI</div>
+                            </div>
+                            <div class="product_mail_article_text_cr">
+                                
+                                Bên cạnh niềm tự hào về những ly trà sữa ngon – sạch – tươi, chúng tôi luôn tự tin mang đến khách hàng những trải nghiệm tốt nhất về dịch vụ và không gian.
+                            </div>
+                            <div class="product_mail_bs">
+                                <div class="text_cr_cs">
+                                    <a href="#">XEM THÊM</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section >
+                <div class="product_mail_article_bt">
+                    <div class="product_mail_article_bt_text">
+                        <div class="product_mail_article_bt_bs_text">
+                            <div class="top_1">ToCoToCo Story</div>
+                            <div class="top_2">NHƯỢNG QUYỀN</div>
+                        </div>
+                        <div class="product_mail_article_text_cr gn">
+                            Gia nhập đế chế 300 TRIỆU USD. Nếu bạn bắt đầu kinh doanh khởi nghiệp ẩm thực, hoặc muốn đầu tư vào lĩnh vực này, thương hiệu TocoToco chắc chắn sẽ là một lựa chọn đáng cân nhắc cho bạn.
+                        </div>
+                        <div class="product_mail_bs">
+                            <div class="text_cr_cs">
+                                <a href="#">XEM THÊM</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product_mail_article_bt_img">
+                        <img src="/images/img_home_franchise.png" alt="">
+                    </div>
+                </div>
+        </section>
+        <section>
+            <div class="product_stat_top">
+                <p class="top_1">Tin Tức và Khuyến Mãi</p>
+                <p class="top_2">KHÁM PHÁ TOCOTOCO NHẬN NGAY KHUYẾN MÃI</p>
+            </div>
+        </section>
+        <section class="discover_tq">
+            <div class="discover">
+                <div class="discover_left">
+                    <div class="discover_left_bs">
+                        <div class="discover_left_bs_img">
+                            <img src="/images/SPM_CHOCO_zalo-1.png" alt="">
+                        </div>
+                        <div class="discover_left_bs_boot">
+                            <div class="discover_left_boot_bs">
+                                <div class="discover_left_text_1">
+                                    Cùng ToCoToCo nhân đôi sự ngọt ngào mùa lễ hội
+                                </div>
+                                <div class="discover_left_text_2">
+                                    Theo suckhoedoisong.vn – Nhấn nhá chút vị đậm đà từ socola và hồng trà kết hợp hương thơm beo béo của macchiato kem cà phê thêm chút topping hạt ngũ […]              
+                                </div>
+                            </div>
+                            <div class="product_mail_bs discover_bs">
+                                <div class="text_cr_cs">
+                                    <a href="#">XEM THÊM</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="discover_left_center_tong">
+                        <div class="discover_left_center_tong_1">
+                            <div class="discover_left_center discover_bs">
+                                <div class="discover_left_center_img discover_bs_img">
+                                    <img src="/images/SPM_CHOCO_zalo-1.png" alt="">
+                                </div>
+                                <div class="discover_left_center_text discover_bs_text">
+                                    <div class="discover_left_center_text_bs">
+                                        Cùng ToCoToCo nhân đôi sự ngọt ngào mùa lễ hội
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="discover_left_center discover_bs">
+                                <div class="discover_left_center_img discover_bs_img">
+                                    <img src="/images/SPM_CHOCO_zalo-1.png" alt="">
+                                </div>
+                                <div class="discover_left_center_text discover_bs_text">
+                                    <div class="discover_left_center_text_bs">
+                                        Cùng ToCoToCo nhân đôi sự ngọt ngào mùa lễ hội
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="discover_left_center_tong_2">
+                            <div class="discover_left_center discover_bs">
+                                <div class="discover_left_center_img discover_bs_img">
+                                    <img src="/images/SPM_CHOCO_zalo-1.png" alt="">
+                                </div>
+                                <div class="discover_left_center_text discover_bs_text">
+                                    <div class="discover_left_center_text_bs">
+                                        Cùng ToCoToCo nhân đôi sự ngọt ngào mùa lễ hội
+                                   </div>
+                                </div>
+                            </div>
+                            <div class="discover_left_center discover_bs">
+                                <div class="discover_left_center_img discover_bs_img">
+                                    <img src="/images/SPM_CHOCO_zalo-1.png" alt="">
+                                </div>
+                                <div class="discover_left_center_text discover_bs_text">
+                                    <div class="discover_left_center_text_bs">
+                                        Cùng ToCoToCo nhân đôi sự ngọt ngào mùa lễ hội
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="discover_right">
+                    <div class="discover_right_top">
+                        <div class="discover_right_top_img">
+                            <img src="/images/video_bg.png" alt="">
+                        </div>
+                        <div class="discover_right_top_text">      
+                            CON ĐƯỜNG KHỞI NGHIỆP CỦA NGƯỜI SÁNG LẬP THƯƠNG HIỆU TRÀ SỮA VIỆT NAM - TOCOTOCO
+                        </div>
+                    </div>
+                    <div class="discover_right_boot">
+                        <div class="discover_right_boot_img">
+                            <img src="/images/SPM_CHOCO_zalo-1.png" alt="">
+                        </div>
+                        <div class="discover_right_boot_text">
+                            CON ĐƯỜNG KHỞI NGHIỆP CỦA NGƯỜI SÁNG LẬP THƯƠNG HIỆU TRÀ SỮA VIỆT NAM - TOCOTOCO
+                        </div>
+                    </div>
+                    <div class="discover_right_boot">
+                        <div class="discover_right_boot_img">
+                            <img src="/images/SPM_CHOCO_zalo-1.png" alt="">
+                        </div>
+                        <div class="discover_right_boot_text">
+                            CON ĐƯỜNG KHỞI NGHIỆP CỦA NGƯỜI SÁNG LẬP THƯƠNG HIỆU TRÀ SỮA VIỆT NAM - TOCOTOCO
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+    <%- include('../partials/footer'); %>
+    <a href="/product" class="btn-delivery">
+        <img src="/images/button_delivery.png" alt="">
+    </a>
+
+
+
+
+    <script>
+    var imgFeature = document.querySelector('.img-feature')
+    var listImg = document.querySelectorAll('.list-image img')
+    var prevBtn = document.querySelector('.prev')
+    var nextBtn = document.querySelector('.next')
+
+
+    var currentIndex = 0; 
+    function updateImageByIndex(index){
+        //reamove active class
+        document.querySelectorAll('.list-image div').forEach(item=>{
+            item.classList.remove('active')
+        })
+
+
+        currentIndex = index
+        imgFeature.src =  listImg[index].getAttribute('src')
+        listImg[index].parentElement.classList.add('active')
+    }
+
+
+    listImg.forEach((imgElement, index)=>{
+
+        imgElement.addEventListener('click', e=>{
+            imgFeature.style.opacity = '0'
+
+
+            setTimeout(()=>{
+                updateImageByIndex(index)
+                imgFeature.style.opacity = '1'
+
+            },400)
+        })
+    })
+
+    prevBtn.addEventListener('click', e=>{
+        
+
+        if(currentIndex == 0 ){
+            currentIndex = listImg.length - 1
+        }else{
+            currentIndex--
+        }
+
+
+        imgFeature.style.animation = ''
+
+        setTimeout(()=>{
+            updateImageByIndex(currentIndex)
+            imgFeature.style.animation = 'slideLeft 0.2s ease-in-out forwards'
+            
+        }, 200)
+    })
+
+    nextBtn.addEventListener('click', e=>{
+        if(currentIndex == listImg.length - 1 ){
+            currentIndex = 0
+        }else{
+            currentIndex++
+        }
+        imgFeature.style.animation = ''
+        setTimeout(()=>{
+            updateImageByIndex(currentIndex)
+            imgFeature.style.animation = 'slideRight 0.2s ease-in-out forwards'
+        },200)
+    })
+
+    updateImageByIndex(0)
+
+
+
+    window.onscroll = function(){
+    console.info(document.documentElement.scrollTop);
+    var header = document.getElementById("Myheader");
+    if(document.documentElement.scrollTop > 100 || document.body.scrollTop > 100){
+        header.style.position = "fixed";
+        header.style.left = 0;
+        header.style.right = 0;
+        header.style.background = "rgb(85, 85, 85)";
+        header.style.zIndex = 9;
+        }
+        else{
+            // header.style.position = "relative";
+            header.style.backgroundColor = "rgb(0,0,0,0)";
+        }
+    }
+    </script>
+</body>
+</html> 

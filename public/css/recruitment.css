@@ -1,0 +1,107 @@
+
+.carousel-item img{
+    filter:brightness(60%);
+}
+.carousel-caption {
+    margin-bottom: 350px;
+}
+.carousel-caption .text-title{
+    color: #d3b673;
+    font-size: 40px;
+}
+.carousel-caption .text-conten{
+    letter-spacing: 2.7px;
+    font-size: 54px;
+    text-transform: uppercase;
+}
+.carousel-caption .button-link{
+    display: inline-block;
+    padding: 5px 25px;
+    background: #d3b673;
+    color: #fff;
+    margin-top: 50px;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: none;
+}
+.main-title{
+    margin-top: 70px;
+}
+.main-title .text-center{
+    text-align: center;
+}
+.main-title .text-center p{
+    color: #d3b673;
+    font-size: 23px;
+}
+.main-title .text-center h3{
+    text-transform: uppercase;
+    font-size: 36px;
+}
+.main-title .text-center img{
+    width: 500px;
+    margin-left: 180px;
+}
+ .img-title{
+    margin-top: 40px;
+    background: linear-gradient(rgba(13, 13, 13, 0.85), rgba(13, 13, 13, 0.85)), url(../images/img15.jpg) no-repeat center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 10px;
+    margin-bottom: 100px;
+}
+.img-title .bg_color .conten{
+    margin-top: 50px;   
+    text-align: center;
+    color: #fff;
+}
+.img-title .bg_color .conten img{
+    margin-bottom: 30px;
+    color: rgba(13, 13, 13, 0.85);
+    display: inline-block;
+}
+.about-us .grid{
+    margin-bottom: 100px;
+    display: flex;
+}
+.about-us .grid h3{
+    text-transform: uppercase;
+    line-height: normal;
+    font-weight: normal;
+    letter-spacing: 1.4px;
+    font-family: "Baloo", Helvetica, Arial, sans-serif;
+}
+.about-us .grid img{
+    /* width: 500px;
+    height: 400px; */
+    width: 100%;
+    margin-right: 20px; 
+}
+.about-us .grid .about-info{
+    margin-top: 50px;
+}
+.about-collection .row .collection-item{
+    text-align: center;
+}
+.about-collection .row .collection-item a svg{
+    color: #d3b673;
+    display: inline-block;
+    transition: All 2s ease;
+    /* -webkit-transition: All 1.498s ease; */
+}
+.about-collection .row .collection-item a svg:hover{
+    transform: rotate(360deg);
+    /* -webkit-transform: rotate(360deg); */
+    color: #282828;
+}
+.about-collection .row .collection-item span{
+    display: block;
+    margin-top: 40px;
+    font-size: 12px;
+    color: #282828;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.7px;
+}
