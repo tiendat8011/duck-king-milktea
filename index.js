@@ -8,6 +8,8 @@ require('dotenv').config();
 // MONGODB
 const connectToMongoDB = require('./config/mongodb');
 
+const errorHandle = require('./middlewares/errorHandle');
+
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -32,6 +34,8 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'resources', 'views'));
 
 route(app);
+
+app.use(errorHandle);
 
 app.listen(port, (err) => {
     if (err) console.log(err);

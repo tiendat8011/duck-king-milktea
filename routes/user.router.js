@@ -8,11 +8,12 @@ const userRouter = express.Router();
 userRouter.use(authMiddleware.protect);
 
 userRouter
+    .route('/admin')
+    .get(authMiddleware.admin, userController.getAllUsers);
+userRouter
     .route('/:id')
     .get(userController.getUser)
     .put(authMiddleware.admin, userController.updateUserById)
     .delete(authMiddleware.admin, userController.deleteUserById);
-
-userRouter.route('/').get(authMiddleware.admin, userController.getAllUsers);
 
 module.exports = userRouter;

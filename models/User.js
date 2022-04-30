@@ -4,12 +4,10 @@ const validator = require('validator');
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 
+const Order = require('../models/Order');
+
 const userSchema = new mongoose.Schema(
     {
-        avatar: {
-            data: Buffer,
-            contentType: String,
-        },
         full_name: {
             type: String,
             required: [true, 'Require full name'],
@@ -21,7 +19,6 @@ const userSchema = new mongoose.Schema(
             required: [true, 'Require phone number'],
             trim: true,
         },
-        shift: String,
         role: {
             type: String,
             enum: ['user', 'admin'],
@@ -44,6 +41,12 @@ const userSchema = new mongoose.Schema(
             validate: [validator.isEmail, 'Invalid email'],
             trim: true,
         },
+        orders: [
+            {
+                type: mongoose.SchemaTypes.ObjectId,
+                ref: 'Order',
+            },
+        ],
         reset_password_token: String,
         reset_password_token_expired: Date,
     },

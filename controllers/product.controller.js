@@ -3,7 +3,7 @@ const Product = require('../models/Product');
 
 module.exports = {
     // [GET] /products
-    renderSite: asyncHandle(async (req, res) => {
+    getAllProducts: asyncHandle(async (req, res) => {
         const products = await Product.find();
         res.render('product', { products });
     }),
@@ -11,8 +11,8 @@ module.exports = {
     //[GET] /products/:id
     getProduct: asyncHandle(async (req, res) => {
         let { id } = req.params;
-        const user = await Product.findById(id);
-        res.status(200).json(user);
+        const product = await Product.findById(id);
+        res.status(200).json(product);
     }),
 
     //[POST] /products

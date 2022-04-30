@@ -1,28 +1,33 @@
 const express = require('express');
 
 const authController = require('../controllers/auth.controller');
+const validate = require('../middlewares/validate');
+const authValidation = require('../validation/auth.validation');
 
 const authRouter = express.Router();
 
 authRouter
     .route('/login')
     .get(authController.loginSite)
-    .post(authController.login);
+    .post(validate(authValidation.login), authController.login);
 authRouter.route('/logout').get(authController.logout);
 authRouter
     .route('/register')
     .get(authController.registerSite)
-    .post(authController.createUser);
+    .post(validate(authValidation.register), authController.createUser);
 authRouter
     .route('/forget-password')
     .get(authController.forgetPasswordSite)
-    .post(authController.forgetPassword);
+    .post(
+        validate(authValidation.forgotPassword),
+        authController.forgetPassword
+    );
 authRouter
     .route('/reset-password-successfully')
     .get(authController.successfullyReset);
 authRouter
     .route('/change-password')
     .get(authController.changePasswordSite)
-    .put(authController.changePassword);
+    .put(validate(authValidation.resetPassword), authController.changePassword);
 
 module.exports = authRouter;

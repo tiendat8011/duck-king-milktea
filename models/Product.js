@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
 
-// const Size = require('./Size');
-
 const productSchema = new mongoose.Schema(
     {
+        image: {},
         name: {
             type: String,
             required: [true, 'Require name'],
@@ -18,17 +17,13 @@ const productSchema = new mongoose.Schema(
         description: {
             type: String,
             trim: true,
+            default: '',
         },
         category: {
             type: String,
             trim: true,
         },
-        // size: [
-        //     {
-        //         type: mongoose.Schema.Types.ObjectId,
-        //         ref: 'Size',
-        //     },
-        // ],
+        size: { type: String, enum: ['M', 'L'], default: 'M' },
     },
     {
         timestamps: true,

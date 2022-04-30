@@ -8,13 +8,15 @@ const productRouter = require('./product.router');
 const newsRouter = require('./news.router');
 const storeRouter = require('./store.router');
 const recruitmentRouter = require('./recruitment.router');
+const orderRouter = require('./order.router');
 
 function route(app) {
+    app.use('/orders', orderRouter);
     app.use('/users', userRouter);
     app.use('/auth', authRouter);
+    app.use('/products', productRouter);
     app.use('/franchise', franchiseRouter);
     app.use('/introduce', introduceRouter);
-    app.use('/products', productRouter);
     app.use('/news', newsRouter);
     app.use('/store', storeRouter);
     app.use('/recruitment', recruitmentRouter);

@@ -8,12 +8,12 @@ const productRouter = express.Router();
 productRouter
     .route('/:id')
     .get(productController.getProduct)
-    .put(authMiddleware.protect, productController.updateProductById)
-    .delete(authMiddleware.protect, productController.deleteProductById);
+    .put(productController.updateProductById)
+    .delete(productController.deleteProductById);
 
 productRouter
     .route('/')
-    .get(productController.renderSite)
-    .post(authMiddleware.protect, productController.createProduct);
+    .get(productController.getAllProducts)
+    .post(productController.createProduct);
 
 module.exports = productRouter;

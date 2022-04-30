@@ -3,7 +3,7 @@ const asyncHandle = require('../middlewares/asyncHandle');
 const ErrorResponse = require('../common/ErrorResponse');
 
 module.exports = {
-    // [GET] /users/
+    // [GET] /users/admin
     getAllUsers: asyncHandle(async (req, res, next) => {
         const users = await User.find();
         // res.status(200).json(users);
