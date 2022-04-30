@@ -1,6 +1,391 @@
-<h1>Product</h1>
-<ul>
-    <% for (product of products) { %>
-    <li><%= product.name %></li>
-    <% } %>
-</ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order</title>
+    <link rel="stylesheet" href="/css/order.css">
+    <script src="https://kit.fontawesome.com/92599c8cb3.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <%- include('../partials/header'); %>
+    <div>
+        <div class="banner">
+            <a href="/"><img src="/images/logo.png" alt=""></a>
+            <div class="search"><input type="" value="Tìm kiếm sản phẩm..." style="width: 300px; height: 30px;"></div>
+            <button style="color: aliceblue; background-color: rgb(207, 118, 45); border-radius: 5px; width: 100px; height: 30px; border-radius: 5px;">Đăng nhập</button>
+        </div>
+        <div class="page-order">
+                <div class="menu">
+                    <div class="danhmuc">Danh mục</div>
+                    <div class="item">
+                        <div>Món nổi bật</div>
+                        <div>14</div>
+                    </div>
+                    <div class="item">
+                        <div>Trà sữa</div>
+                        <div>15</div>
+                    </div>
+                    <div class="item">
+                        <div>Fresh Fruit Tea</div>
+                        <div>7</div>
+                    </div>
+                    <div class="item">
+                        <div>Macchiato Cream Cheese</div>
+                        <div>6</div>
+                    </div>
+                    <div class="item">
+                        <div>Sữa Chua Dẻo</div>
+                        <div>3</div>
+                    </div>
+                </div>
+                <div class="order-center">
+                    <div class="monnoibat">
+                        Món nổi bật
+                        <span style="float: right;"><i class="fa-solid fa-angle-down"></i></span>
+                    </div>
+                    <div class="danhsachsanpham">
+                        <div class="row-danhsach">
+                            <div class="trasua"><img src="/images/trà-xoài-bưởi-hồng.png" alt="">
+                                <div class="product-text">
+                                    <p>Trà Xoài Bưởi Hồng</p>
+                                    <div class="product-price">
+                                        <div class="product-origin-price">29,000</div>
+                                        <span class="pick">+</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="trasua"><img src="/images/trà-xoài-bưởi-hồng.png" alt="">
+                                <div class="product-text">
+                                    <p>Trà Xoài Bưởi Hồng</p>
+                                    <div class="product-price">
+                                        <div class="product-origin-price">29,000</div>
+                                        <span class="pick">+</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="trasua"><img src="/images/trà-xoài-bưởi-hồng.png" alt="">
+                                <div class="product-text">
+                                    <p>Trà Xoài Bưởi Hồng</p>
+                                    <div class="product-price">
+                                        <div class="product-origin-price">29,000</div>
+                                        <span class="pick">+</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+  
+                        <div class="row-danhsach">
+                            <div class="trasua"><img src="/images/trà-xoài-bưởi-hồng.png" alt="">
+                                <div class="product-text">
+                                    <p>Trà Xoài Bưởi Hồng</p>
+                                    <div class="product-price">
+                                        <div class="product-origin-price">29,000</div>
+                                        <span class="pick">+</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="trasua"><img src="/images/trà-xoài-bưởi-hồng.png" alt="">
+                                <div class="product-text">
+                                    <p>Trà Xoài Bưởi Hồng</p>
+                                    <div class="product-price">
+                                        <div class="product-origin-price">29,000</div>
+                                        <span class="pick">+</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="trasua"><img src="/images/trà-xoài-bưởi-hồng.png" alt="">
+                                <div class="product-text">
+                                    <p>Trà Xoài Bưởi Hồng</p>
+                                    <div class="product-price">
+                                        <div class="product-origin-price">29,000</div>
+                                        <span class="pick">+</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="monnoibat">
+                        Trà sữa
+                        <span style="float: right;"><i class="fa-solid fa-angle-down"></i></span>
+                    </div>
+                    <div class="danhsachsanpham">
+                        <div class="row-danhsach">
+                            <div class="trasua"><img src="/images/trà-xoài-bưởi-hồng.png" alt="">
+                                <div class="product-text">
+                                    <p>Trà Xoài Bưởi Hồng</p>
+                                    <div class="product-price">
+                                        <div class="product-origin-price">29,000</div>
+                                        <span class="pick">+</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="trasua"><img src="/images/trà-xoài-bưởi-hồng.png" alt="">
+                                <div class="product-text">
+                                    <p>Trà Xoài Bưởi Hồng</p>
+                                    <div class="product-price">
+                                        <div class="product-origin-price">29,000</div>
+                                        <span class="pick">+</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="trasua"><img src="/images/trà-xoài-bưởi-hồng.png" alt="">
+                                <div class="product-text">
+                                    <p>Trà Xoài Bưởi Hồng</p>
+                                    <div class="product-price">
+                                        <div class="product-origin-price">29,000</div>
+                                        <span class="pick">+</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+  
+                        <div class="row-danhsach">
+                            <div class="trasua"><img src="/images/trà-xoài-bưởi-hồng.png" alt="">
+                                <div class="product-text">
+                                    <p>Trà Xoài Bưởi Hồng</p>
+                                    <div class="product-price">
+                                        <div class="product-origin-price">29,000</div>
+                                        <span class="pick">+</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="trasua"><img src="/images/trà-xoài-bưởi-hồng.png" alt="">
+                                <div class="product-text">
+                                    <p>Trà Xoài Bưởi Hồng</p>
+                                    <div class="product-price">
+                                        <div class="product-origin-price">29,000</div>
+                                        <span class="pick">+</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="trasua"><img src="/images/trà-xoài-bưởi-hồng.png" alt="">
+                                <div class="product-text">
+                                    <p>Trà Xoài Bưởi Hồng</p>
+                                    <div class="product-price">
+                                        <div class="product-origin-price">29,000</div>
+                                        <span class="pick">+</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="monnoibat">
+                        Fresh Fruit Tea 
+                        <span style="float: right;"><i class="fa-solid fa-angle-down"></i></span>
+                    </div>
+                    <div class="danhsachsanpham">
+                        <div class="row-danhsach">
+                            <div class="trasua"><img src="/images/trà-xoài-bưởi-hồng.png" alt="">
+                                <div class="product-text">
+                                    <p>Trà Xoài Bưởi Hồng</p>
+                                    <div class="product-price">
+                                        <div class="product-origin-price">29,000</div>
+                                        <span class="pick">+</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="trasua"><img src="/images/trà-xoài-bưởi-hồng.png" alt="">
+                                <div class="product-text">
+                                    <p>Trà Xoài Bưởi Hồng</p>
+                                    <div class="product-price">
+                                        <div class="product-origin-price">29,000</div>
+                                        <span class="pick">+</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="trasua"><img src="/images/trà-xoài-bưởi-hồng.png" alt="">
+                                <div class="product-text">
+                                    <p>Trà Xoài Bưởi Hồng</p>
+                                    <div class="product-price">
+                                        <div class="product-origin-price">29,000</div>
+                                        <span class="pick">+</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+  
+                        <div class="row-danhsach">
+                            <div class="trasua"><img src="/images/trà-xoài-bưởi-hồng.png" alt="">
+                                <div class="product-text">
+                                    <p>Trà Xoài Bưởi Hồng</p>
+                                    <div class="product-price">
+                                        <div class="product-origin-price">29,000</div>
+                                        <span class="pick">+</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="trasua"><img src="/images/trà-xoài-bưởi-hồng.png" alt="">
+                                <div class="product-text">
+                                    <p>Trà Xoài Bưởi Hồng</p>
+                                    <div class="product-price">
+                                        <div class="product-origin-price">29,000</div>
+                                        <span class="pick">+</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="trasua"><img src="/images/trà-xoài-bưởi-hồng.png" alt="">
+                                <div class="product-text">
+                                    <p>Trà Xoài Bưởi Hồng</p>
+                                    <div class="product-price">
+                                        <div class="product-origin-price">29,000</div>
+                                        <span class="pick">+</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="monnoibat">
+                        Macchiato Cream Cheese
+                        <span style="float: right;"><i class="fa-solid fa-angle-down"></i></span>
+                    </div>
+                    <div class="danhsachsanpham">
+                        <div class="row-danhsach">
+                            <div class="trasua"><img src="/images/trà-xoài-bưởi-hồng.png" alt="">
+                                <div class="product-text">
+                                    <p>Trà Xoài Bưởi Hồng</p>
+                                    <div class="product-price">
+                                        <div class="product-origin-price">29,000</div>
+                                        <span class="pick">+</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="trasua"><img src="/images/trà-xoài-bưởi-hồng.png" alt="">
+                                <div class="product-text">
+                                    <p>Trà Xoài Bưởi Hồng</p>
+                                    <div class="product-price">
+                                        <div class="product-origin-price">29,000</div>
+                                        <span class="pick">+</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="trasua"><img src="/images/trà-xoài-bưởi-hồng.png" alt="">
+                                <div class="product-text">
+                                    <p>Trà Xoài Bưởi Hồng</p>
+                                    <div class="product-price">
+                                        <div class="product-origin-price">29,000</div>
+                                        <span class="pick">+</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+  
+                        <div class="row-danhsach">
+                            <div class="trasua"><img src="/images/trà-xoài-bưởi-hồng.png" alt="">
+                                <div class="product-text">
+                                    <p>Trà Xoài Bưởi Hồng</p>
+                                    <div class="product-price">
+                                        <div class="product-origin-price">29,000</div>
+                                        <span class="pick">+</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="trasua"><img src="/images/trà-xoài-bưởi-hồng.png" alt="">
+                                <div class="product-text">
+                                    <p>Trà Xoài Bưởi Hồng</p>
+                                    <div class="product-price">
+                                        <div class="product-origin-price">29,000</div>
+                                        <span class="pick">+</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="trasua"><img src="/images/trà-xoài-bưởi-hồng.png" alt="">
+                                <div class="product-text">
+                                    <p>Trà Xoài Bưởi Hồng</p>
+                                    <div class="product-price">
+                                        <div class="product-origin-price">29,000</div>
+                                        <span class="pick">+</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="monnoibat">
+                        Sữa chua dẻo
+                        <span style="float: right;"><i class="fa-solid fa-angle-down"></i></span>
+                    </div>
+                    <div class="danhsachsanpham">
+                        <div class="row-danhsach">
+                            <div class="trasua"><img src="/images/trà-xoài-bưởi-hồng.png" alt="">
+                                <div class="product-text">
+                                    <p>Trà Xoài Bưởi Hồng</p>
+                                    <div class="product-price">
+                                        <div class="product-origin-price">29,000</div>
+                                        <span class="pick">+</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="trasua"><img src="/images/trà-xoài-bưởi-hồng.png" alt="">
+                                <div class="product-text">
+                                    <p>Trà Xoài Bưởi Hồng</p>
+                                    <div class="product-price">
+                                        <div class="product-origin-price">29,000</div>
+                                        <span class="pick">+</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="trasua"><img src="/images/trà-xoài-bưởi-hồng.png" alt="">
+                                <div class="product-text">
+                                    <p>Trà Xoài Bưởi Hồng</p>
+                                    <div class="product-price">
+                                        <div class="product-origin-price">29,000</div>
+                                        <span class="pick">+</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+  
+                        <div class="row-danhsach">
+                            <div class="trasua"><img src="/images/trà-xoài-bưởi-hồng.png" alt="">
+                                <div class="product-text">
+                                    <p>Trà Xoài Bưởi Hồng</p>
+                                    <div class="product-price">
+                                        <div class="product-origin-price">29,000</div>
+                                        <span class="pick">+</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="trasua"><img src="/images/trà-xoài-bưởi-hồng.png" alt="">
+                                <div class="product-text">
+                                    <p>Trà Xoài Bưởi Hồng</p>
+                                    <div class="product-price">
+                                        <div class="product-origin-price">29,000</div>
+                                        <span class="pick">+</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="trasua"><img src="/images/trà-xoài-bưởi-hồng.png" alt="">
+                                <div class="product-text">
+                                    <p>Trà Xoài Bưởi Hồng</p>
+                                    <div class="product-price">
+                                        <div class="product-origin-price">29,000</div>
+                                        <span class="pick">+</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mycart">
+                    <div class="cart-top">
+                        <div class="cart-title">
+                            <div class="cart-title-left">GIỎ HÀNG CỦA TÔI</div>
+                            <div class="cart-title-right">Xóa tất cả</div>
+                        </div>
+                        <div class="cart-ss1">Chưa có sản phẩm nào!</div>
+                    </div>
+                    <div class="cart-ss2">
+                        <img src="/images/icon-glass-tea.png" alt="" style="width:22.05px; height:35px">
+                        <span class="cart-ss2-one">x</span>
+                        <span class="cart-ss2-two">0</span>
+                        <span class="cart-ss2-three">=</span>
+                        <span class="cart-ss2-four">0đ</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../partials/footer'); %>
+</body>
+</html>
