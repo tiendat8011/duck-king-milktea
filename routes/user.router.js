@@ -9,11 +9,15 @@ userRouter.use(authMiddleware.protect);
 
 userRouter
     .route('/admin')
-    .get(authMiddleware.admin, userController.getAllUsers);
+    .get(
+        authMiddleware.isAuthenticated,
+        authMiddleware.admin,
+        userController.getAllUsers
+    );
 userRouter
     .route('/:id')
     .get(userController.getUser)
-    .put(authMiddleware.admin, userController.updateUserById)
-    .delete(authMiddleware.admin, userController.deleteUserById);
+    .put(authMiddleware.protect, userController.updateUserById)
+    .delete(authMiddleware.protect, userController.deleteUserById);
 
 module.exports = userRouter;

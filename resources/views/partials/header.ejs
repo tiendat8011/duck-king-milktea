@@ -1,70 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/base.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/css/base.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+            integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <script
+            src="https://kit.fontawesome.com/92599c8cb3.js"
+            crossorigin="anonymous"
+        ></script>
 
-    <title>Tra Sữa BOBO</title>
-</head>
-<body>
-    <header class="header" >
-        <div class="header-nav" id="Myheader">
-            <div class="header_nav head-bn tb" >
-                <div class="header_nav_share">
-                    <div class="img">
-                        <a href="/">
-                            <img src="/images/Logo-ngang-01.png" alt="">
+        <title>Tra Sữa BOBO</title>
+    </head>
+    <body>
+        <header class="header">
+            <div class="header-nav" id="Myheader">
+                <div class="header_nav head-bn tb">
+                    <div class="header_nav_share">
+                        <div class="img">
+                            <a href="/">
+                                <img src="/images/Logo-ngang-01.png" alt="" />
+                            </a>
+                        </div>
+                        <div class="menu-header">
+                            <ul class="menu_ul">
+                                <li><a href="/">TRANG CHỦ</a></li>
+                                <li>
+                                    <a href="/introduce">GIỚI THIỆU</a>
+                                    <ul class="menu_2">
+                                        <li class="menu_2_li">
+                                            <a href="#">LỊCH SỬ VÀ SỨ MỆNH</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">THÀNH TỰU ĐẠT ĐƯỢC</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a href="/products">SẢN PHẨM</a></li>
+                                <li>
+                                    <a href="/news">TIN TỨC</a>
+                                    <ul class="menu_2 bs">
+                                        <li class="menu_2_li">
+                                            <a href="#">TIN TỨC KHUYẾN MÃI</a>
+                                        </li>
+                                        <li class="menu_2_li">
+                                            <a href="#"
+                                                >CÂU TRUYỆN THƯƠNG HIỆU</a
+                                            >
+                                        </li>
+                                        <li><a href="#">SỰ KIỆN</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/store">CỬA HÀNG</a></li>
+                                <li><a href="/recruitment">TUYỂN DỤNG</a></li>
+                                <li><a href="/franchise">NHƯỢNG QUYỀN</a></li>
+                            </ul>
+                        </div>
+                        <div class="search">
+                            <i class="fas fa-search search_nt"></i>
+                        </div>
+
+                        <%if(userFName) {%> <%if(userRole==='admin') {%>
+                        <div class="header-admin-list">
+                            QUẢN LÝ
+                            <div class="header-admin-list-child">
+                                <a href="/users/admin">
+                                    <div class="header-admin-list-child-link">
+                                        DANH SÁCH NGƯỜI DÙNG
+                                    </div>
+                                </a>
+                                <hr style="width: 100%" />
+                                <a href="/orders/admin">
+                                    <div class="header-admin-list-child-link">
+                                        DANH SÁCH ĐƠN HÀNG
+                                    </div>
+                                </a>
+                                <hr style="width: 100%" />
+                                <a href="/products/admin">
+                                    <div class="header-admin-list-child-link">
+                                        DANH SÁCH SẢN PHẨM
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <%}%> <%if(userRole==='user') {%>
+
+                        <a class="header-order" href="/orders/<%=userId%>">
+                            <div>ĐƠN HÀNG</div>
                         </a>
-                    </div>
-                    <div class="menu-header">
-                        <ul class="menu_ul">
-                            <li><a href="/">TRANG CHỦ</a></li>
-                            <li><a href="/introduce">GIỚI THIỆU</a>
-                                <ul class="menu_2">
-                                    <li class="menu_2_li"><a href="#">LỊCH SỬ VÀ SỨ MỆNH</a></li>
-                                    <li><a href="#">THÀNH TỰU ĐẠT ĐƯỢC</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="/products">SẢN PHẨM</a></li>
-                            <li><a href="/news">TIN TỨC</a>
-                                <ul class="menu_2 bs">
-                                    <li class="menu_2_li"><a href="#">TIN TỨC KHUYẾN MÃI</a></li>
-                                    <li class="menu_2_li"><a href="#">CÂU TRUYỆN THƯƠNG HIỆU</a></li>
-                                    <li><a href="#">SỰ KIỆN</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="/store">CỬA HÀNG</a></li>
-                            <li><a href="/recruitment">TUYỂN DỤNG</a></li>
-                            <li><a href="/franchise">NHƯỢNG QUYỀN</a></li>
-                        </ul>
-                    </div>
-                    <div class="search">
-                        <i class="fas fa-search search_nt"></i>
+
+                        <%}%>
+                        <div class="header-user">
+                            <div class="header-user-fullname">
+                                <%=userFName%>
+                            </div>
+                            <div class="header-logout">
+                                <a href="/auth/logout"
+                                    ><i
+                                        class="fa-solid fa-right-from-bracket"
+                                    ></i
+                                ></a>
+                            </div>
+                        </div>
+                        <%}%> <%if(!userFName) {%>
+                        <div class="header-auth">
+                            <a href="auth/register" style="padding: 0 20px">
+                                ĐĂNG KÝ
+                            </a>
+                            <a
+                                href="auth/login"
+                                style="
+                                    padding: 0 20px;
+                                    border-left: 1px solid white;
+                                "
+                            >
+                                ĐĂNG NHẬP
+                            </a>
+                        </div>
+                        <%}%>
                     </div>
                 </div>
             </div>
-        </div>
-    </header>
+        </header>
 
-    <script>
-        window.onscroll = function(){
-        console.info(document.documentElement.scrollTop);
-        var header = document.getElementById("Myheader");
-        if(document.documentElement.scrollTop > 100 || document.body.scrollTop > 100){
-            header.style.position = "fixed";
-            header.style.left = 0;
-            header.style.right = 0;
-            header.style.background = "rgb(85, 85, 85)";
-            header.style.zIndex = 9;
-            }
-            else{
-                // header.style.position = "relative";
-                header.style.backgroundColor = "rgb(0,0,0,0)";
-            }
-        }
-    </script>
-
-</body>
+        <script>
+            window.onscroll = function () {
+                console.info(document.documentElement.scrollTop);
+                var header = document.getElementById('Myheader');
+                if (
+                    document.documentElement.scrollTop > 100 ||
+                    document.body.scrollTop > 100
+                ) {
+                    header.style.position = 'fixed';
+                    header.style.left = 0;
+                    header.style.right = 0;
+                    header.style.background = 'rgb(85, 85, 85)';
+                    header.style.zIndex = 9;
+                } else {
+                    // header.style.position = "relative";
+                    header.style.backgroundColor = 'rgb(0,0,0,0)';
+                }
+            };
+        </script>
+    </body>
+</html>

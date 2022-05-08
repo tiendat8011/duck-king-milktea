@@ -1,11 +1,30 @@
 const asyncHandle = require('../middlewares/asyncHandle');
 const Product = require('../models/Product');
+const User = require('../models/User');
 
 module.exports = {
     // [GET] /products
     getAllProducts: asyncHandle(async (req, res) => {
+        const user = await User.findOne({ username: res.locals.username });
         const products = await Product.find();
-        res.render('product', { products });
+        res.render('products', {
+            products,
+            userFName: user?.full_name,
+            userRole: user?.role,
+            userId: user?.id,
+        });
+    }),
+
+    // [GET] /products/admin
+    getAllProducts: asyncHandle(async (req, res) => {
+        const user = await User.findOne({ username: res.locals.username });
+        const products = await Product.find();
+        res.render('admin/products', {
+            products,
+            userFName: user?.full_name,
+            userRole: user?.role,
+            userId: user?.id,
+        });
     }),
 
     //[GET] /products/:id

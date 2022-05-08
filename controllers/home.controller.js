@@ -2,9 +2,11 @@ const asyncHandle = require('../middlewares/asyncHandle');
 const User = require('../models/User');
 
 const renderSite = asyncHandle(async (req, res, next) => {
-    const user = await User.findOne({ name: 'chee' });
+    const user = await User.findOne({ username: res.locals.username });
     res.render('home', {
-        user,
+        userFName: user?.full_name,
+        userRole: user?.role,
+        userId: user?.id,
     });
 });
 

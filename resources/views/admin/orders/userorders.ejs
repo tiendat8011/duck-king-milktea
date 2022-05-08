@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Your Orders</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+            crossorigin="anonymous"
+        />
+    </head>
+    <body>
+        <%- include('../../partials/header') %>
+        <div
+            class="user-banner"
+            style="
+                background-color: rgb(58, 112, 94);
+                width: 100%;
+                height: 100px;
+            "
+        ></div>
+        <div
+            style="
+                width: 100%;
+                text-align: left;
+                padding-left: 20px;
+                margin-top: 20px;
+            "
+        >
+            <a href="/users/admin">
+                <i class="fa-solid fa-arrow-left"></i>
+                Danh sách khách hàng
+            </a>
+        </div>
+        <h3 style="width: 100%; text-align: center; margin: 50px 0">
+            DANH SÁCH ĐƠN HÀNG CỦA
+            <span style="text-transform: uppercase"><%=owner.full_name%></span>
+        </h3>
+
+        <table class="table table-striped table-success table-responsive">
+            <thead>
+                <tr>
+                    <th scope="col">STT</th>
+                    <th scope="col">Địa chỉ</th>
+                    <th scope="col">Số ĐT</th>
+                    <th scope="col">Sản phẩm</th>
+                    <th scope="col">Số lượng</th>
+                    <th scope="col">Thời gian tạo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (order of orders) { %>
+                <tr>
+                    <th scope="row"><%= orders.indexOf(order) + 1 %></th>
+                    <td style="overflow-wrap: break-word">
+                        <%= order.customer_address %>
+                    </td>
+                    <td><%= order.phone_number %></td>
+                    <td>
+                        <%for (product of order.products) {%>
+                        <div><%=product.product%></div>
+                        <% } %>
+                    </td>
+                    <td>
+                        <%for (product of order.products) {%>
+                        <div><%=product.quantity%></div>
+                        <% } %>
+                    </td>
+                    <td><%= order.createdAt.toLocaleString() %></td>
+                </tr>
+                <% } %>
+            </tbody>
+        </table>
+        <%if(orders.length===0) {%>
+        <p style="width: 100%; text-align: center">KHÔNG CÓ ĐƠN ĐẶT HÀNG.</p>
+        <%}%>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>

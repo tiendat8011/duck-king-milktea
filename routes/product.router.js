@@ -6,14 +6,33 @@ const authMiddleware = require('../middlewares/authMiddleware');
 const productRouter = express.Router();
 
 productRouter
-    .route('/:id')
-    .get(productController.getProduct)
-    .put(productController.updateProductById)
-    .delete(productController.deleteProductById);
+    .route('/admin')
+    .get(
+        authMiddleware.protect,
+        authMiddleware.admin,
+        authMiddleware.isAuthenticated,
+        productController.getAllProducts
+    )
+    .post(
+        authMiddleware.protect,
+        authMiddleware.admin,
+        productController.createProduct
+    )
+    .put(
+        authMiddleware.protect,
+        authMiddleware.admin,
+        productController.updateProductById
+    )
+    .delete(
+        authMiddleware.protect,
+        authMiddleware.admin,
+        productController.deleteProductById
+    );
+
+productRouter.route('/:id').get(productController.getProduct);
 
 productRouter
     .route('/')
-    .get(productController.getAllProducts)
-    .post(productController.createProduct);
+    .get(authMiddleware.isAuthenticated, productController.getAllProducts);
 
 module.exports = productRouter;

@@ -41,12 +41,6 @@ const userSchema = new mongoose.Schema(
             validate: [validator.isEmail, 'Invalid email'],
             trim: true,
         },
-        orders: [
-            {
-                type: mongoose.SchemaTypes.ObjectId,
-                ref: 'Order',
-            },
-        ],
         reset_password_token: String,
         reset_password_token_expired: Date,
     },

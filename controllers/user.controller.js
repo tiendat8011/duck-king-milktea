@@ -6,8 +6,16 @@ module.exports = {
     // [GET] /users/admin
     getAllUsers: asyncHandle(async (req, res, next) => {
         const users = await User.find();
+        const user = await User.findOne({
+            username: res.locals.username,
+        });
         // res.status(200).json(users);
-        res.render('users', { users });
+        res.render('admin/users', {
+            users,
+            userFName: user?.full_name,
+            userRole: user?.role,
+            userId: user?.id,
+        });
     }),
 
     // [GET] /users/:id

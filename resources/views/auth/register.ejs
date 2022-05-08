@@ -1,56 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/login.css">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/css/login.css" />
 
-    <title>Đăng Ký</title>
-</head>
-<body>
-    <div class="login" id="login">
-        <div class="login-popup-content">
-            <div class="popup-login-content" >
-                <div class="popup-login-content_img" >
-                    <img src="/images/logo.png" alt="">
+        <title>Đăng Ký</title>
+    </head>
+    <body>
+        <div class="login" id="login">
+            <div class="login-popup-content">
+                <div class="popup-login-content">
+                    <div class="popup-login-content_img">
+                        <img src="/images/logo.png" alt="" />
+                    </div>
+                    <div class="popup-login-content-form">
+                        <form method="POST" action="/auth/register">
+                            <div class="popup-login-content-input">
+                                <input
+                                    type="text"
+                                    name="full_name"
+                                    placeholder="Nhập họ và tên"
+                                />
+                            </div>
+                            <div class="popup-login-content-input">
+                                <input
+                                    type="text"
+                                    name="email"
+                                    placeholder="Nhập email của bạn"
+                                />
+                            </div>
+                            <div class="popup-login-content-input">
+                                <input
+                                    type="text"
+                                    name="phone_number"
+                                    placeholder="Nhập số điện thoại"
+                                />
+                            </div>
+                            <div class="popup-login-content-input">
+                                <input
+                                    type="text"
+                                    name="username"
+                                    placeholder="Nhập tên đang nhập"
+                                />
+                            </div>
+                            <div class="popup-login-content-input">
+                                <input
+                                    type="password"
+                                    name="password"
+                                    placeholder="Nhập mật khẩu của bạn"
+                                />
+                            </div>
+                            <div class="popup-login-content-input">
+                                <input
+                                    type="password"
+                                    placeholder="Nhập lại mật khẩu của bạn"
+                                />
+                            </div>
+                            <div>
+                                <button
+                                    type="submit"
+                                    class="popup-login-content-btn-yellow"
+                                >
+                                    Đăng Ký
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="popup-login-content-sugget-text">
+                        <div class="text">Bạn có tài khoản?</div>
+                        <div class="link">
+                            <a href="/auth/login">Đăng Nhập</a>
+                        </div>
+                    </div>
+                    <div class="text_return">
+                        <a href="/">Quay về màn hình chính</a>
+                    </div>
                 </div>
-               <div class="popup-login-content-form">
-                    <form method="POST" action="/auth/register">
-                        
-                        <div class="popup-login-content-input">
-                            <input type="text" name="full_name" placeholder="Nhập họ và tên">
-                        </div>
-                        <div class="popup-login-content-input">
-                            <input type="text" name="email"  placeholder="Nhập email của bạn">
-                        </div>
-                        <div class="popup-login-content-input">
-                            <input type="text" name="phone_number"  placeholder="Nhập số điện thoại">
-                        </div>
-                        <div class="popup-login-content-input">
-                            <input type="text" name="username" placeholder="Nhập tên đang nhập">
-                        </div>
-                        <div class="popup-login-content-input">
-                            <input type="password" name="password" placeholder="Nhập mật khẩu của bạn">
-                        </div>
-                        <div class="popup-login-content-input">
-                            <input type="password" placeholder="Nhập lại mật khẩu của bạn">
-                        </div>
-                        <div>
-                            <button type="submit" class="popup-login-content-btn-yellow">Đăng Ký</button>
-                        </div>
-                    </form>
-               </div>
-                <div class="popup-login-content-sugget-text">
-                    <div class="text">Bạn có tài khoản?</div>
-                    <div class="link"><a href="/auth/login">Đăng Nhập</a></div>
-                </div>
-                <div class="text_return"><a href="/">Quay về màn hình chính</a></div>
             </div>
         </div>
-    </div>
 
-
-    <script src="../Dang/js/login.js"></script>
-</body>
+        <!-- <script src="../Dang/js/login.js"></script> -->
+    </body>
 </html>

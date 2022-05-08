@@ -5,11 +5,6 @@ const Order = require('./Order');
 
 const orderProductSchema = mongoose.Schema(
     {
-        order: {
-            type: mongoose.SchemaTypes.ObjectId,
-            ref: 'Order',
-            required: true,
-        },
         quantity: {
             type: Number,
             required: true,

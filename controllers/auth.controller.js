@@ -73,7 +73,7 @@ module.exports = {
             maxAge: 1000 * 60 * process.env.COOKIE_EXPIRE || 1000 * 60 * 60,
         });
 
-        res.redirect('/');
+        res.redirect('..');
     }),
     // [GET] /auth/logout
     logout: asyncHandle(async (req, res) => {
