@@ -16,7 +16,7 @@ module.exports = {
     }),
 
     // [GET] /products/admin
-    getAllProducts: asyncHandle(async (req, res) => {
+    getAllProductsAdmin: asyncHandle(async (req, res) => {
         const user = await User.findOne({ username: res.locals.username });
         const products = await Product.find();
         res.render('admin/products', {
@@ -32,6 +32,16 @@ module.exports = {
         let { id } = req.params;
         const product = await Product.findById(id);
         res.status(200).json(product);
+    }),
+
+    // [GET] /products/create/admin
+    createProductSite: asyncHandle(async (req, res) => {
+        const user = await User.findOne({ username: res.locals.username });
+        res.render('admin/products/create', {
+            userFName: user?.full_name,
+            userRole: user?.role,
+            userId: user?.id,
+        });
     }),
 
     //[POST] /products

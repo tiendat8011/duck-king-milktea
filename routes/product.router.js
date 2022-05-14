@@ -6,12 +6,24 @@ const authMiddleware = require('../middlewares/authMiddleware');
 const productRouter = express.Router();
 
 productRouter
+    .route('/')
+    .get(authMiddleware.isAuthenticated, productController.getAllProducts);
+productRouter
+    .route('/create/admin')
+    .get(
+        authMiddleware.protect,
+        authMiddleware.admin,
+        authMiddleware.isAuthenticated,
+        productController.createProductSite
+    );
+
+productRouter
     .route('/admin')
     .get(
         authMiddleware.protect,
         authMiddleware.admin,
         authMiddleware.isAuthenticated,
-        productController.getAllProducts
+        productController.getAllProductsAdmin
     )
     .post(
         authMiddleware.protect,
@@ -30,9 +42,5 @@ productRouter
     );
 
 productRouter.route('/:id').get(productController.getProduct);
-
-productRouter
-    .route('/')
-    .get(authMiddleware.isAuthenticated, productController.getAllProducts);
 
 module.exports = productRouter;
