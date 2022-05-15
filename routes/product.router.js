@@ -29,7 +29,9 @@ productRouter
         authMiddleware.protect,
         authMiddleware.admin,
         productController.createProduct
-    )
+    );
+productRouter
+    .route('/admin/:id')
     .put(
         authMiddleware.protect,
         authMiddleware.admin,

@@ -19,6 +19,7 @@
 }
 
 /* carousel */
+
 .carousel-dark-background {
     background: black;
 }
@@ -47,6 +48,7 @@
     font-size: 30px;
     font-weight: bolder;
     margin: 70px;
+    margin-top: 20px;
     text-align: center;
 }
 .title-right {

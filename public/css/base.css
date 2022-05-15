@@ -30,12 +30,11 @@
     line-height: 4rem;
     height: auto;
 }
-ul {
+
+.menu_ul {
     list-style: none;
     display: flex;
     grid-gap: 1rem;
-}
-.menu_ul {
     height: 4rem;
     margin: 0;
     padding: 0;
@@ -129,7 +128,7 @@ ul {
     background-color: #d3b673;
     box-shadow: 0 0 5px #5c481b;
     text-align: center;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 .header-order div {
@@ -152,35 +151,46 @@ ul {
     font-weight: bold;
     text-align: center;
     position: relative;
-    padding: 5px 0;
+
+    padding: 25px 0;
 }
 
-.header-admin-list::after {
+.header-admin-list-text {
+    color: white;
+    width: 100%;
+    font-weight: bold;
+    text-align: center;
+    position: relative;
+    padding: 25px 0;
+}
+
+.header-admin-list-text::after {
+    text-align: center;
     content: '';
     position: absolute;
     height: 3px;
     width: 100%;
     transform: scaleX(0);
     background-color: #fff;
-    bottom: 0;
+    bottom: 21px;
     left: 0;
     transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .header-admin-list:hover {
     color: white;
-    cursor: default;
+    cursor: pointer;
 }
 
-.header-admin-list:hover::after {
+.header-admin-list:hover .header-admin-list-text::after {
     transform: scaleX(1);
 }
 
 .header-admin-list-child {
-    /* margin-top: 20px; */
+    border-radius: 4px;
     position: absolute;
     display: none;
-    background-color: rgb(85, 85, 85);
+    background-color: #3a705e;
     width: 250px;
 }
 
@@ -208,43 +218,6 @@ ul {
 
 .header-admin-list:hover .header-admin-list-child {
     display: block;
-}
-
-/* menu 2 */
-.menu_2 {
-    width: 14rem;
-    display: block;
-    position: absolute;
-    top: 100%;
-    left: 15%;
-    display: none;
-}
-.menu_2 li {
-    display: inline-block;
-    width: 14rem;
-    padding-left: 5%;
-    background: rgb(85, 85, 85);
-}
-.menu_2 > li > a {
-    color: #fff;
-    font-size: 13px;
-}
-.menu_2_li {
-    border-bottom: 1px solid rgb(255, 252, 252);
-}
-.menu-header > .menu_ul > li:hover .menu_2 {
-    display: block;
-}
-.menu_2 li a:hover {
-    color: #c7aa68;
-}
-.bs {
-    top: 100%;
-    left: 42%;
-}
-.fal {
-    color: #fff;
-    font-size: 15px;
 }
 
 /* mở rộng menu tổng */

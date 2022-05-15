@@ -11,6 +11,16 @@
             integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
             crossorigin="anonymous"
         />
+        <style>
+            .delete-product {
+                font-size: 18px;
+            }
+
+            .delete-product i:hover {
+                transform: scale(1.1);
+                cursor: pointer;
+            }
+        </style>
     </head>
     <body>
         <%-include('../../partials/header')%>
@@ -36,18 +46,24 @@
                     <th scope="col">Tên sản phẩm</th>
                     <th scope="col">Giá tiền</th>
                     <th scope="col">Thể loại</th>
-                    <th scope="col">Mô tả</th>
+                    <th colspan="2" scope="col">Mô tả</th>
                 </tr>
             </thead>
             <tbody>
                 <% for (product of products) { %>
-                <tr>
+                <tr id="<%=product.id%>">
                     <th scope="row"><%= products.indexOf(product) + 1 %></th>
                     <td><%= product.name %></td>
                     <td><%= product.price %></td>
                     <td><%= product.category %></td>
                     <td><%= product.description %></td>
-
+                    <td class="delete-product">
+                        <i
+                            title="move to trash"
+                            class="fa-solid fa-trash"
+                            onClick="handleDelete('<%=product.id%>', '<%= product.name%>')"
+                        ></i>
+                    </td>
                     <% } %>
                 </tr>
             </tbody>
@@ -60,5 +76,22 @@
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"
         ></script>
+        <script>
+            const handleDelete = (id, name) => {
+                if (confirm(`Xóa sản phẩm ${name} ?`)) {
+                    fetch(`/products/admin/${id}`, {
+                        method: 'DELETE',
+                    })
+                        .then(() => {
+                            const productDeleted = document.getElementById(id);
+                            productDeleted.remove();
+                        })
+                        .catch((err) => {
+                            alert('Không thể xóa!!');
+                            console.log(err);
+                        });
+                }
+            };
+        </script>
     </body>
 </html>

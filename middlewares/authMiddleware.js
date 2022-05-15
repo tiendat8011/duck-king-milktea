@@ -44,7 +44,8 @@ module.exports.admin = asyncHandle(async (req, res, next) => {
         if (user.role === 'admin') {
             return next();
         }
-        return next(new ErrorResponse('Not admin', 401));
+        // return next(new ErrorResponse('Not admin', 401));
+        return res.redirect('/nopermission');
     });
 });
 
@@ -57,6 +58,6 @@ module.exports.authUser = asyncHandle(async (req, res, next) => {
             return next();
         }
         // return next(new ErrorResponse('Not auth', 401));
-        return res.send('Bạn không có quyền truy cập vào trang này');
+        return res.redirect('/nopermission');
     });
 });

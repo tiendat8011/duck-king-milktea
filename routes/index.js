@@ -9,6 +9,8 @@ const newsRouter = require('./news.router');
 const storeRouter = require('./store.router');
 const recruitmentRouter = require('./recruitment.router');
 const orderRouter = require('./order.router');
+const notfoundRouter = require('./notfound.router');
+const noPermissionRouter = require('./nopermission.router');
 
 function route(app) {
     app.use('/orders', orderRouter);
@@ -18,11 +20,14 @@ function route(app) {
     app.use('/franchise', franchiseRouter);
     app.use('/introduce', introduceRouter);
     app.use('/news', newsRouter);
-    app.use('/store', storeRouter);
+    app.use('/stores', storeRouter);
     app.use('/recruitment', recruitmentRouter);
+    app.use('/notfound', notfoundRouter);
+    app.use('/nopermission', noPermissionRouter);
     app.use('/', homeRouter);
     app.use('*', (req, res, next) => {
-        return next(new ErrorResponse('Not found route', 404));
+        // return next(new ErrorResponse('Not found route', 404));
+        return res.redirect('/notfound');
     });
 }
 

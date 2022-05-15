@@ -47,7 +47,7 @@ module.exports = {
     //[POST] /products
     createProduct: asyncHandle(async (req, res) => {
         await Product.create(req.body);
-        res.redirect('/products');
+        res.redirect('/products/admin');
     }),
 
     //[PUT] /products/:id
@@ -57,7 +57,7 @@ module.exports = {
         res.status(200).json(product);
     }),
 
-    //[DELETE] /products/:id
+    //[DELETE] /products/admin/:id
     deleteProductById: asyncHandle(async (req, res) => {
         let { id } = req.params;
         await Product.findByIdAndDelete(id);

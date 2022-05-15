@@ -13,7 +13,7 @@
             referrerpolicy="no-referrer"
         />
 
-        <title>Trà Sữa BOBO</title>
+        <title>Trà Sữa King Duck</title>
     </head>
     <body>
         <%- include('../partials/header', {userFName, userRole}) %>
@@ -523,24 +523,6 @@
             });
 
             updateImageByIndex(0);
-
-            window.onscroll = function () {
-                console.info(document.documentElement.scrollTop);
-                var header = document.getElementById('Myheader');
-                if (
-                    document.documentElement.scrollTop > 100 ||
-                    document.body.scrollTop > 100
-                ) {
-                    header.style.position = 'fixed';
-                    header.style.left = 0;
-                    header.style.right = 0;
-                    header.style.background = 'rgb(85, 85, 85)';
-                    header.style.zIndex = 9;
-                } else {
-                    // header.style.position = "relative";
-                    header.style.backgroundColor = 'rgb(0,0,0,0)';
-                }
-            };
         </script>
     </body>
 </html>

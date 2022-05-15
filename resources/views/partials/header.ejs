@@ -34,31 +34,12 @@
                                 <li><a href="/">TRANG CHỦ</a></li>
                                 <li>
                                     <a href="/introduce">GIỚI THIỆU</a>
-                                    <ul class="menu_2">
-                                        <li class="menu_2_li">
-                                            <a href="#">LỊCH SỬ VÀ SỨ MỆNH</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">THÀNH TỰU ĐẠT ĐƯỢC</a>
-                                        </li>
-                                    </ul>
                                 </li>
                                 <li><a href="/products">SẢN PHẨM</a></li>
                                 <li>
                                     <a href="/news">TIN TỨC</a>
-                                    <ul class="menu_2 bs">
-                                        <li class="menu_2_li">
-                                            <a href="#">TIN TỨC KHUYẾN MÃI</a>
-                                        </li>
-                                        <li class="menu_2_li">
-                                            <a href="#"
-                                                >CÂU TRUYỆN THƯƠNG HIỆU</a
-                                            >
-                                        </li>
-                                        <li><a href="#">SỰ KIỆN</a></li>
-                                    </ul>
                                 </li>
-                                <li><a href="/store">CỬA HÀNG</a></li>
+                                <li><a href="/stores">CỬA HÀNG</a></li>
                                 <li><a href="/recruitment">TUYỂN DỤNG</a></li>
                                 <li><a href="/franchise">NHƯỢNG QUYỀN</a></li>
                             </ul>
@@ -69,7 +50,8 @@
 
                         <%if(userFName) {%> <%if(userRole==='admin') {%>
                         <div class="header-admin-list">
-                            QUẢN LÝ
+                            <div class="header-admin-list-text">QUẢN LÝ</div>
+                            
                             <div class="header-admin-list-child">
                                 <a href="/users/admin">
                                     <div class="header-admin-list-child-link">
@@ -142,7 +124,7 @@
                     header.style.position = 'fixed';
                     header.style.left = 0;
                     header.style.right = 0;
-                    header.style.background = 'rgb(85, 85, 85)';
+                    header.style.background = 'rgb(58, 112, 94)';
                     header.style.zIndex = 9;
                 } else {
                     // header.style.position = "relative";
