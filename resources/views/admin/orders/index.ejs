@@ -56,6 +56,7 @@
                     <th scope="col">Khách hàng</th>
                     <th scope="col">Email</th>
                     <th scope="col">Sản phẩm</th>
+                    <th scope="col">Size</th>
                     <th scope="col">Số lượng</th>
                     <th scope="col" colspan="2">Thời gian tạo</th>
                 </tr>
@@ -73,6 +74,11 @@
                     <td>
                         <%for (product of order.products) {%>
                         <div><%=product.product%></div>
+                        <% } %>
+                    </td>
+                    <td style="text-align: center">
+                        <%for (product of order.products) {%>
+                        <div><%=product.size%></div>
                         <% } %>
                     </td>
                     <td style="text-align: center">

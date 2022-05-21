@@ -5,6 +5,9 @@ const User = require('../models/User');
 module.exports = {
     // [GET] /products
     getAllProducts: asyncHandle(async (req, res) => {
+        // Giam gia vao thu 7 ...
+        // const checkTime = new Date();
+        // console.log(checkTime.getDay());
         const user = await User.findOne({ username: res.locals.username });
         const products = await Product.find();
         res.render('products', {
