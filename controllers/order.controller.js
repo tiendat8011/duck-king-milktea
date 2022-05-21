@@ -10,6 +10,7 @@ module.exports = {
     getAllOrdersOfUsers: asyncHandle(async (req, res) => {
         const user = await User.findOne({ username: res.locals.username });
         const orders = await Order.find().populate('user').populate('products');
+        // .populate('product');
         return res.render('admin/orders', {
             orders,
             userFName: user?.full_name,

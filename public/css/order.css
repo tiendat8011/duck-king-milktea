@@ -1,0 +1,147 @@
+body {
+    width: 100%;
+    padding: 0px;
+    margin: 0;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: left;
+}
+body * {
+    font-size: 14px;
+    font-family: Barlow;
+}
+.banner {
+    display: flex;
+    justify-content: space-between;
+}
+.page-order {
+    display: flex;
+}
+.menu {
+    width: 300px;
+    margin: 0 16px;
+    color: #282828;
+    background: #ffffff;
+    height: fit-content;
+    box-shadow: 0 2px 7px 0 rgb(0 0 0 / 5%);
+    border-radius: 4px;
+    padding-bottom: 12px;
+}
+.danhmuc {
+    padding: 10px;
+    font-size: 14px;
+    border-bottom: 1px solid #f1f1f1;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0px;
+    cursor: pointer;
+    border-bottom: 1px solid #f1f1f1;
+}
+.page-order {
+    margin: 0 100px;
+}
+.order-center {
+    /* display: flex;
+    justify-content: center; */
+    width: 100%;
+    margin: 20px;
+}
+.danhsachsanpham {
+    display: flex;
+    flex-wrap: wrap;
+}
+.row-danhsach {
+    display: flex;
+    justify-content: space-between;
+}
+.trasua {
+    width: 30%;
+    margin: 15px 10px;
+    padding: 20px;
+    box-shadow: 0 2px 7px 0 rgb(0 0 0 / 5%);
+}
+.product-text {
+    margin-top: 20px;
+}
+.product-price {
+    display: flex;
+    /* align-items: flex-end; */
+    width: 100%;
+    margin-right: 2%;
+    margin-bottom: 3%;
+    position: relative;
+    cursor: pointer;
+}
+.product-sale-price {
+    text-decoration: line-through;
+    color: #535353;
+    font-size: 12px;
+    margin-left: 8px;
+}
+.pick {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border-radius: 50%;
+    background: #799dd9;
+    color: #ffffff;
+    height: 20px;
+    width: 20px;
+    text-align: center;
+    line-height: 15px;
+    font-size: 26px;
+    position: absolute;
+    right: 0;
+}
+div > img {
+    width: 100%;
+}
+.mycart {
+    width: 500px;
+    max-width: 25%;
+    margin: 0 16px;
+    color: #282828;
+    background: #ffffff;
+    height: fit-content;
+    box-shadow: 0 2px 7px 0 rgb(0 0 0 / 5%);
+    border-radius: 4px;
+    padding-bottom: 12px;
+}
+.cart-title {
+    display: flex;
+    justify-content: space-around;
+}
+.cart-ss1 {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    margin: 10px 15px;
+    padding: 8px 10px;
+}
+.cart-ss2 {
+    display: flex;
+    align-items: center;
+    padding: 0 25px;
+    margin: 15px 0;
+}
+.cart-ss2-one {
+    font-weight: 600;
+    padding: 0 4px;
+}
+.cart-ss2-two,
+.cart-ss2-four {
+    color: #8a733f;
+}
+.cart-ss2-three {
+    padding: 0 4px;
+}
+/* sửa */
+.trasua {
+    flex-direction: column;
+}

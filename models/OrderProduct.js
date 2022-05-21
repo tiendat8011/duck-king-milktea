@@ -7,14 +7,15 @@ const orderProductSchema = mongoose.Schema(
     {
         quantity: {
             type: Number,
-            required: true,
             min: [1, 'Quantity must be larger than 0'],
+            default: 1,
         },
         product: {
             type: mongoose.SchemaTypes.ObjectId,
             ref: 'Product',
             required: true,
         },
+        size: { type: String, enum: ['M', 'L'], default: 'M' },
     },
     {
         timestamps: true,

@@ -9,11 +9,13 @@ const newsRouter = require('./news.router');
 const storeRouter = require('./store.router');
 const recruitmentRouter = require('./recruitment.router');
 const orderRouter = require('./order.router');
+const orderProductRouter = require('./orderProduct.router');
 const notfoundRouter = require('./notfound.router');
 const noPermissionRouter = require('./nopermission.router');
 
 function route(app) {
     app.use('/orders', orderRouter);
+    app.use('/order-product', orderProductRouter);
     app.use('/users', userRouter);
     app.use('/auth', authRouter);
     app.use('/products', productRouter);
