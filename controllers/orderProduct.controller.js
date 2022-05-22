@@ -19,9 +19,9 @@ module.exports = {
 
     // [PUT] /order-product/:id
     updateOrderProduct: asyncHandle(async (req, res) => {
-        const { size } = req.body;
+        const { size, quantity } = req.body;
         const { id } = req.params;
-        await OrderProduct.findByIdAndUpdate(id, { size: size });
+        await OrderProduct.findByIdAndUpdate(id, { size, quantity });
         res.status(200).send('successful');
     }),
 };
