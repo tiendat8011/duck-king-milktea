@@ -267,20 +267,28 @@
                         const select = document.querySelector(
                             `#cart-${data._id} select`
                         );
-                        select.addEventListener('change', function () {
+                        const quantity = document.querySelector(
+                            `#cart-${data._id} input`
+                        );
+                        function callApi() {
                             fetch(`/order-product/${data._id}`, {
                                 method: 'PUT',
                                 headers: {
                                     'Content-type':
                                         'application/json; charset=UTF-8',
                                 },
-                                body: JSON.stringify({ size: select.value }),
+                                body: JSON.stringify({
+                                    size: select.value,
+                                    quantity: quantity.value,
+                                }),
                             })
                                 .then((data) => {
-                                    console.log(data.json());
+                                    console.log('Success');
                                 })
                                 .catch((err) => console.log(err));
-                        });
+                        }
+                        select.addEventListener('change', callApi);
+                        quantity.addEventListener('change', callApi);
                     })
                     .catch((err) => {
                         alert('Không thể thêm!!');
