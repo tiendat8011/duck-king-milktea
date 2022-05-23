@@ -13,16 +13,10 @@ orderProductRouter
         authMiddleware.admin,
         orderProductController.getAllOrderProducts
     )
-    .post(
-        // authMiddleware.protect,
-        // authMiddleware.isAuthenticated,
-        orderProductController.createOrderProduct
-    );
+    .post(authMiddleware.protect, orderProductController.createOrderProduct);
 
-orderProductRouter.route('/:id').put(
-    // authMiddleware.protect,
-    // authMiddleware.isAuthenticated,
-    orderProductController.updateOrderProduct
-);
+orderProductRouter
+    .route('/:id')
+    .put(authMiddleware.protect, orderProductController.updateOrderProduct);
 
 module.exports = orderProductRouter;

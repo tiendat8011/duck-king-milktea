@@ -74,7 +74,7 @@
                     <td><%= order.user.email %></td>
                     <td>
                         <%for (product of order.products) {%>
-                        <div><%=product.product%></div>
+                        <div><%=product.product.name%></div>
                         <% } %>
                     </td>
                     <td style="text-align: center">

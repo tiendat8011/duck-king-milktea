@@ -168,18 +168,26 @@
                         <div class="information-subject">
                             Thông Tin Khách Hàng
                         </div>
+
                         <div class="information-child">
-                            <input type="text" placeholder="Tên Người Nhận" />
+                            <input
+                                type="text"
+                                name="phone_number"
+                                placeholder="Số Điện Thoại"
+                            />
                         </div>
                         <div class="information-child">
-                            <input type="number" placeholder="Số Điện Thoại" />
-                        </div>
-                        <div class="information-child">
-                            <input type="text" placeholder="Địa Chỉ" />
+                            <input
+                                type="text"
+                                name="customer_address"
+                                placeholder="Địa Chỉ"
+                            />
                         </div>
                     </div>
                     <div class="order-toco">
-                        <div class="order-toco-cn">ĐẶT HÀNG</div>
+                        <div onclick="handleOrder()" class="order-toco-cn">
+                            ĐẶT HÀNG
+                        </div>
                         <div id="hidden" class="order-toco-cn">MUA TIẾP</div>
                     </div>
                 </div>
@@ -190,6 +198,23 @@
 
         <%- include('../partials/footer'); %>
         <script>
+            // thanh toán
+            document.getElementById('payment').onclick = function () {
+                if (products.length === 0)
+                    return alert('Hãy thêm sản phẩm vào đơn hàng');
+                document.getElementById('payment-presently').style.display =
+                    'block';
+            };
+            // ẩn
+            document.getElementById('hidden').onclick = function () {
+                document.getElementById('payment-presently').style.display =
+                    'none';
+            };
+            document.getElementById('close-btn').onclick = function () {
+                document.getElementById('payment-presently').style.display =
+                    'none';
+            };
+            const products = [];
             // Call api mỗi khi thay đổi size
             function handleSize(id) {
                 // const select = document.querySelector(
@@ -211,9 +236,9 @@
                     .catch((err) => console.log(err));
             }
 
+            const cart = document.getElementById('demo');
             // thêm sản phẩm
             function addToCart(id) {
-                const cart = document.getElementById('demo');
                 if (cart.innerText === 'Bạn chưa có sản phẩm nào') {
                     cart.innerHTML = '';
                 }
@@ -239,6 +264,7 @@
                 })
                     .then((data) => data.json())
                     .then((data) => {
+                        products.push(data._id);
                         cart.innerHTML += `
                             <div class="cart-product" id="cart-${data._id}">
                                 <h4 class="cart-product-name">${productName}</h4>
@@ -291,25 +317,42 @@
                         quantity.addEventListener('change', callApi);
                     })
                     .catch((err) => {
-                        alert('Không thể thêm!!');
+                        alert(
+                            'Không thể thêm!! Vui lòng đăng nhập để sử dụng chức năng'
+                        );
+                        cart.innerHTML = 'Bạn chưa có sản phẩm nào';
                         console.log(err);
                     });
             }
-
-            // thanh toán
-            document.getElementById('payment').onclick = function () {
-                document.getElementById('payment-presently').style.display =
-                    'block';
-            };
-            // ẩn
-            document.getElementById('hidden').onclick = function () {
-                document.getElementById('payment-presently').style.display =
-                    'none';
-            };
-            document.getElementById('close-btn').onclick = function () {
-                document.getElementById('payment-presently').style.display =
-                    'none';
-            };
+            const customer_address = document.querySelector(
+                'input[name="customer_address"]'
+            );
+            const phone_number = document.querySelector(
+                'input[name="phone_number"]'
+            );
+            function handleOrder() {
+                const data = {
+                    phone_number: phone_number.value,
+                    customer_address: customer_address.value,
+                    products,
+                };
+                fetch('/orders/<%=userId%>', {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json, text/plain, /',
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                })
+                    .then((data) => {
+                        alert('Tạo đơn hàng thành công');
+                        document.getElementById(
+                            'payment-presently'
+                        ).style.display = 'none';
+                        cart.innerHTML = 'Bạn chưa có sản phẩm nào';
+                    })
+                    .catch((err) => alert('Không thể tạo đơn hàng'));
+            }
         </script>
     </body>
 </html>

@@ -9,8 +9,14 @@ module.exports = {
     // [GET] /orders/admin
     getAllOrdersOfUsers: asyncHandle(async (req, res) => {
         const user = await User.findOne({ username: res.locals.username });
-        const orders = await Order.find().populate('user').populate('products');
-        // .populate('product');
+        const orders = await Order.find()
+            .populate('user')
+            .populate({
+                path: 'products',
+                populate: {
+                    path: 'product',
+                },
+            });
         return res.render('admin/orders', {
             orders,
             userFName: user?.full_name,
@@ -24,7 +30,12 @@ module.exports = {
         const user = await User.findOne({ username: res.locals.username });
         const orders = await Order.findDeleted()
             .populate('user')
-            .populate('products');
+            .populate({
+                path: 'products',
+                populate: {
+                    path: 'product',
+                },
+            });
         return res.render('admin/orders/deleted', {
             orders,
             userFName: user?.full_name,
@@ -40,7 +51,12 @@ module.exports = {
         const owner = await User.findById(userId);
         const orders = await Order.find({ user: userId })
             .populate('user')
-            .populate('products');
+            .populate({
+                path: 'products',
+                populate: {
+                    path: 'product',
+                },
+            });
         return res.render('admin/orders/userorders', {
             owner,
             orders,
@@ -56,7 +72,12 @@ module.exports = {
         const user = await User.findById(userId);
         const orders = await Order.find({ user: userId })
             .populate('user')
-            .populate('products');
+            .populate({
+                path: 'products',
+                populate: {
+                    path: 'product',
+                },
+            });
         return res.render('myorders', {
             orders,
             userId,
@@ -66,20 +87,16 @@ module.exports = {
     }),
 
     //[POST] /orders/:userId
-    createOrder: asyncHandle(async (req, res, next) => {
+    createOrder: asyncHandle(async (req, res) => {
         const { userId } = req.params;
-        const token = req.signedCookies[process.env.LABEL_ACCESS_TOKEN];
         const reqBody = req.body;
         const order = {
             customer_address: reqBody.customer_address,
             phone_number: reqBody.phone_number,
-            user: '',
+            user: userId,
             products: reqBody.products,
         };
-        await Order.create({
-            ...order,
-            user: userId,
-        });
+        await Order.create(order);
         return res.send('Create order successfully');
     }),
 

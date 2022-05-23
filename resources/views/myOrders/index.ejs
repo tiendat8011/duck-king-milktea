@@ -33,6 +33,7 @@
                     <th scope="col">Địa chỉ</th>
                     <th scope="col">Số ĐT</th>
                     <th scope="col">Sản phẩm</th>
+                    <th scope="col">Size</th>
                     <th scope="col">Số lượng</th>
                     <th scope="col">Thời gian tạo</th>
                 </tr>
@@ -47,10 +48,15 @@
                     <td><%= order.phone_number %></td>
                     <td>
                         <%for (product of order.products) {%>
-                        <div><%=product.product%></div>
+                        <div><%=product.product.name%></div>
                         <% } %>
                     </td>
-                    <td>
+                    <td style="text-align: left">
+                        <%for (product of order.products) {%>
+                        <div><%=product.size%></div>
+                        <% } %>
+                    </td>
+                    <td style="text-align: left">
                         <%for (product of order.products) {%>
                         <div><%=product.quantity%></div>
                         <% } %>

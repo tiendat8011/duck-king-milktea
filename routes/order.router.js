@@ -68,9 +68,12 @@ orderRouter
         authMiddleware.authUser,
         orderController.getAllOrdersOfUserById
     )
+
+    // orderRouter
+    //     .route('/')
     .post(
-        // authMiddleware.protect,
-        // authMiddleware.authUser,
+        authMiddleware.protect,
+        authMiddleware.authUser,
         orderController.createOrder
     );
 
