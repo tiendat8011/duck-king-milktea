@@ -215,26 +215,6 @@
                     'none';
             };
             const products = [];
-            // Call api mỗi khi thay đổi size
-            function handleSize(id) {
-                // const select = document.querySelector(
-                //     '.card-product-size select'
-                // );
-                const select = document.getElementById(`cart-${id}`);
-                const value = select.value;
-                console.log('test');
-                fetch(`/order-product/${id}`, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-type': 'application/json; charset=UTF-8',
-                    },
-                    body: JSON.stringify(value),
-                })
-                    .then((value) => {
-                        console.log(value);
-                    })
-                    .catch((err) => console.log(err));
-            }
 
             const cart = document.getElementById('demo');
             // thêm sản phẩm
