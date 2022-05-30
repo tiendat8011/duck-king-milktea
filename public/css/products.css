@@ -160,6 +160,10 @@
 .right-right-share-top-delete {
     padding: 10px;
 }
+.right-right-share-top-delete:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}
 .right-right-share-body {
     padding: 20px;
     font-size: 15px;
