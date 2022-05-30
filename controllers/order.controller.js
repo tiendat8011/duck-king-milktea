@@ -92,7 +92,6 @@ module.exports = {
         const { userId } = req.params;
         const reqBody = req.body;
         const products = await OrderProduct.insertMany(reqBody.products);
-        console.log(products);
         const order = {
             customer_address: reqBody.customer_address,
             phone_number: reqBody.phone_number,

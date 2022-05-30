@@ -38,8 +38,8 @@
                     <th scope="col">Địa chỉ</th>
                     <th scope="col">Số ĐT</th>
                     <th scope="col">Sản phẩm</th>
-                    <th scope="col">Size</th>
-                    <th scope="col">Số lượng</th>
+                    <th scope="col" style="text-align: center">Size</th>
+                    <th scope="col" style="text-align: center">Số lượng</th>
                     <th scope="col">Thời gian tạo</th>
                 </tr>
             </thead>
@@ -56,12 +56,12 @@
                         <div><%=product.product.name%></div>
                         <% } %>
                     </td>
-                    <td style="text-align: left">
+                    <td style="text-align: center">
                         <%for (product of order.products) {%>
                         <div><%=product.size%></div>
                         <% } %>
                     </td>
-                    <td style="text-align: left">
+                    <td style="text-align: center">
                         <%for (product of order.products) {%>
                         <div><%=product.quantity%></div>
                         <% } %>
