@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 
 const Order = require('../models/Order');
 const User = require('../models/User');
+const OrderProduct = require('../models/OrderProduct');
 const asyncHandle = require('../middlewares/asyncHandle');
 const ErrorResponse = require('../common/ErrorResponse');
 
@@ -90,11 +91,13 @@ module.exports = {
     createOrder: asyncHandle(async (req, res) => {
         const { userId } = req.params;
         const reqBody = req.body;
+        const products = await OrderProduct.insertMany(reqBody.products);
+        console.log(products);
         const order = {
             customer_address: reqBody.customer_address,
             phone_number: reqBody.phone_number,
             user: userId,
-            products: reqBody.products,
+            products,
         };
         await Order.create(order);
         return res.send('Create order successfully');

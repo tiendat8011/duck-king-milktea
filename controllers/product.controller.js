@@ -22,6 +22,7 @@ module.exports = {
     getAllProductsAdmin: asyncHandle(async (req, res) => {
         const user = await User.findOne({ username: res.locals.username });
         const products = await Product.find();
+
         res.render('admin/products', {
             products,
             userFName: user?.full_name,

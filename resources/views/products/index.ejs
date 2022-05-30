@@ -6,6 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Sản Phẩm</title>
         <link rel="stylesheet" href="/css/products.css" />
+        <link
+            rel="icon"
+            href="/images/favicon_io/favicon.ico"
+            type="image/x-icon"
+        />
         <script
             src="https://kit.fontawesome.com/92599c8cb3.js"
             crossorigin="anonymous"
@@ -105,7 +110,6 @@
                                 </div>
                             </div>
                             <div id="demo" class="right-right-share-body">
-                                Bạn chưa có sản phẩm nào
                                 <!-- <div class="cart-product">
                                     <h3 class="cart-product-name">Tra dao</h3>
 
@@ -197,6 +201,7 @@
         </section>
 
         <%- include('../partials/footer'); %>
+        <!-- <script src="/js/handleOrder.js"></script> -->
         <script>
             // thanh toán
             document.getElementById('payment').onclick = function () {
@@ -214,103 +219,89 @@
                 document.getElementById('payment-presently').style.display =
                     'none';
             };
+
+            const $ = document.querySelector.bind(document);
+            const $$ = document.querySelectorAll.bind(document);
+
             const products = [];
-
             const cart = document.getElementById('demo');
-            // thêm sản phẩm
-            function addToCart(id) {
-                if (cart.innerText === 'Bạn chưa có sản phẩm nào') {
-                    cart.innerHTML = '';
-                }
-                const productName = document.querySelector(
-                    `#prod-${id} .right-shared-text-name`
-                ).innerHTML;
 
-                const productPrice = document.querySelector(
+            function render() {
+                if (products.length === 0) {
+                    cart.innerHTML = 'Bạn chưa thêm sản phẩm nào';
+                } else {
+                    let content = products.map((item) => {
+                        return `
+            <div class="cart-product" id="cart-${item.id}">
+            <h4 class="cart-product-name">${item.name}</h4>
+            <div class="cart-product-row">
+                <div class="cart-product-size">
+                    <label for="">Size</label>
+                    <select name="size">
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                    </select>
+                </div>
+                <div class="cart-product-price">
+                    <input
+                        type="number"
+                        name="quantity"
+                        class="card-product-quantity"
+                        value="1"
+                    />
+                    x ${item.price}
+                </div>
+            </div>
+        </div>`;
+                    });
+                    cart.innerHTML = content.join('');
+                }
+            }
+
+            render();
+
+            function addToCart(id) {
+                const name = $(`#prod-${id} .right-shared-text-name`).innerHTML;
+                const price = $(
                     `#prod-${id} .right-shared-text-price`
                 ).innerHTML;
-
                 const data = {
-                    product: id,
+                    id,
+                    name,
+                    price,
                 };
-
-                fetch('/order-product', {
-                    method: 'POST',
-                    headers: {
-                        Accept: 'application/json, text/plain, /',
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data),
-                })
-                    .then((data) => data.json())
-                    .then((data) => {
-                        products.push(data._id);
-                        cart.innerHTML += `
-                            <div class="cart-product" id="cart-${data._id}">
-                                <h4 class="cart-product-name">${productName}</h4>
-
-                                <div class="cart-product-row">
-                                    <div class="cart-product-size">
-                                        <label for="">Size</label>
-                                        <select name="size">
-                                            <option value="M">M</option>
-                                            <option value="L">L</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="cart-product-price">
-                                        <input
-                                            type="number"
-                                            name="quantity"
-                                            class="card-product-quantity"
-                                            value="1"
-                                        />
-                                        x ${productPrice}
-                                    </div>
-                                </div>
-                            </div>`;
-
-                        const select = document.querySelector(
-                            `#cart-${data._id} select`
-                        );
-                        const quantity = document.querySelector(
-                            `#cart-${data._id} input`
-                        );
-                        function callApi() {
-                            fetch(`/order-product/${data._id}`, {
-                                method: 'PUT',
-                                headers: {
-                                    'Content-type':
-                                        'application/json; charset=UTF-8',
-                                },
-                                body: JSON.stringify({
-                                    size: select.value,
-                                    quantity: quantity.value,
-                                }),
-                            })
-                                .then((data) => {
-                                    console.log('Success');
-                                })
-                                .catch((err) => console.log(err));
-                        }
-                        select.addEventListener('change', callApi);
-                        quantity.addEventListener('change', callApi);
-                    })
-                    .catch((err) => {
-                        alert(
-                            'Không thể thêm!! Vui lòng đăng nhập để sử dụng chức năng'
-                        );
-                        cart.innerHTML = 'Bạn chưa có sản phẩm nào';
-                        console.log(err);
-                    });
+                products.push(data);
+                render();
             }
-            const customer_address = document.querySelector(
-                'input[name="customer_address"]'
-            );
-            const phone_number = document.querySelector(
-                'input[name="phone_number"]'
-            );
+
+            const customer_address = $('input[name="customer_address"]');
+            const phone_number = $('input[name="phone_number"]');
+            const orderProducts = [];
+
             function handleOrder() {
+                const cartProducts = $$('.cart-product');
+                const cartProductsArray = Array.from(cartProducts);
+                const products = [];
+                cartProductsArray.forEach((product) => {
+                    // console.dir(product.childNodes[3].childNodes[1].children[1].value);
+                    // console.dir(product.childNodes[3].childNodes[3].children[0].value);
+                    // console.dir(product.id);
+
+                    const id = product.id.split('-')[1];
+                    const size =
+                        product.childNodes[3].childNodes[1].children[1].value;
+                    const quantity =
+                        product.childNodes[3].childNodes[3].children[0].value;
+
+                    const productData = {
+                        product: id,
+                        size,
+                        quantity,
+                    };
+
+                    products.push(productData);
+                });
+                console.log(products);
                 const data = {
                     phone_number: phone_number.value,
                     customer_address: customer_address.value,
@@ -325,6 +316,10 @@
                     body: JSON.stringify(data),
                 })
                     .then((data) => {
+                        if (data.msg) {
+                            alert(data.msg);
+                            return;
+                        }
                         alert('Tạo đơn hàng thành công');
                         document.getElementById(
                             'payment-presently'
