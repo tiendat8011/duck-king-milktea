@@ -26,18 +26,14 @@
                 <div class="outstanding-order-central-left">
                     <div class="outstanding-order-central-left-shared">
                         <ul>
-                            <li class="central-left-li">
-                                <a href="">DANH MỤC</a>
-                            </li>
-                            <li class="it">
-                                <a href="#Noi_bat">Món nổi bật</a>
-                            </li>
-                            <li class="it"><a href="">Trà Sữa</a></li>
-                            <li class="it"><a href="">Fresh Fruit Tea</a></li>
-                            <li class="it">
-                                <a href="">Macchiato Cream Cheese</a>
-                            </li>
-                            <li class="it"><a href="">Sữa Chua Dẻo</a></li>
+                            <li class="central-left-li">DANH MỤC</li>
+                            <a href="#Noi_bat">
+                                <li class="it">Món nổi bật</li>
+                            </a>
+                            <li class="it">Trà Sữa</li>
+                            <li class="it">Fresh Fruit Tea</li>
+                            <li class="it">Macchiato Cream Cheese</li>
+                            <li class="it">Sữa Chua Dẻo</li>
                         </ul>
                     </div>
                 </div>
@@ -73,7 +69,10 @@
                                             <div
                                                 class="right-shared-text-price"
                                             >
-                                                <%= product.price%>đ
+                                                <%=
+                                                product.price.toLocaleString("vi",
+                                                { style: "currency", currency:
+                                                "VND", })%>
                                             </div>
                                             <!-- <div class="right-shared-text-size">
                                                 <select>
@@ -109,6 +108,7 @@
                                     Xóa tất cả
                                 </div>
                             </div>
+
                             <div id="demo" class="right-right-share-body">
                                 <!-- <div class="cart-product">
                                     <h3 class="cart-product-name">Tra dao</h3>
@@ -134,6 +134,11 @@
                                     </div>
                                 </div> -->
                             </div>
+
+                            <div class="total-price" style="text-align: right">
+                                Tổng: <span class="total-price-num"></span>
+                            </div>
+
                             <div
                                 id="payment"
                                 class="right-right-share-payment-tc"
@@ -155,24 +160,10 @@
                 <!-- <form action=""> -->
                 <div class="payment-shared-inside">
                     <div class="payment-shared-inside-text">
-                        Giao tận hàng tận nơi
+                        Thông tin khách hàng
                     </div>
-                    <div class="payment-shared-inside-molecule">
-                        <div class="payment-shared-inside-molecule-img"></div>
-                        <div class="payment-shared-inside-molecule-text">
-                            <div class="payment-shared-inside-molecule-text1">
-                                A
-                            </div>
-                            <div class="payment-shared-inside-molecule-text2">
-                                A
-                            </div>
-                        </div>
-                    </div>
-                    <div class="information">
-                        <div class="information-subject">
-                            Thông Tin Khách Hàng
-                        </div>
 
+                    <div class="information">
                         <div class="information-child">
                             <input
                                 type="text"
@@ -201,15 +192,30 @@
         </section>
 
         <%- include('../partials/footer'); %>
-        <!-- <script src="/js/handleOrder.js"></script> -->
+
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
             // thanh toán
-            document.getElementById('payment').onclick = function () {
-                if (productsRender.length === 0)
-                    return alert('Hãy thêm sản phẩm vào đơn hàng');
-                document.getElementById('payment-presently').style.display =
-                    'block';
-            };
+            document.querySelector('.right-right-share-payment').onclick =
+                function () {
+                    if (!'<%=userFName%>')
+                        // return alert('Vui lòng đăng nhập để sử dụng chức năng này');
+                        return Swal.fire({
+                            title: 'Thông báo!',
+                            text: 'Vui lòng đăng nhập để mua hàng',
+                            icon: 'error',
+                            confirmButtonText: 'OK',
+                        });
+                    if (productsRender.length === 0)
+                        return Swal.fire({
+                            title: 'Lỗi!',
+                            text: 'Hãy thêm sản phẩm vào đơn hàng!',
+                            icon: 'error',
+                            confirmButtonText: 'OK',
+                        });
+                    document.getElementById('payment-presently').style.display =
+                        'block';
+                };
             // ẩn
             document.getElementById('hidden').onclick = function () {
                 document.getElementById('payment-presently').style.display =
@@ -219,59 +225,119 @@
                 document.getElementById('payment-presently').style.display =
                     'none';
             };
+            document.querySelector('.overlay').onclick = function () {
+                document.getElementById('payment-presently').style.display =
+                    'none';
+            };
 
             const $ = document.querySelector.bind(document);
             const $$ = document.querySelectorAll.bind(document);
             let productsRender = [];
             const cart = document.getElementById('demo');
+            let totalPrice = 0;
             function resetItem() {
                 if (productsRender.length === 0) {
-                    alert('Bạn chưa có sản phẩm nào trong giỏ hàng!');
+                    // alert('Bạn chưa có sản phẩm nào trong giỏ hàng!');
+                    Swal.fire({
+                        title: 'Lỗi!',
+                        text: 'Bạn chưa có sản phẩm nào trong giỏ hàng',
+                        icon: 'error',
+                        confirmButtonText: 'OK',
+                    });
                     return;
                 }
 
-                if (
-                    confirm('Bạn có muốn xóa tất cả sản phẩm trong giỏ hàng?')
-                ) {
-                    productsRender = [];
-                    render();
-                }
+                // confirm('Bạn có muốn xóa tất cả sản phẩm trong giỏ hàng?')
+                Swal.fire({
+                    title: 'Bạn có muốn ',
+                    text: 'Xóa tất cả các sản phẩm trong giỏ hàng?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Xóa',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        productsRender = [];
+                        render();
+                        Swal.fire(
+                            'Đã xóa!',
+                            'Các sản phẩm trong giỏ hàng đã bị xóa',
+                            'success'
+                        );
+                    }
+                });
             }
             function render() {
                 if (productsRender.length === 0) {
                     cart.innerHTML = 'Bạn chưa thêm sản phẩm nào';
+                    document.querySelector('.total-price').style.display =
+                        'none';
                 } else {
-                    let content = productsRender.map((item) => {
+                    let content = productsRender.map((item, index) => {
                         return `
-            <div class="cart-product" id="cart-${item.id}">
-            <h4 class="cart-product-name">${item.name}</h4>
-            <div class="cart-product-row">
-                <div class="cart-product-size">
-                    <label for="">Size</label>
-                    <select name="size">
-                        <option value="M">M</option>
-                        <option value="L">L</option>
-                    </select>
-                </div>
-                <div class="cart-product-price">
-                    <input
-                        type="number"
-                        name="quantity"
-                        class="card-product-quantity"
-                        value="1"
-                    />
-                    x ${item.price}
-                </div>
-            </div>
-        </div>`;
+                            <div class="cart-product" id="cart-${item.id}">
+                                <div class="cart-product-remove" onclick="handleDeleteProduct(${index})">&times;</div>
+                                <h4 class="cart-product-name">${item.name}</h4>
+                                <div class="cart-product-row">
+                                    <div class="cart-product-size">
+                                        <label for="">Size</label>
+                                        <select name="size">
+                                            <option value="M">M</option>
+                                            <option value="L">L</option>
+                                        </select>
+                                    </div>
+                                    <div class="cart-product-price">
+                                        <input
+                                            type="number"
+                                            name="quantity"
+                                            class="card-product-quantity"
+                                            value="1"
+                                        />
+                                        x ${item.price}
+                                    </div>
+                                </div>
+                            </div>`;
                     });
                     cart.innerHTML = content.join('');
+
+                    // format price
+                    const prettyProductsRender = productsRender.map((item) =>
+                        item.price.trim().split('&nbsp;')[0].split('.').join('')
+                    );
+                    totalPrice = prettyProductsRender.reduce(
+                        (pre, cur) => +pre + +cur,
+                        0
+                    );
+
+                    if (totalPrice !== 0) {
+                        document.querySelector('.total-price').style.display =
+                            'block';
+                        document.querySelector('.total-price-num').innerHTML =
+                            totalPrice.toLocaleString('vi', {
+                                style: 'currency',
+                                currency: 'VND',
+                            });
+                    }
                 }
             }
 
             render();
 
+            function handleDeleteProduct(index) {
+                productsRender.splice(index, 1);
+                render();
+            }
+
             function addToCart(id) {
+                if (!'<%=userFName%>')
+                    // return alert('Vui lòng đăng nhập để sử dụng chức năng này');
+                    return Swal.fire({
+                        title: 'Thông báo!',
+                        text: 'Vui lòng đăng nhập để mua hàng',
+                        icon: 'error',
+                        confirmButtonText: 'OK',
+                    });
                 const name = $(`#prod-${id} .right-shared-text-name`).innerHTML;
                 const price = $(
                     `#prod-${id} .right-shared-text-price`
@@ -282,6 +348,7 @@
                     price,
                 };
                 productsRender.push(data);
+
                 render();
             }
 
@@ -290,19 +357,27 @@
             const orderProducts = [];
 
             function handleOrder() {
+                if (!'<%=userFName%>')
+                    // return alert('Vui lòng đăng nhập để sử dụng chức năng này');
+                    return Swal.fire({
+                        title: 'Lỗi!',
+                        text: 'Vui lòng đăng nhập để tạo đơn hàng',
+                        icon: 'error',
+                        confirmButtonText: 'OK',
+                    });
                 const cartProducts = $$('.cart-product');
                 const cartProductsArray = Array.from(cartProducts);
                 const products = [];
                 cartProductsArray.forEach((product) => {
-                    // console.dir(product.childNodes[3].childNodes[1].children[1].value);
+                    // console.dir(product);
                     // console.dir(product.childNodes[3].childNodes[3].children[0].value);
                     // console.dir(product.id);
 
                     const id = product.id.split('-')[1];
                     const size =
-                        product.childNodes[3].childNodes[1].children[1].value;
+                        product.childNodes[5].childNodes[1].children[1].value;
                     const quantity =
-                        product.childNodes[3].childNodes[3].children[0].value;
+                        product.childNodes[5].childNodes[3].children[0].value;
 
                     const productData = {
                         product: id,
@@ -327,17 +402,37 @@
                 })
                     .then((data) => {
                         if (!data.ok) {
-                            alert('Lỗi tạo đơn hàng');
+                            // alert('Lỗi tạo đơn hàng');
+                            Swal.fire({
+                                title: 'Lỗi!',
+                                text: 'Không thể tạo đơn hàng',
+                                icon: 'error',
+                                confirmButtonText: 'OK',
+                            });
                             return;
                         }
-                        alert('Tạo đơn hàng thành công');
+                        // alert('Tạo đơn hàng thành công');
+                        Swal.fire({
+                            title: 'Thành công!',
+                            text: 'Tạo đơn hàng thành công',
+                            icon: 'success',
+                            confirmButtonText: 'OK',
+                        });
                         document.getElementById(
                             'payment-presently'
                         ).style.display = 'none';
                         productsRender = [];
-                        cart.innerHTML = 'Bạn chưa có sản phẩm nào';
+                        render();
                     })
-                    .catch((err) => alert('Không thể tạo đơn hàng'));
+                    .catch((err) =>
+                        // alert('Không thể tạo đơn hàng')
+                        Swal.fire({
+                            title: 'Lỗi!',
+                            text: 'Không thể tạo đơn hàng',
+                            icon: 'error',
+                            confirmButtonText: 'OK',
+                        })
+                    );
             }
         </script>
     </body>

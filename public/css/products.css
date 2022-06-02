@@ -35,10 +35,17 @@
 }
 .central-left-li {
     text-align: center;
+    padding: 10px 0;
 }
-.it a {
-    padding-left: 15px;
+.it {
+    padding: 5px 15px;
+    color: black;
 }
+
+.it:hover {
+    opacity: 0.8;
+}
+
 .outstanding-order-central-left {
     float: left;
     width: 20%;
@@ -169,6 +176,11 @@
     font-size: 15px;
     color: rgb(124, 116, 116);
 }
+
+.total-price {
+    display: none;
+    padding: 0 25px;
+}
 .right-right-share-payment-tc {
     padding: 15px;
 }
@@ -184,6 +196,13 @@
     cursor: pointer;
     margin-top: 15px;
     margin-bottom: 20px;
+    transition: linear 0.2s;
+}
+
+.right-right-share-payment:hover {
+    background-color: #cc9e00;
+    box-shadow: 0 14px 26px -12px rgb(0 0 0 / 10%),
+        0 4px 23px 0 rgb(0 0 0 / 10%), 0 8px 10px -5px rgb(0 0 0 / 10%);
 }
 /* Thanh toán */
 .payment {
@@ -256,6 +275,10 @@
     cursor: pointer;
     margin-top: 15px;
 }
+.order-toco-cn:hover {
+    opacity: 0.9;
+}
+
 /* bảnh tính tiền */
 .payment {
     display: none;
@@ -286,7 +309,7 @@
 .header-news {
     width: 100%;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        url(../images/img1.jpg) no-repeat center;
+        url(../images/bannersp.jpg) no-repeat center;
     height: 300px;
     text-transform: uppercase;
     font-size: 36px;
@@ -309,8 +332,20 @@
     justify-content: center;
     color: #000;
     margin-bottom: 20px;
+    position: relative;
+}
+.cart-product-remove {
+    padding: 1px;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 20px;
 }
 
+.cart-product-remove:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
 .cart-product-name {
     width: 100%;
     margin-bottom: 8px;

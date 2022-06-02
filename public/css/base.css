@@ -26,7 +26,7 @@
     align-items: center;
 }
 .header_nav_share .img img {
-    width: 2.7rem;
+    width: 7.7rem;
     line-height: 4rem;
     height: auto;
 }
@@ -190,7 +190,7 @@
     border-radius: 4px;
     position: absolute;
     display: none;
-    background-color: #3a705e;
+    background-color: rgb(69, 59, 59);
     width: 250px;
 }
 
