@@ -6,7 +6,7 @@ module.exports = async (to, subject, htmlContent) => {
         smtpTransport({
             service: 'gmail',
             port: 587,
-            secure: false,
+            secure: true,
             auth: {
                 user: process.env.ADMIN_MAIL,
                 pass: process.env.ADMIN_MAIL_PASSWORD,
