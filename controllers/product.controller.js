@@ -60,7 +60,7 @@ module.exports = {
 
         const documentBodyUploaded = await uploadService.uploadFile(
             req,
-            'productImages',
+            'product',
             mimetypes
         );
 
@@ -96,15 +96,15 @@ module.exports = {
     deleteProductById: asyncHandle(async (req, res) => {
         let { id } = req.params;
         const product = await Product.findByIdAndDelete(id);
-        // access(product.image, function (err) {
-        //     console.log(err);
-        //     if (err) {
-        //         console.log("File not found!. Can't delete image");
-        //     } else {
-        //         unlinkSync(product.image);
-        //     }
-        // });
-        unlinkSync(product.image);
+        access('public' + product.image, function (err) {
+            if (err) {
+                console.log("File not found!. Can't delete image");
+            } else {
+                unlinkSync('public' + product.image);
+                console.log('Delete image successfully');
+            }
+        });
+        // unlinkSync(product.image);
         res.status(204).json({ msg: 'successfully delete' });
     }),
 };
