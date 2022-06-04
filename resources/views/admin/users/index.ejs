@@ -44,8 +44,10 @@
                     <th scope="col">Họ tên</th>
                     <th scope="col">SĐT</th>
                     <th scope="col">Email</th>
-                    <th scope="col" style="text-align: center">Xóa</th>
-                    <th scope="col" colspan="2">Quyền</th>
+                    <th scope="col">Quyền</th>
+                    <th scope="col" colspan="2" style="text-align: left">
+                        Xóa
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -56,6 +58,7 @@
                     <td><%= user.full_name %></td>
                     <td><%= user.phone_number %></td>
                     <td><%= user.email %></td>
+                    <td><%= user.role %></td>
                     <td style="text-align: center">
                         <%if(user.username==='chi') {%> <%} else {%>
                         <i
@@ -64,7 +67,6 @@
                         ></i>
                         <%}%>
                     </td>
-                    <td><%= user.role %></td>
                     <td style="text-align: center">
                         <a href="/orders/admin/<%= user.id %>"
                             >Xem đơn hàng <i class="fa-solid fa-arrow-right"></i
