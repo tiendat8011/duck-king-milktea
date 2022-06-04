@@ -127,7 +127,11 @@ module.exports = {
     // [DELETE] /orders/:orderId
     deleteOrderByOrderId: asyncHandle(async (req, res) => {
         const { orderId } = req.params;
-        await Order.findByIdAndDelete(orderId);
+        const order = await Order.findByIdAndDelete(orderId);
+        order.products.forEach(
+            async (id) => await OrderProduct.deleteMany({ _id: id })
+        );
+
         res.send('Delete successfully');
     }),
 
