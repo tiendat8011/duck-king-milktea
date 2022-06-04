@@ -290,15 +290,27 @@
 
             function renderTotal() {
                 // format price
-                const prettyProductsRender = productsRender.map((item) => {
-                    const quantity = document.querySelector(
-                        `#cart-${item.id} input[name="quantity"]`
-                    );
-                    const size = document.querySelector(
-                        `#cart-${item.id} select[name="size"]`
-                    );
-                    if (quantity) {
-                        if (size.value == 'L') {
+                const prettyProductsRender = productsRender.map(
+                    (item, index) => {
+                        const quantity = document.querySelector(
+                            `#quantity-${index}`
+                        );
+                        const size = document.querySelector(`#size-${index}`);
+                        if (quantity) {
+                            if (size.value == 'L') {
+                                return (
+                                    Number(
+                                        item.price
+                                            .trim()
+                                            .split('&nbsp;')[0]
+                                            .split('.')
+                                            .join('')
+                                            .split('₫')[0]
+                                    ) *
+                                    quantity.value *
+                                    1.5
+                                );
+                            }
                             return (
                                 Number(
                                     item.price
@@ -307,42 +319,30 @@
                                         .split('.')
                                         .join('')
                                         .split('₫')[0]
-                                ) *
-                                quantity.value *
-                                1.5
+                                ) * quantity.value
                             );
                         }
-                        return (
-                            Number(
+                        if (size.value == 'L') {
+                            return (
                                 item.price
                                     .trim()
                                     .split('&nbsp;')[0]
                                     .split('.')
-                                    .join('')
-                                    .split('₫')[0]
-                            ) * quantity.value
-                        );
+                                    .join('') * 1.5
+                            );
+                        }
+                        return item.price
+                            .trim()
+                            .split('&nbsp;')[0]
+                            .split('.')
+                            .join('');
                     }
-                    if (size.value == 'L') {
-                        return (
-                            item.price
-                                .trim()
-                                .split('&nbsp;')[0]
-                                .split('.')
-                                .join('') * 1.5
-                        );
-                    }
-                    return item.price
-                        .trim()
-                        .split('&nbsp;')[0]
-                        .split('.')
-                        .join('');
-                });
-
-                totalPrice = prettyProductsRender.reduce(
-                    (pre, cur) => +pre + +cur,
-                    0
                 );
+
+                totalPrice = prettyProductsRender.reduce((pre, cur) => {
+                    console.log(pre, '+', cur);
+                    return +pre + +cur;
+                }, 0);
 
                 if (totalPrice !== 0) {
                     document.querySelector('.total-price').style.display =
@@ -384,13 +384,13 @@
                 } else {
                     let content = productsRender.map((item, index) => {
                         return `
-                            <div class="cart-product" id="cart-${item.id}">
+                            <div class="cart-product" id="cart-${index}">
                                 <div class="cart-product-remove" onclick="handleDeleteProduct(${index})">&times;</div>
                                 <h4 class="cart-product-name">${item.name}</h4>
                                 <div class="cart-product-row">
                                     <div class="cart-product-size">
                                         <label for="">Size</label>
-                                        <select name="size" >
+                                        <select name="size" id="size-${index}">
                                             <option value="M">M</option>
                                             <option value="L">L</option>
                                         </select>
@@ -401,7 +401,7 @@
                                             name="quantity"
                                             class="card-product-quantity"
                                             value="1"
-                                            
+                                            id="quantity-${index}"
                                         />
                                         <span id="price-${index}">
                                         x ${item.price}
