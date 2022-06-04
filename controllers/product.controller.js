@@ -1,3 +1,6 @@
+const { stat, access } = require('node:fs');
+const { unlinkSync } = require('node:fs');
+
 const uploadService = require('../services/upload.service');
 const asyncHandle = require('../middlewares/asyncHandle');
 const Product = require('../models/Product');
@@ -92,7 +95,16 @@ module.exports = {
     //[DELETE] /products/admin/:id
     deleteProductById: asyncHandle(async (req, res) => {
         let { id } = req.params;
-        await Product.findByIdAndDelete(id);
+        const product = await Product.findByIdAndDelete(id);
+        // access(product.image, function (err) {
+        //     console.log(err);
+        //     if (err) {
+        //         console.log("File not found!. Can't delete image");
+        //     } else {
+        //         unlinkSync(product.image);
+        //     }
+        // });
+        unlinkSync(product.image);
         res.status(204).json({ msg: 'successfully delete' });
     }),
 };
