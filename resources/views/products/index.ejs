@@ -384,7 +384,7 @@
                 } else {
                     let content = productsRender.map((item, index) => {
                         return `
-                            <div class="cart-product" id="cart-${index}">
+                            <div class="cart-product" id="cart-${item.id}">
                                 <div class="cart-product-remove" onclick="handleDeleteProduct(${index})">&times;</div>
                                 <h4 class="cart-product-name">${item.name}</h4>
                                 <div class="cart-product-row">
