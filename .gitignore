@@ -11,4 +11,4 @@ node_modules/
 *.wmv
 
 # Upload files
-**/uploads/propose/*
+**/uploads/productImages/*
