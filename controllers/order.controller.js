@@ -58,6 +58,7 @@ module.exports = {
                     path: 'product',
                 },
             });
+
         return res.render('admin/orders/userorders', {
             owner,
             orders,
@@ -97,6 +98,7 @@ module.exports = {
             phone_number: reqBody.phone_number,
             user: userId,
             products,
+            note: reqBody.note,
         };
         await Order.create(order);
         return res.send('Create order successfully');
@@ -125,7 +127,11 @@ module.exports = {
     // [DELETE] /orders/:orderId
     deleteOrderByOrderId: asyncHandle(async (req, res) => {
         const { orderId } = req.params;
-        await Order.findByIdAndDelete(orderId);
+        const order = await Order.findByIdAndDelete(orderId);
+        order.products.forEach(
+            async (id) => await OrderProduct.deleteMany({ _id: id })
+        );
+
         res.send('Delete successfully');
     }),
 

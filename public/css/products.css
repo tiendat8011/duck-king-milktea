@@ -101,6 +101,8 @@
 }
 .right-shared-ingredient-img img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 .right-shared-text {
     font-weight: 700;

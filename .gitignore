@@ -1,3 +1,14 @@
 node_modules/
 .DS_Store
 .env
+
+# Large media files
+*.mp4
+*.tiff
+*.avi
+*.flv
+*.mov
+*.wmv
+
+# Upload files
+**/uploads/product/*

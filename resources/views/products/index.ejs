@@ -56,10 +56,17 @@
                                     class="right-shared-ingredient"
                                 >
                                     <div class="right-shared-ingredient-img">
+                                        <%if(!product.image) {%>
                                         <img
-                                            src="./images/dau_tam_kem_pho_mai_09a4c4b857694d918a86542225fc2867_grande.jpg"
-                                            alt=""
+                                            src="/images/dau_tam_kem_pho_mai_09a4c4b857694d918a86542225fc2867_grande.jpg"
+                                            alt="ảnh sản phẩm"
                                         />
+                                        <%} else {%>
+                                        <img
+                                            src="<%=product.image%>"
+                                            alt="ảnh sản phẩm"
+                                        />
+                                        <%}%>
                                     </div>
                                     <div class="right-shared-text">
                                         <div class="right-shared-text-name">
@@ -169,6 +176,7 @@
                                 type="text"
                                 name="phone_number"
                                 placeholder="Số Điện Thoại"
+                                required
                             />
                         </div>
                         <div class="information-child">
@@ -176,14 +184,27 @@
                                 type="text"
                                 name="customer_address"
                                 placeholder="Địa Chỉ"
+                                required
+                            />
+                        </div>
+                        <div class="information-child">
+                            <input
+                                type="text"
+                                name="note"
+                                placeholder="Ghi chú (không bắt buộc)"
                             />
                         </div>
                     </div>
                     <div class="order-toco">
-                        <div onclick="handleOrder()" class="order-toco-cn">
+                        <button onclick="handleOrder()" class="order-toco-cn">
                             ĐẶT HÀNG
-                        </div>
-                        <div id="hidden" class="order-toco-cn">MUA TIẾP</div>
+                        </button>
+                        <button id="hidden" class="order-toco-cn">
+                            MUA TIẾP
+                        </button>
+                    </div>
+                    <div style="text-align: center; font-size: small">
+                        Vui lòng kiểm tra kỹ giỏ hàng trước khi đặt hàng
                     </div>
                 </div>
                 <!-- </form> -->
@@ -232,9 +253,15 @@
 
             const $ = document.querySelector.bind(document);
             const $$ = document.querySelectorAll.bind(document);
-            let productsRender = [];
             const cart = document.getElementById('demo');
+            const customer_address = $('input[name="customer_address"]');
+            const phone_number = $('input[name="phone_number"]');
+            const note = $('input[name="note"]');
+            const orderProducts = [];
+
+            let productsRender = [];
             let totalPrice = 0;
+
             function resetItem() {
                 if (productsRender.length === 0) {
                     // alert('Bạn chưa có sản phẩm nào trong giỏ hàng!');
@@ -260,6 +287,7 @@
                     if (result.isConfirmed) {
                         productsRender = [];
                         render();
+
                         Swal.fire(
                             'Đã xóa!',
                             'Các sản phẩm trong giỏ hàng đã bị xóa',
@@ -268,6 +296,95 @@
                     }
                 });
             }
+
+            function renderTotal() {
+                // format price
+                const prettyProductsRender = productsRender.map(
+                    (item, index) => {
+                        const quantity = document.querySelector(
+                            `#quantity-${index}`
+                        );
+                        const size = document.querySelector(`#size-${index}`);
+                        if (quantity) {
+                            if (size.value == 'L') {
+                                return (
+                                    Number(
+                                        item.price
+                                            .trim()
+                                            .split('&nbsp;')[0]
+                                            .split('.')
+                                            .join('')
+                                            .split('₫')[0]
+                                    ) *
+                                    quantity.value *
+                                    1.5
+                                );
+                            }
+                            return (
+                                Number(
+                                    item.price
+                                        .trim()
+                                        .split('&nbsp;')[0]
+                                        .split('.')
+                                        .join('')
+                                        .split('₫')[0]
+                                ) * quantity.value
+                            );
+                        }
+                        if (size.value == 'L') {
+                            return (
+                                item.price
+                                    .trim()
+                                    .split('&nbsp;')[0]
+                                    .split('.')
+                                    .join('') * 1.5
+                            );
+                        }
+                        return item.price
+                            .trim()
+                            .split('&nbsp;')[0]
+                            .split('.')
+                            .join('');
+                    }
+                );
+
+                totalPrice = prettyProductsRender.reduce((pre, cur) => {
+                    console.log(pre, '+', cur);
+                    return +pre + +cur;
+                }, 0);
+
+                if (totalPrice !== 0) {
+                    document.querySelector('.total-price').style.display =
+                        'block';
+                    document.querySelector('.total-price-num').innerHTML =
+                        totalPrice.toLocaleString('vi', {
+                            style: 'currency',
+                            currency: 'VND',
+                        });
+                }
+            }
+            function handleChangeSize(index, size) {
+                let price = productsRender[index].price;
+                if (size == 'L') {
+                    document.getElementById(`price-${index}`).innerHTML = `x ${(
+                        price.trim().split('&nbsp;')[0].split('.').join('') *
+                        1.5
+                    ).toLocaleString('vi', {
+                        style: 'currency',
+                        currency: 'VND',
+                    })}`;
+                } else {
+                    document.getElementById(
+                        `price-${index}`
+                    ).innerHTML = `x ${Number(
+                        price.trim().split('&nbsp;')[0].split('.').join('')
+                    ).toLocaleString('vi', {
+                        style: 'currency',
+                        currency: 'VND',
+                    })}`;
+                }
+            }
+
             function render() {
                 if (productsRender.length === 0) {
                     cart.innerHTML = 'Bạn chưa thêm sản phẩm nào';
@@ -282,43 +399,47 @@
                                 <div class="cart-product-row">
                                     <div class="cart-product-size">
                                         <label for="">Size</label>
-                                        <select name="size">
+                                        <select name="size" id="size-${index}">
                                             <option value="M">M</option>
                                             <option value="L">L</option>
                                         </select>
                                     </div>
-                                    <div class="cart-product-price">
+                                    <div class="cart-product-price"  >
                                         <input
                                             type="number"
                                             name="quantity"
                                             class="card-product-quantity"
                                             value="1"
+                                            id="quantity-${index}"
                                         />
+                                        <span id="price-${index}">
                                         x ${item.price}
+                                        </span>
                                     </div>
                                 </div>
                             </div>`;
                     });
                     cart.innerHTML = content.join('');
-
-                    // format price
-                    const prettyProductsRender = productsRender.map((item) =>
-                        item.price.trim().split('&nbsp;')[0].split('.').join('')
+                    // change quantity => render total again
+                    const quantities = document.querySelectorAll(
+                        'input[name="quantity"]'
                     );
-                    totalPrice = prettyProductsRender.reduce(
-                        (pre, cur) => +pre + +cur,
-                        0
+                    const sizes = document.querySelectorAll(
+                        'select[name="size"]'
                     );
-
-                    if (totalPrice !== 0) {
-                        document.querySelector('.total-price').style.display =
-                            'block';
-                        document.querySelector('.total-price-num').innerHTML =
-                            totalPrice.toLocaleString('vi', {
-                                style: 'currency',
-                                currency: 'VND',
-                            });
-                    }
+                    sizes.forEach((size, index) =>
+                        size.addEventListener('change', (e) => {
+                            handleChangeSize(index, e.target.value);
+                            renderTotal();
+                        })
+                    );
+                    quantities.forEach((quantity) =>
+                        quantity.addEventListener('change', () =>
+                            // console.log(quantity.value)
+                            renderTotal()
+                        )
+                    );
+                    renderTotal();
                 }
             }
 
@@ -351,10 +472,6 @@
 
                 render();
             }
-
-            const customer_address = $('input[name="customer_address"]');
-            const phone_number = $('input[name="phone_number"]');
-            const orderProducts = [];
 
             function handleOrder() {
                 if (!'<%=userFName%>')
@@ -390,6 +507,7 @@
                 const data = {
                     phone_number: phone_number.value,
                     customer_address: customer_address.value,
+                    note: note.value,
                     products,
                 };
                 fetch('/orders/<%=userId%>', {
