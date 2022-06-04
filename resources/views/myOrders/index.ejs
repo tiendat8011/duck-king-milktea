@@ -40,6 +40,9 @@
                     <th scope="col">Sản phẩm</th>
                     <th scope="col" style="text-align: center">Size</th>
                     <th scope="col" style="text-align: center">Số lượng</th>
+                    <th scope="col" style="text-align: center">Đơn giá</th>
+                    <th scope="col" style="text-align: center">Tổng tiền</th>
+                    <th scope="col">Ghi chú</th>
                     <th scope="col">Thời gian tạo</th>
                 </tr>
             </thead>
@@ -65,6 +68,29 @@
                         <%for (product of order.products) {%>
                         <div><%=product.quantity%></div>
                         <% } %>
+                    </td>
+                    <td style="text-align: center">
+                        <%for (product of order.products) {%>
+                        <div>
+                            <%if(product.size == 'L') {%>
+                            <%product.product.price *= 1.5%> <%}%>
+                            <%=product.product.price.toLocaleString("vi", {
+                            style: "currency", currency: "VND", })%>
+                        </div>
+                        <% } %>
+                    </td>
+                    <td style="text-align: center">
+                        <%let total = 0; for (product of order.products) {%>
+                        <%total+=product.product.price*product.quantity%> <% }
+                        %>
+                        <div>
+                            <%=total.toLocaleString("vi", { style: "currency",
+                            currency: "VND", })%>
+                        </div>
+                    </td>
+                    <td>
+                        <%if(!order.note) {%> Không <%} else {%>
+                        <%=order.note%><%}%>
                     </td>
                     <td><%= order.createdAt.toLocaleString() %></td>
                 </tr>

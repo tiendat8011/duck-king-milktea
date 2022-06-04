@@ -26,6 +26,10 @@ const orderSchema = mongoose.Schema(
                 required: true,
             },
         ],
+        note: {
+            type: String,
+            trim: true,
+        },
     },
     {
         timestamps: true,

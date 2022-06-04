@@ -83,19 +83,41 @@
         ></script>
         <script>
             const handleDelete = (id, name) => {
-                if (confirm(`Xóa sản phẩm ${name} ?`)) {
-                    fetch(`/products/admin/${id}`, {
-                        method: 'DELETE',
-                    })
-                        .then(() => {
-                            const productDeleted = document.getElementById(id);
-                            productDeleted.remove();
+                Swal.fire({
+                    title: `Bạn có chắc chắn muốn xóa sản phẩm ${name}?`,
+                    text: 'Hành động này không thể khôi phục!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Xóa',
+                    reverseButtons: true,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        fetch(`/products/admin/${id}`, {
+                            method: 'DELETE',
                         })
-                        .catch((err) => {
-                            alert('Không thể xóa!!');
-                            console.log(err);
-                        });
-                }
+                            .then(() => {
+                                const productDeleted =
+                                    document.getElementById(id);
+                                productDeleted.remove();
+                            })
+                            .catch((err) => {
+                                // alert('Không thể xóa!!');
+                                Swal.fire({
+                                    title: 'Lỗi!',
+                                    text: 'Không thể xóa sản phẩm',
+                                    icon: 'error',
+                                    confirmButtonText: 'OK',
+                                });
+                            });
+                        Swal.fire(
+                            'Đã xóa!',
+                            'Xóa sản phẩm thành công',
+                            'success'
+                        );
+                    }
+                });
             };
         </script>
     </body>

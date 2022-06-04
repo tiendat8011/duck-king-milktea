@@ -58,6 +58,7 @@ module.exports = {
                     path: 'product',
                 },
             });
+
         return res.render('admin/orders/userorders', {
             owner,
             orders,
@@ -97,6 +98,7 @@ module.exports = {
             phone_number: reqBody.phone_number,
             user: userId,
             products,
+            note: reqBody.note,
         };
         await Order.create(order);
         return res.send('Create order successfully');
