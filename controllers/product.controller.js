@@ -1,6 +1,9 @@
+const uploadService = require('../services/upload.service');
 const asyncHandle = require('../middlewares/asyncHandle');
 const Product = require('../models/Product');
 const User = require('../models/User');
+const ErrorResponse = require('../common/ErrorResponse');
+const pick = require('../common/pick');
 
 module.exports = {
     // [GET] /products
@@ -48,10 +51,35 @@ module.exports = {
         });
     }),
 
-    //[POST] /products
+    //[POST] /products/admin
     createProduct: asyncHandle(async (req, res) => {
-        await Product.create(req.body);
-        res.redirect('/products/admin');
+        let mimetypes = ['image/jpeg', 'application/pdf'];
+
+        const documentBodyUploaded = await uploadService.uploadFile(
+            req,
+            'productImages',
+            mimetypes
+        );
+
+        // console.log(documentBodyUploaded);
+        const { image, fields } = documentBodyUploaded;
+        if (Array.isArray(image))
+            throw new ErrorResponse(400, 'Yeu cau gui 1 file duy nhat');
+
+        const imageData = image.filepath;
+
+        const product = pick(fields, [
+            'name',
+            'price',
+            'category',
+            'description',
+        ]);
+        const productCreated = await Product.create({
+            ...product,
+            image: imageData,
+        });
+        res.status(200).json(productCreated);
+        // res.redirect('/products/admin');
     }),
 
     //[PUT] /products/:id

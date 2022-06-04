@@ -56,10 +56,17 @@
                                     class="right-shared-ingredient"
                                 >
                                     <div class="right-shared-ingredient-img">
+                                        <%if(!product.image) {%>
                                         <img
                                             src="/images/dau_tam_kem_pho_mai_09a4c4b857694d918a86542225fc2867_grande.jpg"
-                                            alt=""
+                                            alt="ảnh sản phẩm"
                                         />
+                                        <%} else {%>
+                                        <img
+                                            src="<%=product.image%>"
+                                            alt="ảnh sản phẩm"
+                                        />
+                                        <%}%>
                                     </div>
                                     <div class="right-shared-text">
                                         <div class="right-shared-text-name">

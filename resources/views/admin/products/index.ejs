@@ -48,6 +48,7 @@
             <thead>
                 <tr>
                     <th scope="col">STT</th>
+                    <th scope="col">Ảnh</th>
                     <th scope="col">Tên sản phẩm</th>
                     <th scope="col">Giá tiền</th>
                     <th scope="col">Thể loại</th>
@@ -58,8 +59,23 @@
                 <% for (product of products) { %>
                 <tr id="<%=product.id%>">
                     <th scope="row"><%= products.indexOf(product) + 1 %></th>
+                    <td style="width: 150px">
+                        <div class="right-shared-ingredient-img">
+                            <%if(!product.image) {%> Không <%} else {%>
+                            <a
+                                href="<%=product.image%>"
+                                target="_blank"
+                                alt="ảnh sản phẩm"
+                                >Ảnh</a
+                            >
+                            <%}%>
+                        </div>
+                    </td>
                     <td><%= product.name %></td>
-                    <td><%= product.price %></td>
+                    <td>
+                        <%= product.price.toLocaleString("vi", { style:
+                        "currency", currency: "VND", }) %>
+                    </td>
                     <td><%= product.category %></td>
                     <td><%= product.description %></td>
                     <td class="delete-product">

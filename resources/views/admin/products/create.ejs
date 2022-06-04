@@ -45,7 +45,7 @@
         </h2>
         <div class="col-md-10" style="margin: auto">
             <form
-                class="row g-3 needs-validation"
+                class="row g-3 needs-validation product-form"
                 novalidate
                 method="POST"
                 action="/products/admin"
@@ -121,5 +121,67 @@
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"
         ></script>
+
+        <script>
+            const productForm = document.querySelector('.product-form');
+
+            productForm.addEventListener('submit', async function (e) {
+                e.preventDefault();
+                //  document
+                // .getElementById("btn-create")
+                // .addEventListener("click", async () => {
+                const name = document.querySelector("[name='name']");
+                const price = document.querySelector("[name='price']");
+                const category = document.querySelector("[name='category']");
+                const description = document.querySelector(
+                    "[name='description']"
+                );
+                const image = document.querySelector("[name='image']");
+                const data = new FormData();
+                // console.log(documents.files);
+                data.append('image', image.files[0]);
+                data.append('name', name.value);
+                data.append('price', price.value);
+                data.append('category', category.value);
+                data.append('description', description.value);
+
+                try {
+                    let result = await (
+                        await fetch('/products/admin', {
+                            method: 'POST',
+                            body: data,
+                        })
+                    ).json();
+                    // console.log(result);
+                    if (!result.name) {
+                        Swal.fire({
+                            title: 'Lỗi!',
+                            text: 'Tạo sản phẩm thất bại!',
+                            icon: 'error',
+                            confirmButtonText: 'OK',
+                        });
+                    } else {
+                        Swal.fire({
+                            title: 'Thành công',
+                            text: 'Tạo sản phẩm thành công!',
+                            icon: 'success',
+                            confirmButtonText: 'OK',
+                        });
+                        name.value = '';
+                        price.value = '';
+                        category.value = '';
+                        description.value = '';
+                        image.value = '';
+                    }
+                } catch (error) {
+                    Swal.fire({
+                        title: 'Lỗi!',
+                        text: 'Tạo sản phẩm thất bại!',
+                        icon: 'error',
+                        confirmButtonText: 'OK',
+                    });
+                }
+            });
+        </script>
     </body>
 </html>
