@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 async function connectToDB() {
     await mongoose
-        .connect(process.env.MONGODB || 'mongodb://localhost:27017/milktea-web')
+        .connect(process.env.MONGODB || 'mongodb://0.0.0.0:27017/milktea-web')
         .then(() => {
             console.log('Connected to mongo database');
         })
