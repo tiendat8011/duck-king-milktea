@@ -50,6 +50,14 @@ module.exports = {
         const user = await User.findOne({ username: res.locals.username });
         const { userId } = req.params;
         const owner = await User.findById(userId);
+        const ordersDeleted = await Order.findDeleted({ user: userId })
+            .populate('user')
+            .populate({
+                path: 'products',
+                populate: {
+                    path: 'product',
+                },
+            });
         const orders = await Order.find({ user: userId })
             .populate('user')
             .populate({
@@ -61,7 +69,7 @@ module.exports = {
 
         return res.render('admin/orders/userorders', {
             owner,
-            orders,
+            orders: [...orders, ...ordersDeleted],
             userId,
             userFName: user?.full_name,
             userRole: user?.role,
@@ -72,6 +80,14 @@ module.exports = {
     getAllOrdersOfUserById: asyncHandle(async (req, res) => {
         const { userId } = req.params;
         const user = await User.findById(userId);
+        const ordersDeleted = await Order.findDeleted({ user: userId })
+            .populate('user')
+            .populate({
+                path: 'products',
+                populate: {
+                    path: 'product',
+                },
+            });
         const orders = await Order.find({ user: userId })
             .populate('user')
             .populate({
@@ -81,7 +97,7 @@ module.exports = {
                 },
             });
         return res.render('myorders', {
-            orders,
+            orders: [...orders, ...ordersDeleted],
             userId,
             userFName: user?.full_name,
             userRole: user?.role,
@@ -92,10 +108,11 @@ module.exports = {
     createOrder: asyncHandle(async (req, res) => {
         const { userId } = req.params;
         const reqBody = req.body;
+        const user = await User.findById(userId);
         const products = await OrderProduct.insertMany(reqBody.products);
         const order = {
             customer_address: reqBody.customer_address,
-            phone_number: reqBody.phone_number,
+            phone_number: reqBody.phone_number || user.phone_number,
             user: userId,
             products,
             note: reqBody.note,

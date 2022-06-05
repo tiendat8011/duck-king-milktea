@@ -5,18 +5,17 @@ const userController = require('../controllers/user.controller');
 
 const userRouter = express.Router();
 
-userRouter.use(authMiddleware.protect);
-
 userRouter
     .route('/admin')
     .get(
+        authMiddleware.protect,
         authMiddleware.isAuthenticated,
         authMiddleware.admin,
         userController.getAllUsers
     );
 userRouter
     .route('/:id')
-    .get(userController.getUser)
+    .get(authMiddleware.protect, userController.getUser)
     .put(authMiddleware.protect, userController.updateUserById)
     .delete(authMiddleware.protect, userController.deleteUserById);
 

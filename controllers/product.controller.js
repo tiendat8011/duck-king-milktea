@@ -56,7 +56,7 @@ module.exports = {
 
     //[POST] /products/admin
     createProduct: asyncHandle(async (req, res) => {
-        let mimetypes = ['image/jpeg', 'application/pdf'];
+        let mimetypes = ['image/gif', 'image/jpeg', 'application/pdf'];
 
         const documentBodyUploaded = await uploadService.uploadFile(
             req,

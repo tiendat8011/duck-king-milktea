@@ -16,9 +16,12 @@ const register = {
     body: Joi.object().keys({
         email: Joi.string().required().email(),
         password: Joi.string().required().custom(passwordValidate),
-        username: Joi.string().required(),
+        username: Joi.string().required().alphanum().min(6).max(20),
         full_name: Joi.string().required(),
-        phone_number: Joi.string().required(),
+        phone_number: Joi.string()
+            .required()
+            .pattern(/^[0-9]+$/)
+            .required(),
     }),
 };
 

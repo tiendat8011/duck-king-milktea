@@ -16,6 +16,15 @@
             href="/images/favicon_io/favicon.ico"
             type="image/x-icon"
         />
+        <style>
+            .order-info{
+                opacity: .8;
+            }
+            .order-info:hover{
+                cursor: pointer;
+                opacity: .9;
+            }
+        </style>
     </head>
     <body>
         <%- include('../partials/header') %>
@@ -31,7 +40,7 @@
             DANH SÁCH ĐƠN HÀNG CỦA BẠN
         </h1>
 
-        <table class="table table-striped table-success table-responsive">
+        <table class="table table-success table-responsive">
             <thead>
                 <tr>
                     <th scope="col">STT</th>
@@ -43,12 +52,16 @@
                     <th scope="col" style="text-align: center">Đơn giá</th>
                     <th scope="col" style="text-align: center">Tổng tiền</th>
                     <th scope="col">Ghi chú</th>
-                    <th scope="col">Thời gian tạo</th>
+                    <th scope="col" colspan="2">Thời gian tạo</th>
                 </tr>
             </thead>
             <tbody>
-                <% for (order of orders) { %>
+                <% for (order of orders) { %> <%if(order.deleted) {%>
+                <tr class="table-active">
+                    <%} else {%>
                 <tr>
+                    <%}%>
+
                     <th scope="row"><%= orders.indexOf(order) + 1 %></th>
                     <td style="overflow-wrap: break-word">
                         <%= order.customer_address %>
@@ -93,6 +106,11 @@
                         <%=order.note%><%}%>
                     </td>
                     <td><%= order.createdAt.toLocaleString() %></td>
+                    <%if(order.deleted) {%>
+                        <td style="width: 25px;"><i class="fa-solid fa-circle-info order-info" onclick="handleInfo()"></i></td>
+                    <%} else {%>
+                       <td></td>
+                    <%}%>
                 </tr>
                 <% } %>
             </tbody>
@@ -107,5 +125,14 @@
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"
         ></script>
+        <script>
+            function handleInfo() {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Đơn hàng đã được xử lí',
+                    text: 'Nếu sau 3 tiếng kể từ khi đặt bạn không nhận được hàng xin vui lòng liên hệ với cửa hàng để được hỗ trợ!',
+                })
+            }
+        </script>
     </body>
 </html>
