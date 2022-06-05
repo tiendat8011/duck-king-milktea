@@ -1,0 +1,714 @@
+.u-section-1 .u-sheet-1 {
+  min-height: 961px;
+}
+
+.u-section-1 .u-shape-1 {
+  width: 992px;
+  height: 841px;
+  margin: 60px auto 0 -38px;
+}
+
+.u-section-1 .u-image-1 {
+  width: 569px;
+  height: 569px;
+  background-image: url("/images/0-thiet-ke-quan-tra-sua1.jpeg");
+  background-position: 50% 50%;
+  margin: -832px 0 0 auto;
+}
+
+.u-section-1 .u-group-1 {
+  width: 629px;
+  min-height: 472px;
+  margin: -334px auto 60px -16px;
+}
+
+.u-section-1 .u-container-layout-1 {
+  padding: 30px;
+}
+
+.u-section-1 .u-text-1 {
+  font-weight: 700;
+  font-size: 6rem;
+  text-shadow: 2px -2px 7px rgba(0, 0, 0, 0.25);
+  margin: 0 auto;
+}
+
+.u-section-1 .u-text-2 {
+  font-weight: 700;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
+  letter-spacing: 2px;
+  margin: 20px auto 0;
+}
+
+.u-section-1 .u-text-3 {
+  margin: 20px 0 0;
+}
+
+@media (max-width: 1199px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 899px;
+  }
+
+  .u-section-1 .u-shape-1 {
+    width: 871px;
+    height: 779px;
+    margin-left: 0;
+  }
+
+  .u-section-1 .u-image-1 {
+    width: 442px;
+    height: 442px;
+    margin-top: -770px;
+  }
+
+  .u-section-1 .u-group-1 {
+    margin-top: -192px;
+    margin-bottom: -2px;
+  }
+}
+
+@media (max-width: 991px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 923px;
+  }
+
+  .u-section-1 .u-shape-1 {
+    height: 660px;
+    margin-top: 203px;
+    margin-right: initial;
+    margin-left: initial;
+    width: auto;
+  }
+
+  .u-section-1 .u-image-1 {
+    width: 409px;
+    height: 409px;
+    margin-top: -803px;
+  }
+
+  .u-section-1 .u-group-1 {
+    margin-top: -126px;
+    margin-bottom: 60px;
+  }
+}
+
+@media (max-width: 767px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 830px;
+  }
+
+  .u-section-1 .u-shape-1 {
+    height: 540px;
+    margin-top: 230px;
+    width: auto;
+    margin-right: initial;
+    margin-left: initial;
+  }
+
+  .u-section-1 .u-image-1 {
+    width: 386px;
+    height: 386px;
+    margin-top: -710px;
+  }
+
+  .u-section-1 .u-group-1 {
+    min-height: 307px;
+    margin-top: -51px;
+    margin-bottom: 46px;
+    margin-right: initial;
+    margin-left: initial;
+    width: auto;
+  }
+
+  .u-section-1 .u-container-layout-1 {
+    padding: 19px 10px 0;
+  }
+
+  .u-section-1 .u-text-1 {
+    font-size: 4.5rem;
+  }
+
+  .u-section-1 .u-text-3 {
+    width: auto;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 731px;
+  }
+
+  .u-section-1 .u-shape-1 {
+    height: 585px;
+    width: 418px;
+    margin-top: 40px;
+    margin-left: -39px;
+    margin-right: -39px;
+  }
+
+  .u-section-1 .u-image-1 {
+    width: 280px;
+    height: 280px;
+    margin-top: -651px;
+  }
+
+  .u-section-1 .u-group-1 {
+    min-height: 341px;
+    margin-top: -8px;
+    margin-bottom: 12px;
+    width: auto;
+    margin-right: initial;
+    margin-left: initial;
+  }
+
+  .u-section-1 .u-text-1 {
+    font-size: 3rem;
+  }
+}
+.u-section-2 {
+  background-image: none;
+}
+
+.u-section-2 .u-sheet-1 {
+  min-height: 1126px;
+}
+
+.u-section-2 .u-text-1 {
+  font-weight: 700;
+  font-family: Montserrat, sans-serif;
+  font-size: 3.75rem;
+  margin: 60px auto 0 0;
+}
+
+.u-section-2 .u-text-2 {
+  font-size: 1.5rem;
+  font-style: italic;
+  margin: 20px 711px 0 0;
+}
+
+.u-section-2 .u-layout-wrap-1 {
+  margin-top: 66px;
+  margin-bottom: 60px;
+}
+
+.u-section-2 .u-layout-cell-1 {
+  min-height: 90px;
+}
+
+.u-section-2 .u-container-layout-1 {
+  padding: 30px;
+}
+
+.u-section-2 .u-image-1 {
+  min-height: 382px;
+  background-image: url("/images/00300001.jpg");
+  background-position: 50% 50%;
+}
+
+.u-section-2 .u-container-layout-2 {
+  padding: 30px;
+}
+
+.u-section-2 .u-layout-cell-3 {
+  min-height: 231px;
+}
+
+.u-section-2 .u-container-layout-3 {
+  padding: 30px 30px 30px 0;
+}
+
+.u-section-2 .u-text-3 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.u-section-2 .u-btn-1 {
+  border-style: none none solid;
+  padding: 0;
+}
+
+.u-section-2 .u-image-2 {
+  min-height: 703px;
+  background-image: url("/images/foody-funtea-962-636765871581204544.jpg");
+  background-position: 50% 50%;
+}
+
+.u-section-2 .u-container-layout-4 {
+  padding: 30px;
+}
+
+.u-section-2 .u-layout-cell-5 {
+  min-height: 240px;
+}
+
+.u-section-2 .u-container-layout-5 {
+  padding: 30px 0 0;
+}
+
+.u-section-2 .u-image-3 {
+  height: 441px;
+  margin: -210px auto 0 -30px;
+}
+
+.u-section-2 .u-layout-cell-6 {
+  min-height: 381px;
+  background-image: none;
+}
+
+.u-section-2 .u-container-layout-6 {
+  padding: 30px;
+}
+
+.u-section-2 .u-icon-1 {
+  margin-top: 0;
+  margin-bottom: 0;
+  height: 64px;
+  width: 64px;
+}
+
+.u-section-2 .u-text-4 {
+  font-size: 2.25rem;
+  font-weight: 400;
+  font-family: "Open Sans", sans-serif;
+  margin: 20px 0 0;
+}
+
+.u-section-2 .u-layout-cell-7 {
+  min-height: 82px;
+}
+
+.u-section-2 .u-container-layout-7 {
+  padding: 30px;
+}
+
+@media (max-width: 1199px) {
+  .u-section-2 .u-sheet-1 {
+    min-height: 975px;
+  }
+
+  .u-section-2 .u-text-2 {
+    margin-right: 511px;
+  }
+
+  .u-section-2 .u-layout-cell-1 {
+    min-height: 74px;
+  }
+
+  .u-section-2 .u-image-1 {
+    min-height: 315px;
+  }
+
+  .u-section-2 .u-layout-cell-3 {
+    min-height: 190px;
+  }
+
+  .u-section-2 .u-image-2 {
+    min-height: 580px;
+  }
+
+  .u-section-2 .u-layout-cell-5 {
+    min-height: 292px;
+  }
+
+  .u-section-2 .u-image-3 {
+    height: 421px;
+    margin-top: -172px;
+    margin-right: initial;
+    margin-left: initial;
+  }
+
+  .u-section-2 .u-layout-cell-6 {
+    min-height: 314px;
+  }
+
+  .u-section-2 .u-layout-cell-7 {
+    min-height: 67px;
+  }
+}
+
+@media (max-width: 991px) {
+  .u-section-2 .u-sheet-1 {
+    min-height: 770px;
+  }
+
+  .u-section-2 .u-text-2 {
+    margin-right: 291px;
+  }
+
+  .u-section-2 .u-layout-cell-1 {
+    min-height: 129px;
+  }
+
+  .u-section-2 .u-image-1 {
+    min-height: 282px;
+  }
+
+  .u-section-2 .u-layout-cell-3 {
+    min-height: 100px;
+  }
+
+  .u-section-2 .u-image-2 {
+    min-height: 444px;
+  }
+
+  .u-section-2 .u-layout-cell-5 {
+    min-height: 129px;
+  }
+
+  .u-section-2 .u-image-3 {
+    height: 357px;
+    margin-top: -163px;
+    margin-right: initial;
+    margin-left: initial;
+  }
+
+  .u-section-2 .u-layout-cell-6 {
+    min-height: 100px;
+  }
+
+  .u-section-2 .u-container-layout-6 {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .u-section-2 .u-text-4 {
+    font-size: 1.75rem;
+  }
+
+  .u-section-2 .u-layout-cell-7 {
+    min-height: 51px;
+  }
+}
+
+@media (max-width: 767px) {
+  .u-section-2 .u-sheet-1 {
+    min-height: 3261px;
+  }
+
+  .u-section-2 .u-text-2 {
+    margin-right: 111px;
+  }
+
+  .u-section-2 .u-layout-cell-1 {
+    min-height: 724px;
+  }
+
+  .u-section-2 .u-container-layout-1 {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .u-section-2 .u-image-1 {
+    min-height: 677px;
+  }
+
+  .u-section-2 .u-container-layout-2 {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .u-section-2 .u-layout-cell-3 {
+    min-height: 108px;
+  }
+
+  .u-section-2 .u-container-layout-3 {
+    padding-right: 10px;
+  }
+
+  .u-section-2 .u-image-2 {
+    min-height: 694px;
+  }
+
+  .u-section-2 .u-container-layout-4 {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .u-section-2 .u-layout-cell-5 {
+    min-height: 677px;
+  }
+
+  .u-section-2 .u-image-3 {
+    height: 694px;
+    margin-top: 0;
+    margin-right: initial;
+    margin-left: initial;
+  }
+
+  .u-section-2 .u-layout-cell-6 {
+    min-height: 617px;
+  }
+
+  .u-section-2 .u-container-layout-6 {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .u-section-2 .u-icon-1 {
+    height: 105px;
+    width: 105px;
+    margin-right: auto;
+    margin-left: 0;
+  }
+
+  .u-section-2 .u-text-4 {
+    font-size: 3.75rem;
+    margin-top: 30px;
+  }
+
+  .u-section-2 .u-layout-cell-7 {
+    min-height: 724px;
+  }
+
+  .u-section-2 .u-container-layout-7 {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-2 .u-sheet-1 {
+    min-height: 1338px;
+  }
+
+  .u-section-2 .u-text-1 {
+    font-size: 2.25rem;
+  }
+
+  .u-section-2 .u-text-2 {
+    margin-right: 0;
+  }
+
+  .u-section-2 .u-layout-cell-1 {
+    min-height: 456px;
+  }
+
+  .u-section-2 .u-image-1 {
+    min-height: 427px;
+  }
+
+  .u-section-2 .u-layout-cell-3 {
+    min-height: 100px;
+  }
+
+  .u-section-2 .u-image-2 {
+    min-height: 437px;
+  }
+
+  .u-section-2 .u-layout-cell-5 {
+    min-height: 427px;
+  }
+
+  .u-section-2 .u-image-3 {
+    height: 404px;
+    margin-bottom: -7px;
+    margin-right: initial;
+    margin-left: initial;
+  }
+
+  .u-section-2 .u-layout-cell-6 {
+    min-height: 100px;
+  }
+
+  .u-section-2 .u-text-4 {
+    font-size: 2.25rem;
+  }
+
+  .u-section-2 .u-layout-cell-7 {
+    min-height: 456px;
+  }
+}
+.u-section-3 .u-sheet-1 {
+  min-height: 669px;
+}
+
+.u-section-3 .u-layout-wrap-1 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.u-section-3 .u-layout-cell-1 {
+  min-height: 669px;
+}
+
+.u-section-3 .u-container-layout-1 {
+  padding: 30px 30px 29px;
+}
+
+.u-section-3 .u-text-1 {
+  line-height: 1.2;
+  font-weight: 700;
+  margin: 122px 0 0;
+}
+
+.u-section-3 .u-group-1 {
+  min-height: 212px;
+  margin: 63px auto 0;
+}
+
+.u-section-3 .u-shape-1 {
+  width: 354px;
+  height: 15px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.u-section-3 .u-text-2 {
+  text-transform: uppercase;
+  line-height: 2.2;
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 56px 0 0;
+}
+
+.u-section-3 .u-image-1 {
+  min-height: 669px;
+  background-image: url("/images/tong-hop-cac-quan-tra-sua-ngon-va-dong-khach-nhat-o-quan-6-202107071256415926.jpg");
+  background-position: 50% 50%;
+}
+
+.u-section-3 .u-container-layout-3 {
+  padding: 30px 0;
+}
+
+@media (max-width: 1199px) {
+  .u-section-3 .u-sheet-1 {
+    min-height: 552px;
+  }
+
+  .u-section-3 .u-layout-cell-1 {
+    min-height: 552px;
+  }
+
+  .u-section-3 .u-text-1 {
+    margin-top: 43px;
+  }
+
+  .u-section-3 .u-group-1 {
+    margin-right: initial;
+    margin-left: initial;
+  }
+
+  .u-section-3 .u-image-1 {
+    min-height: 552px;
+  }
+}
+
+@media (max-width: 991px) {
+  .u-section-3 .u-sheet-1 {
+    min-height: 474px;
+  }
+
+  .u-section-3 .u-layout-cell-1 {
+    min-height: 100px;
+  }
+
+  .u-section-3 .u-text-1 {
+    margin-top: 0;
+  }
+
+  .u-section-3 .u-shape-1 {
+    width: 216px;
+  }
+
+  .u-section-3 .u-image-1 {
+    min-height: 474px;
+  }
+}
+
+@media (max-width: 767px) {
+  .u-section-3 .u-sheet-1 {
+    min-height: 676px;
+  }
+
+  .u-section-3 .u-layout-cell-1 {
+    order: 1;
+  }
+
+  .u-section-3 .u-container-layout-1 {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .u-section-3 .u-image-1 {
+    min-height: 576px;
+    order: 0;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-3 .u-sheet-1 {
+    min-height: 463px;
+  }
+
+  .u-section-3 .u-image-1 {
+    min-height: 363px;
+  }
+}
+.u-section-4 {
+  background-image: url("/images/tra-sua-tan-phu-2.jpg");
+  background-position: 50% 50%;
+}
+
+.u-section-4 .u-sheet-1 {
+  min-height: 725px;
+}
+
+.u-section-4 .u-text-1 {
+  font-size: 6rem;
+  line-height: 1;
+  font-weight: 600;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+  margin: 503px 0 0 40px;
+}
+
+.u-section-4 .u-text-2 {
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 8px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+  margin: 20px 0 60px 40px;
+}
+
+@media (max-width: 1199px) {
+  .u-section-4 {
+    background-position: 100% 26.24%;
+    background-size: 120%;
+  }
+
+  .u-section-4 .u-sheet-1 {
+    min-height: 598px;
+  }
+
+  .u-section-4 .u-text-1 {
+    margin-left: 0;
+    margin-top: 60px;
+  }
+
+  .u-section-4 .u-text-2 {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 991px) {
+  .u-section-4 .u-sheet-1 {
+    min-height: 458px;
+  }
+}
+
+@media (max-width: 767px) {
+  .u-section-4 .u-sheet-1 {
+    min-height: 344px;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-4 .u-sheet-1 {
+    min-height: 217px;
+  }
+
+  .u-section-4 .u-text-1 {
+    font-size: 1.5rem;
+  }
+}

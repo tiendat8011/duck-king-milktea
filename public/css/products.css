@@ -98,7 +98,8 @@
     border: 1px solid #0000000d;
 }
 .right-shared-ingredient-img {
-    width: 100%;
+    width: 150px;
+    height: 150px;
 }
 .right-shared-ingredient-img img {
     width: 100%;
