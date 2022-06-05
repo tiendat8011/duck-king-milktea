@@ -393,31 +393,31 @@
                 } else {
                     let content = productsRender.map((item, index) => {
                         return `
-                            <div class="cart-product" id="cart-${item.id}">
-                                <div class="cart-product-remove" onclick="handleDeleteProduct(${index})">&times;</div>
-                                <h4 class="cart-product-name">${item.name}</h4>
-                                <div class="cart-product-row">
-                                    <div class="cart-product-size">
-                                        <label for="">Size</label>
-                                        <select name="size" id="size-${index}">
-                                            <option value="M">M</option>
-                                            <option value="L">L</option>
-                                        </select>
-                                    </div>
-                                    <div class="cart-product-price"  >
-                                        <input
-                                            type="number"
-                                            name="quantity"
-                                            class="card-product-quantity"
-                                            value="1"
-                                            id="quantity-${index}"
-                                        />
-                                        <span id="price-${index}">
-                                        x ${item.price}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>`;
+                                    <div class="cart-product" id="cart-${item.id}">
+                                        <div class="cart-product-remove" onclick="handleDeleteProduct(${index})">&times;</div>
+                                        <h4 class="cart-product-name">${item.name}</h4>
+                                        <div class="cart-product-row">
+                                            <div class="cart-product-size">
+                                                <label for="">Size</label>
+                                                <select name="size" id="size-${index}">
+                                                    <option value="M">M</option>
+                                                    <option value="L">L</option>
+                                                </select>
+                                            </div>
+                                            <div class="cart-product-price"  >
+                                                <input
+                                                    type="number"
+                                                    name="quantity"
+                                                    class="card-product-quantity"
+                                                    value="1"
+                                                    id="quantity-${index}"
+                                                />
+                                                <span id="price-${index}">
+                                                x ${item.price}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>`;
                     });
                     cart.innerHTML = content.join('');
                     // change quantity => render total again
@@ -434,10 +434,14 @@
                         })
                     );
                     quantities.forEach((quantity) =>
-                        quantity.addEventListener('change', () =>
+                        quantity.addEventListener('change', (event) => {
                             // console.log(quantity.value)
-                            renderTotal()
-                        )
+                            const input = event.target;
+                            if (isNaN(input.value) || input.value <= 0) {
+                                input.value = 1;
+                            }
+                            renderTotal();
+                        })
                     );
                     renderTotal();
                 }
