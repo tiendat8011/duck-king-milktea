@@ -19,7 +19,7 @@ authRouter
     .route('/forget-password')
     .get(authController.forgetPasswordSite)
     .post(
-        validate(authValidation.forgotPassword),
+        validate(authValidation.forgetPassword),
         authController.forgetPassword
     );
 authRouter
@@ -28,6 +28,6 @@ authRouter
 authRouter
     .route('/change-password')
     .get(authController.changePasswordSite)
-    .put(authController.changePassword);
+    .put(validate(authValidation.resetPassword), authController.changePassword);
 
 module.exports = authRouter;

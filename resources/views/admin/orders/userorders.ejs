@@ -45,7 +45,7 @@
             <span style="text-transform: uppercase"><%=owner.full_name%></span>
         </h3>
 
-        <table class="table table-striped table-success table-responsive">
+        <table class="table table-success table-responsive">
             <thead>
                 <tr>
                     <th scope="col">STT</th>
@@ -62,7 +62,11 @@
             </thead>
             <tbody>
                 <% for (order of orders) { %>
-                <tr>
+                    <%if(order.deleted) {%>
+                        <tr class="table-active">
+                    <%} else {%>
+                        <tr>
+                    <%}%>
                     <th scope="row"><%= orders.indexOf(order) + 1 %></th>
                     <td style="overflow-wrap: break-word">
                         <%= order.customer_address %>

@@ -2,6 +2,8 @@ const express = require('express');
 
 const orderController = require('../controllers/order.controller');
 const authMiddleware = require('../middlewares/authMiddleware');
+const validate = require('../middlewares/validate');
+const orderValidation = require('../validation/order.validation');
 
 const orderRouter = express.Router();
 
@@ -69,11 +71,10 @@ orderRouter
         orderController.getAllOrdersOfUserById
     )
 
-    // orderRouter
-    //     .route('/')
     .post(
         authMiddleware.protect,
         authMiddleware.authUser,
+        validate(orderValidation.createOrder),
         orderController.createOrder
     );
 
