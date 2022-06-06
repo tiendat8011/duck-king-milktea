@@ -259,7 +259,7 @@
             const note = $('input[name="note"]');
             const orderProducts = [];
 
-            let productsRender = [];
+            const productsRender = [];
             let totalPrice = 0;
 
             function resetItem() {
@@ -349,7 +349,7 @@
                 );
 
                 totalPrice = prettyProductsRender.reduce((pre, cur) => {
-                    console.log(pre, '+', cur);
+                    // console.log(pre, '+', cur);
                     return +pre + +cur;
                 }, 0);
 
@@ -399,7 +399,7 @@
                                         <div class="cart-product-row">
                                             <div class="cart-product-size">
                                                 <label for="">Size</label>
-                                                <select name="size" id="size-${index}">
+                                                <select name="size" value="${item.size}" id="size-${index}">
                                                     <option value="M">M</option>
                                                     <option value="L">L</option>
                                                 </select>
@@ -409,7 +409,7 @@
                                                     type="number"
                                                     name="quantity"
                                                     class="card-product-quantity"
-                                                    value="1"
+                                                    value="${item.quantity}"
                                                     id="quantity-${index}"
                                                 />
                                                 <span id="price-${index}">
@@ -421,28 +421,38 @@
                     });
                     cart.innerHTML = content.join('');
                     // change quantity => render total again
-                    const quantities = document.querySelectorAll(
-                        'input[name="quantity"]'
-                    );
-                    const sizes = document.querySelectorAll(
-                        'select[name="size"]'
-                    );
-                    sizes.forEach((size, index) =>
+                    const quantities = $$('input[name="quantity"]');
+                    const sizes = $$('select[name="size"]');
+                    // console.log(productsRender);
+                    sizes.forEach((size, index) => {
                         size.addEventListener('change', (e) => {
+                            if (productsRender.length !== 0)
+                                productsRender[index].size = e.target.value;
                             handleChangeSize(index, e.target.value);
                             renderTotal();
-                        })
-                    );
-                    quantities.forEach((quantity) =>
-                        quantity.addEventListener('change', (event) => {
+                        });
+                    });
+                    sizes.forEach((size, index) => {
+                        // console.log(size);
+                        if (productsRender[index].size === 'L') {
+                            handleChangeSize(index, 'L');
+                            size.children[0].selected = false;
+                            size.children[1].selected = true;
+                        }
+                    });
+                    quantities.forEach((quantity, index) =>
+                        quantity.addEventListener('change', (e) => {
                             // console.log(quantity.value)
-                            const input = event.target;
+                            const input = e.target;
+                            if (productsRender.length !== 0)
+                                productsRender[index].quantity = input.value;
                             if (isNaN(input.value) || input.value <= 0) {
                                 input.value = 1;
                             }
                             renderTotal();
                         })
                     );
+
                     renderTotal();
                 }
             }
@@ -467,10 +477,14 @@
                 const price = $(
                     `#prod-${id} .right-shared-text-price`
                 ).innerHTML;
+                const size = 'M';
+                const quantity = 1;
                 const data = {
                     id,
                     name,
                     price,
+                    size,
+                    quantity,
                 };
                 productsRender.push(data);
 
