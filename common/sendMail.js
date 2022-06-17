@@ -4,6 +4,7 @@ const smtpTransport = require('nodemailer-smtp-transport');
 module.exports = async (to, subject, htmlContent) => {
     const transporter = await nodeMailer.createTransport(
         smtpTransport({
+            // host: 'smtp.googlemail.com',
             service: 'gmail',
             port: 587,
             secure: true,
