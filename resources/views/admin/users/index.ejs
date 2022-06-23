@@ -60,7 +60,9 @@
                     <td><%= user.email %></td>
                     <td><%= user.role %></td>
                     <td style="text-align: center">
-                        <%if(user.username==='chi') {%> <%} else {%>
+                        <%if(user.username==='chi' ||
+                        user.username===process.env.ADMIN_USERNAME) {%> <%} else
+                        {%>
                         <i
                             class="fa-solid fa-xmark delete-user"
                             onclick="handleDelete('<%=user.id%>', '<%=user.full_name%>')"

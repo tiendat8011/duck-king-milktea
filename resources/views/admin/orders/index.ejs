@@ -59,13 +59,13 @@
                     <th scope="col">Địa chỉ</th>
                     <th scope="col">Số ĐT</th>
                     <th scope="col">Khách hàng</th>
-                    <th scope="col">Email</th>
+                    <th scope="col">Username</th>
                     <th scope="col">Sản phẩm</th>
                     <th scope="col">Size</th>
-                    <th scope="col">Số lượng</th>
+                    <th scope="col">SL</th>
                     <th scope="col" style="text-align: center">Đơn giá</th>
-                    <th scope="col" style="text-align: center">Tổng tiền</th>
-                    <th scope="col">Ghi chú</th>
+                    <th scope="col" style="text-align: center">Tổng</th>
+                    <th scope="col">Note</th>
                     <th scope="col" colspan="2">Thời gian tạo</th>
                 </tr>
             </thead>
@@ -78,7 +78,7 @@
                     </td>
                     <td><%= order.phone_number %></td>
                     <td><%= order.user.full_name %></td>
-                    <td><%= order.user.email %></td>
+                    <td><%= order.user.username %></td>
                     <td>
                         <%for (product of order.products) {%>
                         <div><%=product.product.name%></div>
@@ -114,8 +114,55 @@
                         </div>
                     </td>
                     <td>
-                        <%if(!order.note) {%> Không <%} else {%> <%=
-                        order.note%> <%}%>
+                        <%if(!order.note) {%> Không <%} else { %>
+                        <div
+                            class="btn btn-success"
+                            data-bs-toggle="modal"
+                            data-bs-target="#order-<%=order.id%>"
+                        >
+                            Xem
+                        </div>
+
+                        <!-- Modal -->
+                        <div
+                            class="modal fade"
+                            id="order-<%=order.id%>"
+                            tabindex="-1"
+                            aria-labelledby="exampleModalLabel"
+                            aria-hidden="true"
+                        >
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5
+                                            class="modal-title"
+                                            id="exampleModalLabel"
+                                        >
+                                            Ghi chú
+                                        </h5>
+                                        <button
+                                            type="button"
+                                            class="btn-close"
+                                            data-bs-dismiss="modal"
+                                            aria-label="Close"
+                                        ></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <%=order.note%>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button
+                                            type="button"
+                                            class="btn btn-success"
+                                            data-bs-dismiss="modal"
+                                        >
+                                            OKE
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <%}%>
                     </td>
                     <td><%= order.createdAt.toLocaleString() %></td>
                     <td class="delete-order">

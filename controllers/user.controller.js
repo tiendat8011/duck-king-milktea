@@ -36,7 +36,10 @@ module.exports = {
     deleteUserById: asyncHandle(async (req, res, next) => {
         let { id } = req.params;
         const user = await User.findById(id);
-        if (user.username == 'chi')
+        if (
+            user.username === 'chi' ||
+            user.username === process.env.ADMIN_USERNAME
+        )
             return new ErrorResponse('Không thể xóa người dùng này!', 400);
         await User.findByIdAndDelete(id);
         res.status(204).json({ message: 'successfully delete' });
