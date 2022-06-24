@@ -1,127 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Danh sách người dùng</title>
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-            crossorigin="anonymous"
-        />
-        <link
-            rel="icon"
-            href="/images/favicon_io/favicon.ico"
-            type="image/x-icon"
-        />
-        <style>
-            .delete-user:hover {
-                transform: scale(1.2);
-                cursor: pointer;
-            }
-        </style>
-    </head>
-    <body>
-        <%-include('../../partials/header')%>
-        <div
-            class="user-banner"
-            style="
-                background-color: rgb(58, 112, 94);
-                width: 100%;
-                height: 100px;
-            "
-        ></div>
-        <h1 style="width: 100%; text-align: center; margin: 50px 0">
-            DANH SÁCH NGƯỜI DÙNG
-        </h1>
-        <table class="table table-success">
-            <thead>
-                <tr>
-                    <th scope="col">STT</th>
-                    <th scope="col">Tên đăng nhập</th>
-                    <th scope="col">Họ tên</th>
-                    <th scope="col">SĐT</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Quyền</th>
-                    <th scope="col" colspan="2" style="text-align: left">
-                        Xóa
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <% for (user of users) { %>
-                <tr id="<%=user.id%>">
-                    <th scope="row"><%= users.indexOf(user) + 1 %></th>
-                    <td><%= user.username %></td>
-                    <td><%= user.full_name %></td>
-                    <td><%= user.phone_number %></td>
-                    <td><%= user.email %></td>
-                    <td><%= user.role %></td>
-                    <td style="text-align: center">
-                        <%if(user.username==='chi') {%> <%} else {%>
-                        <i
-                            class="fa-solid fa-xmark delete-user"
-                            onclick="handleDelete('<%=user.id%>', '<%=user.full_name%>')"
-                        ></i>
-                        <%}%>
-                    </td>
-                    <td style="text-align: center">
-                        <a href="/orders/admin/<%= user.id %>"
-                            >Xem đơn hàng <i class="fa-solid fa-arrow-right"></i
-                        ></a>
-                    </td>
-                    <% } %>
-                </tr>
-            </tbody>
-        </table>
-        <%if(users.length===0) {%>
-        <p style="width: 100%; text-align: center">CHƯA CÓ KHÁCH HÀNG NÀO.</p>
-        <%}%>
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-            crossorigin="anonymous"
-        ></script>
-        <script>
-            function handleDelete(userId, name) {
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Danh sách người dùng</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="icon"
+      href="/images/favicon_io/favicon.ico"
+      type="image/x-icon"
+    />
+    <style>
+      .delete-user:hover {
+        transform: scale(1.2);
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <%-include('../../partials/header')%>
+    <!-- <div
+      class="user-banner"
+      style="background-color: rgb(58, 112, 94); width: 100%; height: 100px"
+    ></div> -->
+    <div
+      style="
+        width: 100%;
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+          url(../images/bannersp.jpg) no-repeat center;
+        height: 300px;
+        text-transform: uppercase;
+        font-size: 36px;
+        color: #d3b673;
+        letter-spacing: 1.8px;
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        padding-bottom: 30px;
+        margin-bottom: 15px;
+      "
+    >
+      <h1 style="width: 100%; text-align: center; margin: 50px 0">
+        DANH SÁCH NGƯỜI DÙNG
+      </h1>
+    </div>
+    <table class="table table-success">
+      <thead>
+        <tr>
+          <th scope="col">STT</th>
+          <th scope="col">Tên đăng nhập</th>
+          <th scope="col">Họ tên</th>
+          <th scope="col">SĐT</th>
+          <th scope="col">Email</th>
+          <th scope="col">Quyền</th>
+          <th scope="col" colspan="2" style="text-align: left">Xóa</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for (user of users) { %>
+        <tr id="<%=user.id%>">
+          <th scope="row"><%= users.indexOf(user) + 1 %></th>
+          <td><%= user.username %></td>
+          <td><%= user.full_name %></td>
+          <td><%= user.phone_number %></td>
+          <td><%= user.email %></td>
+          <td><%= user.role %></td>
+          <td style="text-align: center">
+            <%if(user.username==='chi') {%> <%} else {%>
+            <i
+              class="fa-solid fa-xmark delete-user"
+              onclick="handleDelete('<%=user.id%>', '<%=user.full_name%>')"
+            ></i>
+            <%}%>
+          </td>
+          <td style="text-align: center">
+            <a href="/orders/admin/<%= user.id %>"
+              >Xem đơn hàng <i class="fa-solid fa-arrow-right"></i
+            ></a>
+          </td>
+          <% } %>
+        </tr>
+      </tbody>
+    </table>
+    <%if(users.length===0) {%>
+    <p style="width: 100%; text-align: center">CHƯA CÓ KHÁCH HÀNG NÀO.</p>
+    <%}%>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      function handleDelete(userId, name) {
+        Swal.fire({
+          title: `Bạn có chắc chắn muốn xóa người dùng ${name}?`,
+          text: "Hành động này không thể khôi phục!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Xóa",
+          reverseButtons: true,
+        }).then((result) => {
+          if (result.isConfirmed) {
+            fetch(`/users/${userId}`, {
+              method: "DELETE",
+            })
+              .then(() => {
+                const userDeleted = document.getElementById(userId);
+                userDeleted.remove();
+              })
+              .catch((err) => {
+                // alert('Không thể xóa!!');
                 Swal.fire({
-                    title: `Bạn có chắc chắn muốn xóa người dùng ${name}?`,
-                    text: 'Hành động này không thể khôi phục!',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Xóa',
-                    reverseButtons: true,
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        fetch(`/users/${userId}`, {
-                            method: 'DELETE',
-                        })
-                            .then(() => {
-                                const userDeleted =
-                                    document.getElementById(userId);
-                                userDeleted.remove();
-                            })
-                            .catch((err) => {
-                                // alert('Không thể xóa!!');
-                                Swal.fire({
-                                    title: 'Lỗi!',
-                                    text: 'Không thể xóa người dùng này!',
-                                    icon: 'error',
-                                    confirmButtonText: 'OK',
-                                });
-                            });
-                        Swal.fire(
-                            'Đã xóa!',
-                            'Xóa người dùng thành công',
-                            'success'
-                        );
-                    }
+                  title: "Lỗi!",
+                  text: "Không thể xóa người dùng này!",
+                  icon: "error",
+                  confirmButtonText: "OK",
                 });
-            }
-        </script>
-    </body>
+              });
+            Swal.fire("Đã xóa!", "Xóa người dùng thành công", "success");
+          }
+        });
+      }
+    </script>
+  </body>
 </html>

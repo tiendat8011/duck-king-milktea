@@ -89,9 +89,9 @@
 }
 
 .u-section-2 .u-repeater-1 {
-  grid-template-columns: calc(25% - 16.5px) calc(25% - 16.5px) calc(
-      25% - 16.5px
-    ) calc(25% - 16.5px);
+  grid-template-columns:
+    calc(25% - 16.5px) calc(25% - 16.5px) calc(25% - 16.5px)
+    calc(25% - 16.5px);
   min-height: 263px;
   grid-gap: 22px 22px;
 }
@@ -336,7 +336,7 @@
 .u-section-3 .u-image-1 {
   width: 422px;
   height: 422px;
-  background-image: url("../images/tra-sua-1-ngoisaovn-w408-h429.png");
+  background-image: url("/images/tra-sua-1-ngoisaovn-w408-h429.png");
   background-position: 50% 50%;
   margin: 0 0 0 auto;
 }
@@ -505,7 +505,7 @@
 .u-section-4 .u-image-1 {
   width: 147px;
   height: 147px;
-  background-image: url("../images/tftry-min.jpg");
+  background-image: url("/images/tftry-min.jpg");
   background-position: 50% 50%;
   margin: 0 auto 0 0;
 }
@@ -541,7 +541,7 @@
 .u-section-4 .u-image-2 {
   width: 147px;
   height: 147px;
-  background-image: url("../images/gbcabcf627c179e3070fef24a69f43a814d1e55e6d1d1ec1b7d9d6d10d78509c61a93daa84dbaa63ffdd8cde1f8329d25c6593e42c3a1abd2746cb689f7c87497_1280.jpg");
+  background-image: url("/images/gbcabcf627c179e3070fef24a69f43a814d1e55e6d1d1ec1b7d9d6d10d78509c61a93daa84dbaa63ffdd8cde1f8329d25c6593e42c3a1abd2746cb689f7c87497_1280.jpg");
   background-position: 50% 50%;
   margin: 0 auto 0 0;
 }
@@ -578,7 +578,7 @@
 .u-section-4 .u-image-3 {
   width: 147px;
   height: 147px;
-  background-image: url("../images/bbb.jpg");
+  background-image: url("/images/bbb.jpg");
   background-position: 50% 50%;
   margin: 0 auto 0 0;
 }
@@ -724,17 +724,18 @@
 .u-section-5 .u-image-1 {
   width: 500px;
   height: 500px;
-  background-image: url("../images/photo-2-15344660253391589797590.png");
+  background-image: url("/images/photo-2-15344660253391589797590.png");
   background-position: 50% 50%;
   margin: 30px 0 0 auto;
 }
 
 .u-section-5 .u-text-1 {
-  font-size: 6rem;
+  font-size: 37px;
   font-style: italic;
   font-weight: 400;
   letter-spacing: 3px;
   margin: -296px auto 0 0;
+  width: 250px;
 }
 
 .u-section-5 .u-text-2 {
@@ -843,7 +844,7 @@
 .u-section-6 .u-image-1 {
   width: 650px;
   height: 650px;
-  background-image: url("../images/Cach-lam-tra-sua-tran-chau-tai-nha-don-gian-tong-hop-10-cach-lam-tra-sua-thai-ngon-dien-dan-ca-phe-viet-nam-barcelo-coffee-bot-beo1.png");
+  background-image: url("/images/Cach-lam-tra-sua-tran-chau-tai-nha-don-gian-tong-hop-10-cach-lam-tra-sua-thai-ngon-dien-dan-ca-phe-viet-nam-barcelo-coffee-bot-beo1.png");
   background-position: 50% 50%;
   box-shadow: 5px 5px 20px 0 rgba(0, 0, 0, 0.4);
   margin: -246px auto 0 51px;
