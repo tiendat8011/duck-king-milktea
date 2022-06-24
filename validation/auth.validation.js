@@ -39,9 +39,6 @@ const forgetPassword = {
 };
 
 const resetPassword = {
-    query: Joi.object().keys({
-        tk: Joi.string().required(),
-    }),
     body: Joi.object().keys({
         newPassword: Joi.string().required().custom(passwordValidate),
     }),

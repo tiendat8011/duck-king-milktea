@@ -9,6 +9,10 @@ require('dotenv').config();
 const connectToMongoDB = require('./config/mongodb');
 
 const errorHandle = require('./middlewares/errorHandle');
+const logger = require('./config/logger');
+
+const autoCreateAdmin = require('./common/autoCreateAdmin');
+autoCreateAdmin();
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -37,7 +41,13 @@ route(app);
 
 app.use(errorHandle);
 
+// Admin info logger
+logger.info(`Admin full name: ${process.env.ADMIN_FULLNAME}`);
+logger.info(`Admin phone number: ${process.env.ADMIN_PHONENUM}`);
+logger.info(`Admin username: ${process.env.ADMIN_USERNAME}`);
+logger.info(`Admin mail: ${process.env.ADMIN_MAIL}`);
+
 app.listen(port, (err) => {
     if (err) console.log(err);
-    console.log(`Running server on port ${port}`);
+    logger.info(`Running server on port ${port}`);
 });

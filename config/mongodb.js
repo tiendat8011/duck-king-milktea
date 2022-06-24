@@ -1,13 +1,14 @@
 const mongoose = require('mongoose');
+const logger = require('./logger');
 
 async function connectToDB() {
     await mongoose
         .connect(process.env.MONGODB || 'mongodb://0.0.0.0:27017/milktea-web')
         .then(() => {
-            console.log('Connected to mongo database');
+            logger.info('Connected to mongo database');
         })
         .catch((err) => {
-            console.log(err.message);
+            logger.warn(err.message);
         });
 }
 

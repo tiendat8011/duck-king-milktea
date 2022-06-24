@@ -1,4 +1,5 @@
 const ErrorResponse = require('../common/errorResponse');
+const logger = require('../config/logger');
 
 const errorHandle = (err, req, res, next) => {
     let error = { ...err };
@@ -6,7 +7,7 @@ const errorHandle = (err, req, res, next) => {
     error.message = err.message;
 
     // Log error on dev
-    console.log(err.stack);
+    logger.error(err.stack);
 
     // MongoDB bad ObjectID
     if (err.name === 'CastError') {

@@ -28,6 +28,6 @@ authRouter
 authRouter
     .route('/change-password')
     .get(authController.changePasswordSite)
-    .put(validate(authValidation.resetPassword), authController.changePassword);
+    .put(authController.changePassword);
 
 module.exports = authRouter;
