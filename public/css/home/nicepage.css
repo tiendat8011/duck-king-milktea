@@ -24930,7 +24930,7 @@ section.u-palette-3-base:before,
 .u-button-style.u-palette-3-base,
 .u-button-style.u-palette-3-base[class*="u-border-"] {
   color: #111111 !important;
-  background-color: #f1c50e !important;
+  background-color: var(--topicColor) !important;
 }
 .u-button-style.u-palette-3-base:hover,
 .u-button-style.u-palette-3-base[class*="u-border-"]:hover,
@@ -33935,7 +33935,7 @@ a.u-button-style.u-button-style.active > .u-text-active-palette-3-light-1[class*
 .u-button-style:hover > .u-text-hover-palette-3-light-1 .u-svg-link,
 .u-button-style.u-button-style.active > .u-text-active-palette-3-light-1 .u-svg-link,
 .u-text-hover-palette-3-light-1:focus .u-svg-link {
-  fill: #f5d654;
+  fill: var(--topicColor);
 }
 .u-link.u-text-palette-3-light-1:hover {
   color: #f3cf35 !important;

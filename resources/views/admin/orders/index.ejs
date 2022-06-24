@@ -77,8 +77,13 @@
                         <%= order.customer_address %>
                     </td>
                     <td><%= order.phone_number %></td>
+                    <%if(!order.user) {%>
+                    <td>*Deleted*</td>
+                    <td>*Deleted*</td>
+                    <%} else { %>
                     <td><%= order.user.full_name %></td>
                     <td><%= order.user.username %></td>
+                    <%}%>
                     <td>
                         <%for (product of order.products) {%>
                         <div><%=product.product.name%></div>
