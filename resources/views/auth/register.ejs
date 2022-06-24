@@ -1,140 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-            integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-            crossorigin="anonymous"
-            referrerpolicy="no-referrer"
-        />
-        <link
-            rel="icon"
-            href="/images/favicon_io/favicon.ico"
-            type="image/x-icon"
-        />
-        <link rel="stylesheet" href="/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="/css/backToTop.css" />
-        <!-- mũi tên -->
-        <link rel="stylesheet" href="/css/fontAwesome5Pro.css" />
-        <!-- căn chỉnh -->
-        <link rel="stylesheet" href="/css/default.css" />
-        <!-- css tổng -->
-        <link rel="stylesheet" href="/css/style.css" />
-        <title>Đăng Ký</title>
-    </head>
-    <body>
-        <main>
-            <!-- sign up area start -->
-            <section class="signup__area po-rel-z1 pt-100 pb-145">
-                <div class="container">
-                    <div class="row">
-                        <div
-                            class="col-xxl-6 offset-xxl-3 col-xl-6 offset-xl-3 col-lg-8 offset-lg-2"
-                        >
-                            <div class="sign__wrapper white-bg">
-                                <div class="sign__header mb-35">
-                                    <h1 style="text-align: center">Đăng Ký</h1>
-                                </div>
-                                <div class="sign__form">
-                                    <form method="POST" action="/auth/register">
-                                        <div class="sign__input-wrapper mb-25">
-                                            <h5>Họ và tên</h5>
-                                            <div class="sign__input">
-                                                <input
-                                                    type="text"
-                                                    name="full_name"
-                                                    placeholder="Nhâp Họ và tên"
-                                                />
-                                                <i
-                                                    class="fa-solid fa-envelope"
-                                                ></i>
-                                            </div>
-                                        </div>
-                                        <div class="sign__input-wrapper mb-10">
-                                            <h5>Email</h5>
-                                            <div class="sign__input">
-                                                <input
-                                                    name="email"
-                                                    type="text"
-                                                    placeholder="Nhập Email"
-                                                />
-                                                <i class="fa-solid fa-lock"></i>
-                                            </div>
-                                        </div>
-                                        <div class="sign__input-wrapper mb-10">
-                                            <h5>Số Điện Thoại</h5>
-                                            <div class="sign__input">
-                                                <input
-                                                    name="phone_number"
-                                                    type="text"
-                                                    placeholder="Nhâp Số Điện Thoại"
-                                                />
-                                                <i class="fa-solid fa-lock"></i>
-                                            </div>
-                                        </div>
-                                        <div class="sign__input-wrapper mb-10">
-                                            <h5>Tên Đăng nhâp</h5>
-                                            <div class="sign__input">
-                                                <input
-                                                    name="username"
-                                                    type="text"
-                                                    placeholder="Nhập tên đăng nhâp"
-                                                />
-                                                <i class="fa-solid fa-lock"></i>
-                                            </div>
-                                        </div>
-                                        <div class="sign__input-wrapper mb-10">
-                                            <h5>Nhập mật khẩu</h5>
-                                            <div class="sign__input">
-                                                <input
-                                                    name="password"
-                                                    type="text"
-                                                    placeholder="Nhập mật khẩu"
-                                                />
-                                                <i class="fa-solid fa-lock"></i>
-                                            </div>
-                                        </div>
-                                        <div class="sign__input-wrapper mb-10">
-                                            <h5>Nhập lại mật khẩu</h5>
-                                            <div class="sign__input">
-                                                <input
-                                                    type="text"
-                                                    placeholder="Nhập lại mật khẩu"
-                                                />
-                                                <i class="fa-solid fa-lock"></i>
-                                            </div>
-                                        </div>
-                                        <div
-                                            class="sign__action d-sm-flex justify-content-between mb-30"
-                                        ></div>
-                                        <button
-                                            type="submit"
-                                            class="e-btn w-100"
-                                        >
-                                            <span></span> Đăng Ký
-                                        </button>
-                                        <div
-                                            class="sign__new text-center mt-20"
-                                        >
-                                            <p>
-                                                Bạn có tài khoản?
-                                                <a href="/auth/login"
-                                                    >Đăng Nhập</a
-                                                >
-                                            </p>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="icon"
+      href="/images/favicon_io/favicon.ico"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/backToTop.css" />
+    <!-- mũi tên -->
+    <link rel="stylesheet" href="/css/fontAwesome5Pro.css" />
+    <!-- căn chỉnh -->
+    <link rel="stylesheet" href="/css/default.css" />
+    <!-- css tổng -->
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>Đăng Ký</title>
+  </head>
+  <body>
+    <main>
+      <!-- sign up area start -->
+      <section class="signup__area po-rel-z1 pt-100 pb-145">
+        <div class="container">
+          <div class="row">
+            <div
+              class="col-xxl-6 offset-xxl-3 col-xl-6 offset-xl-3 col-lg-8 offset-lg-2"
+            >
+              <div class="sign__wrapper white-bg">
+                <div class="sign__header mb-35">
+                  <h1 style="text-align: center">Đăng Ký</h1>
                 </div>
-            </section>
-            <!-- sign up area end -->
-        </main>
-    </body>
+                <div class="sign__form">
+                  <form method="POST" action="/auth/register">
+                    <div class="sign__input-wrapper mb-25">
+                      <h5>Họ và tên</h5>
+                      <div class="sign__input">
+                        <input
+                          type="text"
+                          name="full_name"
+                          placeholder="Nhâp Họ và tên"
+                        />
+                        <i class="fa-solid fa-envelope"></i>
+                      </div>
+                    </div>
+                    <div class="sign__input-wrapper mb-10">
+                      <h5>Email</h5>
+                      <div class="sign__input">
+                        <input
+                          name="email"
+                          type="text"
+                          placeholder="Nhập Email"
+                        />
+                        <i class="fa-solid fa-lock"></i>
+                      </div>
+                    </div>
+                    <div class="sign__input-wrapper mb-10">
+                      <h5>Số Điện Thoại</h5>
+                      <div class="sign__input">
+                        <input
+                          name="phone_number"
+                          type="text"
+                          placeholder="Nhâp Số Điện Thoại"
+                        />
+                        <i class="fa-solid fa-lock"></i>
+                      </div>
+                    </div>
+                    <div class="sign__input-wrapper mb-10">
+                      <h5>Tên Đăng nhâp</h5>
+                      <div class="sign__input">
+                        <input
+                          name="username"
+                          type="text"
+                          placeholder="Nhập tên đăng nhâp"
+                        />
+                        <i class="fa-solid fa-lock"></i>
+                      </div>
+                    </div>
+                    <div class="sign__input-wrapper mb-10">
+                      <h5>Nhập mật khẩu</h5>
+                      <div class="sign__input">
+                        <input
+                          name="password"
+                          type="password"
+                          placeholder="Nhập mật khẩu"
+                        />
+                        <i class="fa-solid fa-lock"></i>
+                      </div>
+                    </div>
+                    <div class="sign__input-wrapper mb-10">
+                      <h5>Nhập lại mật khẩu</h5>
+                      <div class="sign__input">
+                        <input
+                          type="password"
+                          placeholder="Nhập lại mật khẩu"
+                        />
+                        <i class="fa-solid fa-lock"></i>
+                      </div>
+                    </div>
+                    <div
+                      class="sign__action d-sm-flex justify-content-between mb-30"
+                    ></div>
+                    <button type="submit" class="e-btn w-100">
+                      <span></span> Đăng Ký
+                    </button>
+                    <div class="sign__new text-center mt-20">
+                      <p>
+                        Bạn có tài khoản?
+                        <a href="/auth/login">Đăng Nhập</a>
+                      </p>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- sign up area end -->
+    </main>
+  </body>
 </html>
