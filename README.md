@@ -19,7 +19,13 @@ PRIVATE_MESSAGE = somethingprivate
 RESET_TOKEN_PRIVATE_MESSAGE = somethingunpredictable
 RESET_TOKEN_EXPIRE = 3 //minute
 COOKIE_EXPIRE = 60 //minute
-ADMIN_MAIL = yourmail
-ADMIN_MAIL_PASSWORD = yourmailpassword
+
+### Admin info
+ADMIN_FULLNAME = adminaccount
+ADMIN_PHONENUM = 0912345678
+ADMIN_USERNAME = adminaccount
+ADMIN_PASSWORD = Adminaccount1
+ADMIN_MAIL = adminmail
+ADMIN_MAIL_PASSWORD = adminmailpassword
 LABEL_ACCESS_TOKEN = access_token
 ```

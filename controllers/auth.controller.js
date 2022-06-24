@@ -103,7 +103,7 @@ module.exports = {
 
         await user.createResetPasswordToken();
 
-        const linkToReset = `http://${process.env.BASE_URL}/auth/change-password?tk=${user.reset_password_token}`;
+        const linkToReset = `${process.env.BASE_URL}/auth/change-password?tk=${user.reset_password_token}`;
         const htmlContent = `<h3>Click to this link to reset your password</h3> <a href='${linkToReset}'>${linkToReset}</a>`;
         await sendMail(user.email, 'Reset Password', htmlContent);
 
