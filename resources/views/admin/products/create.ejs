@@ -19,105 +19,133 @@
     </head>
     <body>
         <%-include('../../partials/header')%>
-        <div
-            class="product-banner"
-            style="
-                background-color: rgb(58, 112, 94);
-                width: 100%;
-                height: 100px;
-            "
-        ></div>
-        <div
-            style="
-                width: 100%;
-                text-align: left;
-                padding-left: 20px;
-                margin-top: 20px;
-            "
-        >
-            <a href="/products/admin">
-                <i class="fa-solid fa-arrow-left"></i>
-                Danh sách sản phẩm
-            </a>
+        <div class="user-banner" style="height: 300px; position: relative">
+            <div
+                class="darklayout"
+                style="
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    background-color: rgba(0, 0, 0, 0.801);
+                    z-index: -1;
+                "
+            ></div>
+            <img
+                style="
+                    position: absolute;
+                    top: 0;
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
+                    z-index: -2;
+                "
+                src="/images/myorderbanner.jpeg"
+                alt=""
+            />
+            <h1 style=" width: 100%;
+                text-align: center;
+                color: var(--topicColor);
+                position: absolute;
+                top: 200px;">
+                TẠO SẢN PHẨM MỚI
+            </h1>
         </div>
-        <h2 style="width: 100%; text-align: center; margin-top: 40px">
-            Tạo sản phẩm
-        </h2>
-        <div class="col-md-10" style="margin: auto">
-            <form
-                class="row g-3 needs-validation product-form"
-                novalidate
-                method="POST"
-                action="/products/admin"
+        <div style="min-height: 600px;
+            background: url('/images/productsbg.png');
+            padding-top: 20px;
+            padding-bottom: 30px;">
+            <div
+                style="
+                    width: 100%;
+                    text-align: left;
+                    padding-left: 20px;
+                    margin-top: 20px;
+                "
             >
-                <div class="mb-3 col-8">
-                    <label for="formFileSm" class="form-label"
-                        >Ảnh sản phẩm</label
-                    >
-                    <input
-                        class="form-control form-control-sm"
-                        id="formFileSm"
-                        type="file"
-                        name="image"
-                    />
-                </div>
-                <div
-                    class="preview col-4 justify-content-center"
-                    style="display: flex"
-                ></div>
-                <div class="col-md-4">
-                    <label for="validationCustom01" class="form-label"
-                        >Tên*</label
-                    >
-                    <input
-                        type="text"
-                        class="form-control"
-                        id="validationCustom01"
-                        name="name"
-                        required
-                    />
-                    <div class="invalid-feedback">Cần có tên sản phẩm</div>
-                </div>
-
-                <div class="col-md-4">
-                    <label for="validationCustom02" class="form-label"
-                        >Giá*</label
-                    >
-                    <input
-                        type="text"
-                        class="form-control"
-                        id="validationCustom02"
-                        name="price"
-                    />
-                </div>
-
-                <div class="col-md-4">
-                    <label for="validationCustom03" class="form-label"
-                        >Thể loại</label
-                    >
-                    <input
-                        type="text"
-                        class="form-control"
-                        id="validationCustom03"
-                        name="category"
-                    />
-                </div>
-
-                <div class="mb-3">
-                    <label for="validationTextarea" class="form-label"
-                        >Mô tả</label
-                    >
-                    <textarea
-                        class="form-control"
-                        id="validationTextarea"
-                        name="description"
-                    ></textarea>
-                </div>
-
-                <div class="col-12">
-                    <button class="btn btn-success" type="submit">Tạo</button>
-                </div>
-            </form>
+                <a href="/products/admin" style="color: var(--topicColor);">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    Danh sách sản phẩm
+                </a>
+            </div>
+            
+            <div class="col-md-10" style="margin: auto; margin-top: 30px; padding: 20px; background-color: transparent; color: var(--topicColor);">
+                <form
+                    class="row g-3 needs-validation product-form"
+                    novalidate
+                    method="POST"
+                    action="/products/admin"
+                >
+                    <div class="mb-3 col-8">
+                        <label for="formFileSm" class="form-label"
+                            >Ảnh sản phẩm*</label
+                        >
+                        <input
+                            class="form-control form-control-sm"
+                            id="formFileSm"
+                            type="file"
+                            name="image"
+                        />
+                    </div>
+                    <div
+                        class="preview col-4 justify-content-center"
+                        style="display: flex"
+                    ></div>
+                    <div class="col-md-4">
+                        <label for="validationCustom01" class="form-label"
+                            >Tên*</label
+                        >
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="validationCustom01"
+                            name="name"
+                            required
+                        />
+                        <div class="invalid-feedback">Cần có tên sản phẩm</div>
+                    </div>
+    
+                    <div class="col-md-4">
+                        <label for="validationCustom02" class="form-label"
+                            >Giá*</label
+                        >
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="validationCustom02"
+                            name="price"
+                        />
+                    </div>
+    
+                    <div class="col-md-4">
+                        <label for="validationCustom03" class="form-label"
+                            >Thể loại</label
+                        >
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="validationCustom03"
+                            name="category"
+                        />
+                    </div>
+    
+                    <div class="mb-3">
+                        <label for="validationTextarea" class="form-label"
+                            >Mô tả</label
+                        >
+                        <textarea
+                            class="form-control"
+                            id="validationTextarea"
+                            name="description"
+                        ></textarea>
+                    </div>
+    
+                    <div class="col-12" style="text-align: right;">
+                        <button class="btn" style="background-color: var(--topicColor); color: #fff;" type="submit">Tạo</button>
+                    </div>
+                </form>
+            </div>
         </div>
 
         <script

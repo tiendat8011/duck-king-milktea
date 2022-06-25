@@ -4,9 +4,8 @@ const createOrder = {
     body: Joi.object().keys({
         customer_address: Joi.string().required(),
         phone_number: Joi.string()
-            .required()
             .pattern(/^[0-9]+$/)
-            .required(),
+            .allow(null, ''),
         products: Joi.array()
             .items(
                 Joi.object().keys({

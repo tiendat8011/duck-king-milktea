@@ -17,105 +17,193 @@
             type="image/x-icon"
         />
     </head>
+    <style>
+         .xemnote:hover{
+                cursor: pointer;
+                opacity: 0.8;
+            }
+    </style>
     <body>
         <%- include('../../partials/header') %>
-        <div
-            class="user-banner"
-            style="
-                background-color: rgb(58, 112, 94);
+        <div class="user-banner" style="height: 300px; position: relative">
+            <div
+                class="darklayout"
+                style="
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    background-color: rgba(0, 0, 0, 0.801);
+                    z-index: -1;
+                "
+            ></div>
+            <img
+                style="
+                    position: absolute;
+                    top: 0;
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
+                    z-index: -2;
+                "
+                src="/images/myorderbanner.jpeg"
+                alt=""
+            />
+            <h3 style="
                 width: 100%;
-                height: 100px;
-            "
-        ></div>
-        <div
-            style="
-                width: 100%;
-                text-align: left;
-                padding-left: 20px;
-                margin-top: 20px;
-            "
-        >
-            <a href="/users/admin">
-                <i class="fa-solid fa-arrow-left"></i>
-                Danh sách khách hàng
-            </a>
+                text-align: center;
+                color: var(--topicColor);
+                position: absolute;
+                top: 200px;
+            ">
+                DANH SÁCH ĐƠN HÀNG CỦA
+                <span style="text-transform: uppercase"><%=owner.full_name%></span>
+            </h3>
         </div>
-        <h3 style="width: 100%; text-align: center; margin: 50px 0">
-            DANH SÁCH ĐƠN HÀNG CỦA
-            <span style="text-transform: uppercase"><%=owner.full_name%></span>
-        </h3>
-
-        <table class="table table-success table-responsive">
-            <thead>
-                <tr>
-                    <th scope="col">STT</th>
-                    <th scope="col">Địa chỉ</th>
-                    <th scope="col">Số ĐT</th>
-                    <th scope="col">Sản phẩm</th>
-                    <th scope="col">Size</th>
-                    <th scope="col">Số lượng</th>
-                    <th scope="col" style="text-align: center">Đơn giá</th>
-                    <th scope="col" style="text-align: center">Tổng tiền</th>
-                    <th scope="col">Ghi chú</th>
-                    <th scope="col">Thời gian tạo</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% for (order of orders) { %>
-                    <%if(order.deleted) {%>
-                        <tr class="table-active">
-                    <%} else {%>
-                        <tr>
-                    <%}%>
-                    <th scope="row"><%= orders.indexOf(order) + 1 %></th>
-                    <td style="overflow-wrap: break-word">
-                        <%= order.customer_address %>
-                    </td>
-                    <td><%= order.phone_number %></td>
-                    <td>
-                        <%for (product of order.products) {%>
-                        <div><%=product.product.name%></div>
-                        <% } %>
-                    </td>
-                    <td>
-                        <%for (product of order.products) {%>
-                        <div><%=product.size%></div>
-                        <% } %>
-                    </td>
-                    <td>
-                        <%for (product of order.products) {%>
-                        <div><%=product.quantity%></div>
-                        <% } %>
-                    </td>
-                    <td style="text-align: center">
-                        <%for (product of order.products) {%>
-                        <div>
-                            <%=product.product.price.toLocaleString("vi", {
-                            style: "currency", currency: "VND", })%>
-                        </div>
-                        <% } %>
-                    </td>
-                    <td style="text-align: center">
-                        <%let total = 0; for (product of order.products) {%>
-                        <%total+=product.product.price*product.quantity%> <% }
-                        %>
-                        <div>
-                            <%=total.toLocaleString("vi", { style: "currency",
-                            currency: "VND", })%>
-                        </div>
-                    </td>
-                    <td>
-                        <%if(!order.note) {%> Không <%} else {%>
-                        <%=order.note%><%}%>
-                    </td>
-                    <td><%= order.createdAt.toLocaleString() %></td>
-                </tr>
-                <% } %>
-            </tbody>
-        </table>
-        <%if(orders.length===0) {%>
-        <p style="width: 100%; text-align: center">KHÔNG CÓ ĐƠN ĐẶT HÀNG.</p>
-        <%}%>
+        <div style="
+            min-height: 600px;
+            background: url('/images/productsbg.png');
+            padding-top: 20px;
+            padding-bottom: 30px;
+        ">
+            <div
+                style="
+                    width: 100%;
+                    text-align: left;
+                    padding-left: 20px;
+                    margin-top: 20px;
+                    margin-bottom: 30px;
+                "
+            >
+                <a href="/users/admin" style="color: var(--topicColor) !important;">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    Danh sách khách hàng
+                </a>
+            </div>
+            
+    
+            <table class="table table-bordered table-responsive" style="color: var(--topicColor) !important;">
+                <thead>
+                    <tr>
+                        <th scope="col">STT</th>
+                        <th scope="col">Địa chỉ</th>
+                        <th scope="col">Số ĐT</th>
+                        <th scope="col">Sản phẩm</th>
+                        <th scope="col">Size</th>
+                        <th scope="col">Số lượng</th>
+                        <th scope="col" style="text-align: center">Đơn giá</th>
+                        <th scope="col" style="text-align: center">Tổng tiền</th>
+                        <th scope="col" style="text-align: center;">Note</th>
+                        <th scope="col">Thời gian tạo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (order of orders) { %>
+                        <%if(order.deleted) {%>
+                            <tr class="table-active" style="color: rgb(124, 121, 121) !important;">
+                        <%} else {%>
+                            <tr>
+                        <%}%>
+                        <th scope="row"><%= orders.indexOf(order) + 1 %></th>
+                        <td style="overflow-wrap: break-word; color: #fff ">
+                            <%= order.customer_address %>
+                        </td>
+                        <td style="color: #fff;"><%= order.phone_number %></td>
+                        <td style="color: #fff;">
+                            <%for (product of order.products) {%>
+                            <div><%=product.product.name%></div>
+                            <% } %>
+                        </td>
+                        <td style="color: #fff;">
+                            <%for (product of order.products) {%>
+                            <div><%=product.size%></div>
+                            <% } %>
+                        </td>
+                        <td style="color: #fff;">
+                            <%for (product of order.products) {%>
+                            <div><%=product.quantity%></div>
+                            <% } %>
+                        </td>
+                        <td style="text-align: center; color: #fff;">
+                            <%for (product of order.products) {%>
+                            <div>
+                                <%=product.product.price.toLocaleString("vi", {
+                                style: "currency", currency: "VND", })%>
+                            </div>
+                            <% } %>
+                        </td>
+                        <td style="text-align: center; color: #fff;">
+                            <%let total = 0; for (product of order.products) {%>
+                            <%total+=product.product.price*product.quantity%> <% }
+                            %>
+                            <div>
+                                <%=total.toLocaleString("vi", { style: "currency",
+                                currency: "VND", })%>
+                            </div>
+                        </td>
+                        <td>
+                            <%if(!order.note) {%>  <%} else {%>
+                                <div
+                                class="xemnote"
+                                data-bs-toggle="modal"
+                                data-bs-target="#order-<%=order.id%>"
+                                style="color: var(--topicColor); text-align: center;"
+                            >
+                                Xem
+                            </div>
+    
+                            <!-- Modal -->
+                            <div
+                                class="modal fade"
+                                id="order-<%=order.id%>"
+                                tabindex="-1"
+                                aria-labelledby="exampleModalLabel"
+                                aria-hidden="true"
+                                style="margin-top: 80px; text-align: left;"
+                            >
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5
+                                                class="modal-title"
+                                                id="exampleModalLabel"
+                                            >
+                                                Ghi chú
+                                            </h5>
+                                            <button
+                                                type="button"
+                                                class="btn-close"
+                                                data-bs-dismiss="modal"
+                                                aria-label="Close"
+                                            ></button>
+                                        </div>
+                                        <div class="modal-body" style="color: #000;">
+                                            <%=order.note%>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button
+                                                type="button"
+                                                class="btn"
+                                                style="background-color: var(--topicColor); color: #fff;"
+                                                data-bs-dismiss="modal"
+                                            >
+                                                OKE
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><%}%>
+                        </td>
+                        <td style="color: #fff;"><%= order.createdAt.toLocaleString() %></td>
+                    </tr>
+                    <% } %>
+                </tbody>
+            </table>
+            <%if(orders.length===0) {%>
+            <p style="width: 100%; text-align: center; color: #fff;">KHÔNG CÓ ĐƠN ĐẶT HÀNG.</p>
+            <%}%>
+        </div>
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
