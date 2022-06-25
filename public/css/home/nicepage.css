@@ -24763,7 +24763,7 @@ section.u-palette-3-light-1:before,
 .u-container-layout.u-container-layout.u-palette-3-light-1:before,
 .u-table-alt-palette-3-light-1 tr:nth-child(even) {
   color: #111111;
-  background-color: #f5d654;
+  background-color: var(--topicColor);
 }
 .u-button-style.u-palette-3-light-1,
 .u-button-style.u-palette-3-light-1[class*="u-border-"] {
