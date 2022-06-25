@@ -79,43 +79,45 @@
                             class="col-xxl-6 offset-xxl-3 col-xl-6 offset-xl-3 col-lg-8 offset-lg-2"
                         >
                             <div class="sign__wrapper white-bg">
-                                <div class="sign__header mb-35">
-                                    <h1 style="text-align: center">
-                                        Đổi Mật Khẩu Thành Công
+                                <div
+                                    class="sign__header mb-35"
+                                    style="padding: 0"
+                                >
+                                    <h1
+                                        style="
+                                            text-align: center;
+                                            margin-bottom: 20px;
+                                        "
+                                    >
+                                        Thành Công
                                     </h1>
+                                    <p style="padding: 0; text-align: center">
+                                        Chúng tôi đã gửi tới email của bạn đường
+                                        link để thay đổi mật khẩu. Vui lòng kiểm
+                                        tra hòm thư.
+                                    </p>
                                 </div>
                                 <div class="sign__form">
-                                    <form
-                                        method="POST"
-                                        action="/auth/forget-password"
+                                    <a
+                                        href="https://accounts.google.com/signin/v2/identifier?passive=1209600&continue=https%3A%2F%2Faccounts.google.com%2Fb%2F1%2FAddMailService&followup=https%3A%2F%2Faccounts.google.com%2Fb%2F1%2FAddMailService&flowName=GlifWebSignIn&flowEntry=ServiceLogin"
+                                        target="_blank"
                                     >
                                         <button
-                                            type="submit"
+                                            type="button"
                                             class="e-btn w-100"
                                         >
-                                            <span></span>
-                                            <a
-                                                href="https://accounts.google.com/signin/v2/identifier?passive=1209600&continue=https%3A%2F%2Faccounts.google.com%2Fb%2F1%2FAddMailService&followup=https%3A%2F%2Faccounts.google.com%2Fb%2F1%2FAddMailService&flowName=GlifWebSignIn&flowEntry=ServiceLogin"
-                                                target="_blank"
-                                                >Chuyển tới Email</a
-                                            >
+                                            Chuyển tới Email
                                         </button>
-                                        <div
-                                            class="sign__new text-center mt-20"
-                                        >
-                                            <p>
-                                                <a
-                                                    href="/auth/login"
-                                                    style="
-                                                        color: var(
-                                                            --topicColor
-                                                        );
-                                                    "
-                                                    >Đăng Nhập</a
-                                                >
-                                            </p>
-                                        </div>
-                                    </form>
+                                    </a>
+                                    <div class="sign__new text-center mt-20">
+                                        <p>
+                                            <a
+                                                href="/auth/login"
+                                                style="color: var(--topicColor)"
+                                                >Đăng Nhập</a
+                                            >
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>

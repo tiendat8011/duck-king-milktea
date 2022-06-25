@@ -133,7 +133,7 @@
 .header-order {
     color: white;
     width: 6%;
-    background-color: #d3b673;
+    background-color: var(--topicColor);
     box-shadow: 0 0 5px #5c481b;
     text-align: center;
     border-radius: 5px;
