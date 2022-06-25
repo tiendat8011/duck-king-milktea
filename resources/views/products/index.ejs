@@ -18,12 +18,12 @@
     </head>
     <body>
         <%- include('../partials/header' ); %>
-        <div class="header-news">
+        <!-- <div class="header-news">
             <div>Sản phẩm</div>
-        </div>
+        </div> -->
         <section class="outstanding-order">
             <div class="outstanding-order-central">
-                <div class="outstanding-order-central-left">
+                <!-- <div class="outstanding-order-central-left">
                     <div class="outstanding-order-central-left-shared">
                         <ul>
                             <li class="central-left-li">DANH MỤC</li>
@@ -36,7 +36,7 @@
                             <li class="it">Sữa Chua Dẻo</li>
                         </ul>
                     </div>
-                </div>
+                </div> -->
                 <div class="outstanding-order-central-right">
                     <div class="outstanding-order-central-right-share">
                         <div
@@ -45,8 +45,12 @@
                             <div
                                 id="Noi_bat"
                                 class="outstanding-order-central-right-title"
+                                style="
+                                    font-size: 28px;
+                                    color: var(--topicColor);
+                                "
                             >
-                                Món Nổi Bật
+                                Thức Uống Nổi Bật
                             </div>
 
                             <div class="right-shared">
@@ -55,7 +59,10 @@
                                     id="prod-<%=product.id%>"
                                     class="right-shared-ingredient"
                                 >
-                                    <div class="right-shared-ingredient-img">
+                                    <div
+                                        class="right-shared-ingredient-img"
+                                        onclick="addToCart('<%=product.id%>')"
+                                    >
                                         <%if(!product.image) {%>
                                         <img
                                             src="/images/dau_tam_kem_pho_mai_09a4c4b857694d918a86542225fc2867_grande.jpg"
