@@ -43,6 +43,7 @@
             }
         </style>
 
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <title>Đăng Nhập</title>
     </head>
     <body>
@@ -115,6 +116,7 @@
                                                     type="text"
                                                     name="username"
                                                     placeholder="Tên đăng nhập"
+                                                    required
                                                 />
                                                 <i class="fa-solid fa-user"></i>
                                             </div>
@@ -126,6 +128,7 @@
                                                     name="password"
                                                     type="password"
                                                     placeholder="Mật khẩu"
+                                                    required
                                                 />
                                                 <i class="fa-solid fa-lock"></i>
                                             </div>
@@ -177,5 +180,15 @@
             </section>
             <!-- sign up area end -->
         </main>
+        <%if(msg !== '') {%>
+        <script>
+            Swal.fire({
+                title: 'Lỗi!',
+                text: '<%=msg%>!',
+                icon: 'error',
+                confirmButtonText: 'OK',
+            });
+        </script>
+        <%}%>
     </body>
 </html>

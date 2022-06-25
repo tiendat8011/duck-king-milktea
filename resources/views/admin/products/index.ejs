@@ -87,7 +87,8 @@
                         <th scope="col">Tên sản phẩm</th>
                         <th scope="col">Giá tiền</th>
                         <th scope="col">Thể loại</th>
-                        <th colspan="2" scope="col">Mô tả</th>
+                        <th scope="col">Mô tả</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -113,7 +114,7 @@
                         </td>
                         <td style="color: #fff;"><%= product.category %></td>
                         <td style="color: #fff;"><%= product.description %></td>
-                        <td class="delete-product" >
+                        <td class="delete-product" style="text-align: center">
                             <i
                                 title="move to trash"
                                 class="fa-solid fa-trash"
@@ -125,7 +126,7 @@
                 </tbody>
             </table>
             <%if(products.length===0) {%>
-            <p style="width: 100%; text-align: center">CHƯA CÓ SẢN PHẨM NÀO.</p>
+            <p style="width: 100%; text-align: center; color: rgb(230, 230, 230);">CHƯA CÓ SẢN PHẨM NÀO.</p>
             <%}%>
        </div>
         <script

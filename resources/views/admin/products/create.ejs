@@ -218,7 +218,7 @@
             // preview image
             const ipnFileElement = document.querySelector("[name='image']");
             const resultElement = document.querySelector('.preview');
-            const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
+            const validImageTypes = ['image/gif', 'image/jpeg', 'image/png', 'image/webp'];
 
             ipnFileElement.addEventListener('change', function (e) {
                 const files = e.target.files;
@@ -238,8 +238,7 @@
 
                 fileReader.onload = function () {
                     const url = fileReader.result;
-                    resultElement.insertAdjacentHTML(
-                        'beforeend',
+                    resultElement.innerHTML = 
                         `<img
                         style="
                             width: 150px;
@@ -250,7 +249,6 @@
                         src="${url}"
                         alt="${file.name}"
                     />`
-                    );
                 };
             });
         </script>

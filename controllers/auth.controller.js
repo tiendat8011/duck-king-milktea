@@ -17,15 +17,18 @@ module.exports = {
     createUser: asyncHandle(async (req, res) => {
         const userReq = req.body;
         if (await User.isUsernameExisted(userReq.username)) {
-            return res.render('auth/register', {
-                msg: 'Username was taken',
-                user: userReq,
+            return res.json({
+                msg: 'Tên đăng nhập đã tồn tại!',
             });
         }
         if (await User.isEmailExisted(userReq.email)) {
-            return res.render('auth/register', {
-                msg: 'Email was taken',
-                user: userReq,
+            return res.json( {
+                msg: 'Email đã tồn tại!',
+            });
+        }
+        if (userReg.password !== userReq.cfpassword) {
+            return res.json({
+                msg: 'Mật khẩu không trùng khớp!',
             });
         }
         await User.create({
@@ -42,7 +45,7 @@ module.exports = {
     loginSite: asyncHandle(async (req, res) => {
         if (req.signedCookies[process.env.LABEL_ACCESS_TOKEN])
             return res.redirect('/');
-        res.render('auth/login');
+        res.render('auth/login', {msg: ''});
     }),
 
     // [POST] /auth/login
@@ -54,13 +57,13 @@ module.exports = {
         if (!user) {
             // return next(new ErrorResponse('Not found user', 401));
             return res.render('auth/login', {
-                msg: 'Invalid username or password',
+                msg: 'Tên đăng nhập hoặc mật khẩu không chính xác',
             });
         }
         if (!(await user.isPasswordMatch(password))) {
             // return next(new ErrorResponse('Invalid password', 401));
             return res.render('auth/login', {
-                msg: 'Invalid username or password',
+                msg: 'Tên đăng nhập hoặc mật khẩu không chính xác',
             });
         }
 
@@ -126,10 +129,10 @@ module.exports = {
         const token = req.query.tk;
 
         const user = await User.findOne({ reset_password_token: token });
-        if (!user) return next(new ErrorResponse('Invalid token', 401));
+        if (!user) return next(new ErrorResponse('Token không hợp lệ!', 401));
 
         if (Date.now() > user.reset_password_token_expired)
-            return next(new ErrorResponse('Expired token', 401));
+            return next(new ErrorResponse('Token hết hạn!', 401));
 
         const { newPassword } = req.body;
         const hashNewPassword = await bcrypt.hash(newPassword, 10);

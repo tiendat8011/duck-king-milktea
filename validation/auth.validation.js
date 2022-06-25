@@ -2,7 +2,7 @@ const Joi = require('joi');
 
 const passwordValidate = (value, helpers) => {
     if (value.length < 8) {
-        return helpers.message('password must be at least 8 characters');
+        return helpers.message('Mật khẩu phải dài ít nhất 8 kí tự!');
     }
     // if (!value.match(/\d/) || !value.match(/[a-zA-Z]/)) {
     //     return helpers.message(
@@ -15,7 +15,11 @@ const passwordValidate = (value, helpers) => {
 const register = {
     body: Joi.object().keys({
         email: Joi.string().required().email(),
-        password: Joi.string().required().custom(passwordValidate),
+        password: Joi.string().required().custom(passwordValidate).label('Password'),
+        cfpassword: Joi.any().equal(Joi.ref('password'))
+        .required()
+        .label('Confirm password')
+        .messages({ 'any.only': 'Mật khẩu không khớp!' }),
         username: Joi.string().required().alphanum().min(6).max(20),
         full_name: Joi.string().required(),
         phone_number: Joi.string()
@@ -40,7 +44,11 @@ const forgetPassword = {
 
 const resetPassword = {
     body: Joi.object().keys({
-        newPassword: Joi.string().required().custom(passwordValidate),
+        newPassword: Joi.string().required().custom(passwordValidate).label('Password'),
+        cfNewPassword: Joi.any().equal(Joi.ref('password'))
+        .required()
+        .label('Confirm password')
+        .messages({ 'any.only': 'Mật khẩu không khớp!' }),
     }),
 };
 
