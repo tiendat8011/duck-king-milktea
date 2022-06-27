@@ -3,7 +3,7 @@
 ## Tech
 
 <ul>
-    <li>Node v16.14.0</li>
+    <li>NodeJS v16.14.0</li>
     <li>MongoDB</li>
 </ul>
 
@@ -20,7 +20,7 @@ RESET_TOKEN_PRIVATE_MESSAGE = somethingunpredictable
 RESET_TOKEN_EXPIRE = 3 //minute
 COOKIE_EXPIRE = 60 //minute
 
-### Admin info
+# Admin info
 ADMIN_FULLNAME = adminaccount
 ADMIN_PHONENUM = 0912345678
 ADMIN_USERNAME = adminaccount
