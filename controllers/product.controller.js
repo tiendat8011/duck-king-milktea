@@ -7,6 +7,7 @@ const Product = require('../models/Product');
 const User = require('../models/User');
 const ErrorResponse = require('../common/ErrorResponse');
 const pick = require('../common/pick');
+const logger = require('../config/logger');
 
 module.exports = {
     // [GET] /products
@@ -98,10 +99,10 @@ module.exports = {
         const product = await Product.findByIdAndDelete(id);
         access('public' + product.image, function (err) {
             if (err) {
-                console.log("File not found!. Can't delete image");
+                logger.error("File not found!. Can't delete image");
             } else {
                 unlinkSync('public' + product.image);
-                console.log('Delete image successfully');
+                logger.info('Delete image successfully');
             }
         });
         // unlinkSync(product.image);

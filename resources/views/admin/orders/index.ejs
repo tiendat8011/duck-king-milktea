@@ -1,21 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Danh sách đơn hàng</title>
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-            crossorigin="anonymous"
-        />
-        <link
-            rel="icon"
-            href="/images/favicon_io/favicon.ico"
-            type="image/x-icon"
-        />
+        <%- include('../../partials/admin/head.ejs') %>
         <style>
             .delete-order {
                 font-size: 18px;
@@ -25,7 +11,7 @@
                 transform: scale(1.1);
                 cursor: pointer;
             }
-         .xemnote:hover{
+            .xemnote:hover {
                 cursor: pointer;
                 opacity: 0.8;
             }
@@ -58,20 +44,26 @@
                 src="/images/myorderbanner.jpeg"
                 alt=""
             />
-            <h1 style=" width: 100%;
-                text-align: center;
-                color: var(--topicColor);
-                position: absolute;
-                top: 200px;">
+            <h1
+                style="
+                    width: 100%;
+                    text-align: center;
+                    color: var(--topicColor);
+                    position: absolute;
+                    top: 200px;
+                "
+            >
                 DANH SÁCH ĐƠN HÀNG
             </h1>
         </div>
-        <div style="
-            min-height: 600px;
-            background: url('/images/productsbg.png');
-            padding-top: 20px;
-            padding-bottom: 30px;
-        ">
+        <div
+            style="
+                min-height: 600px;
+                background: url('/images/productsbg.png');
+                padding-top: 20px;
+                padding-bottom: 30px;
+            "
+        >
             <div
                 style="
                     width: 100%;
@@ -80,14 +72,20 @@
                     margin-bottom: 30px;
                 "
             >
-                <a href="/orders/deleted/admin" style="color: var(--topicColor);">
+                <a
+                    href="/orders/deleted/admin"
+                    style="color: var(--topicColor)"
+                >
                     Đơn hàng đã xóa <i class="fa-solid fa-arrow-right"></i>
                 </a>
             </div>
-            <table class="table table-bordered table-responsive" style="color: var(--topicColor) !important;">
+            <table
+                class="table table-bordered table-responsive"
+                style="color: var(--topicColor) !important"
+            >
                 <thead>
                     <tr>
-                        <th scope="col" style="text-align: center;">STT</th>
+                        <th scope="col" style="text-align: center">STT</th>
                         <th scope="col">Địa chỉ</th>
                         <th scope="col">Số ĐT</th>
                         <th scope="col">Khách hàng</th>
@@ -97,70 +95,74 @@
                         <th scope="col">SL</th>
                         <th scope="col" style="text-align: center">Đơn giá</th>
                         <th scope="col" style="text-align: center">Tổng</th>
-                        <th scope="col" style="text-align: center;">Note</th>
+                        <th scope="col" style="text-align: center">Note</th>
                         <th scope="col" colspan="2">Thời gian tạo</th>
                     </tr>
                 </thead>
                 <tbody>
                     <% for (order of orders) { %>
                     <tr id="<%=order.id%>">
-                        <th scope="row" style="text-align: center;"><%= orders.indexOf(order) + 1 %></th>
-                        <td style="overflow-wrap: break-word; color: #fff;">
+                        <th scope="row" style="text-align: center">
+                            <%= orders.indexOf(order) + 1 %>
+                        </th>
+                        <td style="overflow-wrap: break-word; color: #fff">
                             <%= order.customer_address %>
                         </td>
-                        <td style="color: #fff;"><%= order.phone_number %></td>
+                        <td style="color: #fff"><%= order.phone_number %></td>
                         <%if(!order.user) {%>
-                        <td style="color: rgb(190, 189, 189);">*Deleted*</td>
-                        <td style="color: rgb(190, 189, 189);">*Deleted*</td>
+                        <td style="color: rgb(190, 189, 189)">*Deleted*</td>
+                        <td style="color: rgb(190, 189, 189)">*Deleted*</td>
                         <%} else { %>
-                        <td style="color: #fff;"><%= order.user.full_name %></td>
-                        <td style="color: #fff;"><%= order.user.username %></td>
+                        <td style="color: #fff"><%= order.user.full_name %></td>
+                        <td style="color: #fff"><%= order.user.username %></td>
                         <%}%>
-                        <td style="color: #fff;">
+                        <td style="color: #fff">
                             <%for (product of order.products) {%>
-                            <div><%=product.product.name%></div>
+                            <div><%=product.name%></div>
                             <% } %>
                         </td>
-                        <td style="text-align: center; color: #fff;">
+                        <td style="text-align: center; color: #fff">
                             <%for (product of order.products) {%>
                             <div><%=product.size%></div>
                             <% } %>
                         </td>
-                        <td style="text-align: center; color: #fff;">
+                        <td style="text-align: center; color: #fff">
                             <%for (product of order.products) {%>
                             <div><%=product.quantity%></div>
                             <% } %>
                         </td>
-                        <td style="text-align: center; color: #fff;">
+                        <td style="text-align: center; color: #fff">
                             <%for (product of order.products) {%>
                             <div>
-                                <%if(product.size == 'L') {%>
-                                <%product.product.price *= 1.5%> <%}%>
-                                <%=product.product.price.toLocaleString("vi", {
-                                style: "currency", currency: "VND", })%>
+                                <%if(product.size == 'L') {%> <%product.price *=
+                                1.5%> <%}%>
+                                <%=product.price.toLocaleString("vi", { style:
+                                "currency", currency: "VND", })%>
                             </div>
                             <% } %>
                         </td>
-                        <td style="text-align: center; color: #fff;">
+                        <td style="text-align: center; color: #fff">
                             <%let total = 0; for (product of order.products) {%>
-                            <%total+=product.product.price*product.quantity%> <% }
-                            %>
+                            <%total+=product.price*product.quantity%> <% } %>
                             <div>
-                                <%=total.toLocaleString("vi", { style: "currency",
-                                currency: "VND", })%>
+                                <%=total.toLocaleString("vi", { style:
+                                "currency", currency: "VND", })%>
                             </div>
                         </td>
                         <td>
-                            <%if(!order.note) {%>  <%} else {%>
-                                <div
+                            <%if(!order.note) {%> <%} else {%>
+                            <div
                                 class="xemnote"
                                 data-bs-toggle="modal"
                                 data-bs-target="#order-<%=order.id%>"
-                                style="color: var(--topicColor); text-align: center;"
+                                style="
+                                    color: var(--topicColor);
+                                    text-align: center;
+                                "
                             >
                                 Xem
                             </div>
-    
+
                             <!-- Modal -->
                             <div
                                 class="modal fade"
@@ -168,7 +170,7 @@
                                 tabindex="-1"
                                 aria-labelledby="exampleModalLabel"
                                 aria-hidden="true"
-                                style="margin-top: 80px; text-align: left;"
+                                style="margin-top: 80px; text-align: left"
                             >
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -186,14 +188,22 @@
                                                 aria-label="Close"
                                             ></button>
                                         </div>
-                                        <div class="modal-body" style="color: #000;">
+                                        <div
+                                            class="modal-body"
+                                            style="color: #000"
+                                        >
                                             <%=order.note%>
                                         </div>
                                         <div class="modal-footer">
                                             <button
                                                 type="button"
                                                 class="btn"
-                                                style="background-color: var(--topicColor); color: #fff;"
+                                                style="
+                                                    background-color: var(
+                                                        --topicColor
+                                                    );
+                                                    color: #fff;
+                                                "
                                                 data-bs-dismiss="modal"
                                             >
                                                 OKE
@@ -201,9 +211,12 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div><%}%>
+                            </div>
+                            <%}%>
                         </td>
-                        <td style="color: #fff;"><%= order.createdAt.toLocaleString() %></td>
+                        <td style="color: #fff">
+                            <%= order.createdAt.toLocaleString() %>
+                        </td>
                         <td class="delete-order">
                             <i
                                 title="move to trash"
@@ -216,7 +229,15 @@
                 </tbody>
             </table>
             <%if(orders.length===0) {%>
-            <p style="width: 100%; text-align: center; color: rgb(223, 223, 223);">CHƯA CÓ ĐƠN ĐẶT HÀNG NÀO.</p>
+            <p
+                style="
+                    width: 100%;
+                    text-align: center;
+                    color: rgb(223, 223, 223);
+                "
+            >
+                CHƯA CÓ ĐƠN ĐẶT HÀNG NÀO.
+            </p>
             <%}%>
         </div>
 
