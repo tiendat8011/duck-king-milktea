@@ -22,11 +22,11 @@ module.exports = {
             });
         }
         if (await User.isEmailExisted(userReq.email)) {
-            return res.json( {
+            return res.json({
                 msg: 'Email đã tồn tại!',
             });
         }
-        if (userReg.password !== userReq.cfpassword) {
+        if (userReq.password !== userReq.cfpassword) {
             return res.json({
                 msg: 'Mật khẩu không trùng khớp!',
             });
@@ -45,7 +45,7 @@ module.exports = {
     loginSite: asyncHandle(async (req, res) => {
         if (req.signedCookies[process.env.LABEL_ACCESS_TOKEN])
             return res.redirect('/');
-        res.render('auth/login', {msg: ''});
+        res.render('auth/login', { msg: '' });
     }),
 
     // [POST] /auth/login
