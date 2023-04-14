@@ -1,190 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <%-include('../../partials/admin/head.ejs')%>
-        <style>
-            .delete-product {
-                font-size: 18px;
-            }
+  <head>
+    <%-include('../../partials/admin/head.ejs')%>
+    <style>
+      .delete-product {
+        font-size: 18px;
+      }
 
-            .delete-product i:hover {
-                transform: scale(1.1);
-                cursor: pointer;
-            }
-            .btn-createprod:hover {
-                opacity: 0.9;
-            }
-            .anhsp:hover {
-                cursor: pointer;
-                opacity: 0.8;
-            }
-        </style>
-    </head>
-    <body>
-        <%-include('../../partials/header')%>
-        <div class="user-banner" style="height: 300px; position: relative">
-            <div
-                class="darklayout"
-                style="
-                    position: absolute;
-                    top: 0;
-                    right: 0;
-                    bottom: 0;
-                    left: 0;
-                    background-color: rgba(0, 0, 0, 0.801);
-                    z-index: -1;
-                "
-            ></div>
-            <img
-                style="
-                    position: absolute;
-                    top: 0;
-                    height: 100%;
-                    width: 100%;
-                    object-fit: cover;
-                    z-index: -2;
-                "
-                src="/images/myorderbanner.jpeg"
-                alt=""
-            />
-            <h1
-                style="
-                    width: 100%;
-                    text-align: center;
-                    color: var(--topicColor);
-                    position: absolute;
-                    top: 200px;
-                "
-            >
-                DANH SÁCH SẢN PHẨM
-            </h1>
-        </div>
-        <div
-            style="
-                min-height: 600px;
-                background: url('/images/productsbg.png');
-                padding-top: 20px;
-                padding-bottom: 30px;
-            "
+      .delete-product i:hover {
+        transform: scale(1.1);
+        cursor: pointer;
+      }
+      .btn-createprod:hover {
+        opacity: 0.9;
+      }
+      .anhsp:hover {
+        cursor: pointer;
+        opacity: 0.8;
+      }
+    </style>
+  </head>
+  <body>
+    <%-include('../../partials/header')%>
+    <div class="user-banner" style="height: 300px; position: relative">
+      <div
+        class="darklayout"
+        style="
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background-color: rgba(0, 0, 0, 0.801);
+          z-index: -1;
+        "
+      ></div>
+      <img
+        style="
+          position: absolute;
+          top: 0;
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+          z-index: -2;
+        "
+        src="/images/myorderbanner.jpeg"
+        alt=""
+      />
+      <h1
+        style="
+          width: 100%;
+          text-align: center;
+          color: var(--topicColor);
+          position: absolute;
+          top: 200px;
+        "
+      >
+        DANH SÁCH SẢN PHẨM
+      </h1>
+    </div>
+    <div
+      style="
+        min-height: 600px;
+        background: url('/images/productsbg.png');
+        padding-top: 20px;
+        padding-bottom: 30px;
+      "
+    >
+      <a href="/products/create/admin"
+        ><button
+          type="button"
+          class="btn btn-createprod"
+          style="margin: 20px; background-color: var(--topicColor); color: #fff"
         >
-            <a href="/products/create/admin"
-                ><button
-                    type="button"
-                    class="btn btn-createprod"
-                    style="
-                        margin: 20px;
-                        background-color: var(--topicColor);
-                        color: #fff;
-                    "
-                >
-                    Tạo sản phẩm mới <i class="fa-solid fa-plus"></i></button
-            ></a>
-            <table
-                class="table table-bordered"
+          Tạo sản phẩm mới <i class="fa-solid fa-plus"></i></button
+      ></a>
+      <table class="table table-bordered" style="color: var(--topicColor)">
+        <thead>
+          <tr>
+            <th scope="col" style="text-align: center">STT</th>
+            <th scope="col" style="text-align: center">Ảnh</th>
+            <th scope="col">Tên sản phẩm</th>
+            <th scope="col">Giá tiền</th>
+            <th scope="col">Thể loại</th>
+            <th scope="col">Mô tả</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for (product of products) { %>
+          <tr id="<%=product.id%>">
+            <th scope="row" style="text-align: center">
+              <%= products.indexOf(product) + 1 %>
+            </th>
+            <td style="text-align: center">
+              <%if(!product.image) {%> <%} else {%>
+              <a
+                class="anhsp"
+                href="<%=product.image%>"
+                target="_blank"
+                alt="ảnh sản phẩm"
                 style="color: var(--topicColor)"
-            >
-                <thead>
-                    <tr>
-                        <th scope="col" style="text-align: center">STT</th>
-                        <th scope="col" style="text-align: center">Ảnh</th>
-                        <th scope="col">Tên sản phẩm</th>
-                        <th scope="col">Giá tiền</th>
-                        <th scope="col">Thể loại</th>
-                        <th scope="col">Mô tả</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% for (product of products) { %>
-                    <tr id="<%=product.id%>">
-                        <th scope="row" style="text-align: center">
-                            <%= products.indexOf(product) + 1 %>
-                        </th>
-                        <td style="text-align: center">
-                            <%if(!product.image) {%> <%} else {%>
-                            <a
-                                class="anhsp"
-                                href="<%=product.image%>"
-                                target="_blank"
-                                alt="ảnh sản phẩm"
-                                style="color: var(--topicColor)"
-                                >Xem</a
-                            >
-                            <%}%>
-                        </td>
-                        <td style="color: #fff"><%= product.name %></td>
-                        <td style="color: #fff">
-                            <%= product.price.toLocaleString("vi", { style:
-                            "currency", currency: "VND", }) %>
-                        </td>
-                        <td style="color: #fff"><%= product.category %></td>
-                        <td style="color: #fff"><%= product.description %></td>
-                        <td class="delete-product" style="text-align: center">
-                            <i
-                                title="move to trash"
-                                class="fa-solid fa-trash"
-                                onClick="handleDelete('<%=product.id%>', '<%= product.name%>')"
-                            ></i>
-                        </td>
-                        <% } %>
-                    </tr>
-                </tbody>
-            </table>
-            <%if(products.length===0) {%>
-            <p
-                style="
-                    width: 100%;
-                    text-align: center;
-                    color: rgb(230, 230, 230);
-                "
-            >
-                CHƯA CÓ SẢN PHẨM NÀO.
-            </p>
-            <%}%>
-        </div>
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-            crossorigin="anonymous"
-        ></script>
-        <script>
-            const handleDelete = (id, name) => {
+                >Xem</a
+              >
+              <%}%>
+            </td>
+            <td style="color: #fff"><%= product.name %></td>
+            <td style="color: #fff">
+              <%= product.price.toLocaleString("vi", { style: "currency",
+              currency: "VND", }) %>
+            </td>
+            <td style="color: #fff"><%= product.category %></td>
+            <td style="color: #fff"><%= product.description %></td>
+            <td class="delete-product" style="text-align: center">
+              <i
+                title="move to trash"
+                class="fa-solid fa-trash"
+                onClick="handleDelete('<%=product.id%>', '<%= product.name%>')"
+              ></i>
+            </td>
+            <% } %>
+          </tr>
+        </tbody>
+      </table>
+      <%if(products.length===0) {%>
+      <p style="width: 100%; text-align: center; color: rgb(230, 230, 230)">
+        CHƯA CÓ SẢN PHẨM NÀO.
+      </p>
+      <%}%>
+    </div>
+    <%-include('../../partials/link_js.ejs')%>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      const handleDelete = (id, name) => {
+        Swal.fire({
+          title: `Bạn có chắc chắn muốn xóa sản phẩm ${name}?`,
+          text: 'Hành động này không thể khôi phục!',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Xóa',
+          reverseButtons: true,
+        }).then((result) => {
+          if (result.isConfirmed) {
+            fetch(`/products/admin/${id}`, {
+              method: 'DELETE',
+            })
+              .then(() => {
+                const productDeleted = document.getElementById(id);
+                productDeleted.remove();
+              })
+              .catch((err) => {
+                // alert('Không thể xóa!!');
                 Swal.fire({
-                    title: `Bạn có chắc chắn muốn xóa sản phẩm ${name}?`,
-                    text: 'Hành động này không thể khôi phục!',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Xóa',
-                    reverseButtons: true,
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        fetch(`/products/admin/${id}`, {
-                            method: 'DELETE',
-                        })
-                            .then(() => {
-                                const productDeleted =
-                                    document.getElementById(id);
-                                productDeleted.remove();
-                            })
-                            .catch((err) => {
-                                // alert('Không thể xóa!!');
-                                Swal.fire({
-                                    title: 'Lỗi!',
-                                    text: 'Không thể xóa sản phẩm',
-                                    icon: 'error',
-                                    confirmButtonText: 'OK',
-                                });
-                            });
-                        Swal.fire(
-                            'Đã xóa!',
-                            'Xóa sản phẩm thành công',
-                            'success'
-                        );
-                    }
+                  title: 'Lỗi!',
+                  text: 'Không thể xóa sản phẩm',
+                  icon: 'error',
+                  confirmButtonText: 'OK',
                 });
-            };
-        </script>
-    </body>
+              });
+            Swal.fire('Đã xóa!', 'Xóa sản phẩm thành công', 'success');
+          }
+        });
+      };
+    </script>
+  </body>
 </html>

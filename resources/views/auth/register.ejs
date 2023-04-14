@@ -189,5 +189,63 @@
       </section>
       <!-- sign up area end -->
     </main>
+    <%-include('../partials/link_js.ejs')%>
+    <script>
+      $(document).ready(function () {
+        $('input[name="phone_number"]').on('keyup', function (e) {
+          if (e.which >= 37 && e.which <= 40) {
+            e.preventDefault();
+          }
+
+          $(this).val(function (index, value) {
+            return value.replace(/\D/g, '');
+          });
+        });
+        const registerForm = $('#register-form');
+        registerForm.on('submit', async (e) => {
+          e.preventDefault();
+          const formRegister = registerForm.serializeArray();
+          const registerData = {};
+          formRegister.forEach((field) => {
+            registerData[field.name] = field.value;
+          });
+          try {
+            const res = await (
+              await fetch('/auth/register', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(registerData),
+              })
+            ).json();
+            if (res.msg) {
+              Swal.fire({
+                title: 'Thất bại!',
+                text: res.msg,
+                icon: 'error',
+                confirmButtonText: 'OK',
+              });
+            } else {
+              Swal.fire({
+                title: 'Thành công!',
+                text: 'Tạo tài khoản thành công',
+                icon: 'success',
+              });
+              setTimeout(() => {
+                window.location.href = '/auth/login';
+              }, 2000);
+            }
+          } catch (err) {
+            Swal.fire({
+              title: 'Lỗi!',
+              text: err,
+              icon: 'error',
+              confirmButtonText: 'OK',
+            });
+          }
+        });
+      });
+    </script>
   </body>
 </html>
