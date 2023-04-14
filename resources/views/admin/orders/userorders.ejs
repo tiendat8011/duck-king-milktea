@@ -123,7 +123,7 @@
                         <td style="color: #fff"><%= order.phone_number %></td>
                         <td style="color: #fff">
                             <%for (product of order.products) {%>
-                            <div><%=product.product.name%></div>
+                            <div><%=product.product?.name%></div>
                             <% } %>
                         </td>
                         <td style="color: #fff">
@@ -139,15 +139,15 @@
                         <td style="text-align: center; color: #fff">
                             <%for (product of order.products) {%>
                             <div>
-                                <%=product.product.price.toLocaleString("vi", {
+                                <%=product.product?.price.toLocaleString("vi", {
                                 style: "currency", currency: "VND", })%>
                             </div>
                             <% } %>
                         </td>
                         <td style="text-align: center; color: #fff">
                             <%let total = 0; for (product of order.products) {%>
-                            <%total+=product.product.price*product.quantity%> <%
-                            } %>
+                            <%total+=product.product?.price*product.quantity%>
+                            <% } %>
                             <div>
                                 <%=total.toLocaleString("vi", { style:
                                 "currency", currency: "VND", })%>

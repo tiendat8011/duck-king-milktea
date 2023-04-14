@@ -118,7 +118,7 @@
                         <%}%>
                         <td style="color: #fff">
                             <%for (product of order.products) {%>
-                            <div><%=product.name%></div>
+                            <div><%=product.product?.name%></div>
                             <% } %>
                         </td>
                         <td style="text-align: center; color: #fff">
@@ -134,10 +134,10 @@
                         <td style="text-align: center; color: #fff">
                             <%for (product of order.products) {%>
                             <div>
-                                <%if(product.size == 'L') {%> <%product.price *=
-                                1.5%> <%}%>
-                                <%=product.price.toLocaleString("vi", { style:
-                                "currency", currency: "VND", })%>
+                                <%if(product.size == 'L') {%>
+                                <%product.product.price *= 1.5%> <%}%>
+                                <%=product.product?.price.toLocaleString("vi", {
+                                style: "currency", currency: "VND", })%>
                             </div>
                             <% } %>
                         </td>

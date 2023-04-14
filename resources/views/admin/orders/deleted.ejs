@@ -131,7 +131,7 @@
                         <%}%>
                         <td style="color: rgb(219, 217, 217)">
                             <%for (product of order.products) {%>
-                            <div><%=product.product.name%></div>
+                            <div><%=product.product?.name%></div>
                             <% } %>
                         </td>
                         <td
@@ -164,7 +164,7 @@
                             <div>
                                 <%if(product.size == 'L') {%>
                                 <%product.product.price *= 1.5%> <%}%>
-                                <%=product.product.price.toLocaleString("vi", {
+                                <%=product.product?.price.toLocaleString("vi", {
                                 style: "currency", currency: "VND", })%>
                             </div>
                             <% } %>
