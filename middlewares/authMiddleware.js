@@ -8,13 +8,16 @@ module.exports.isAuthenticated = asyncHandle(async (req, res, next) => {
     const token = req.signedCookies[process.env.LABEL_ACCESS_TOKEN];
     // const token = req.headers.authorization.split(' ')[1];
     jwt.verify(token, process.env.PRIVATE_KEY, function (err, decoded) {
-      if (err) return next();
-      else {
+      if (err) {
+        res.cookie('curUrl', req.originalUrl, { httpOnly: true });
+        return next();
+      } else {
         res.locals.username = decoded.username;
         return next();
       }
     });
   } else {
+    res.cookie('curUrl', req.originalUrl, { httpOnly: true });
     return next();
   }
 });

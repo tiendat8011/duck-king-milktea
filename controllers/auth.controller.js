@@ -4,13 +4,24 @@ const User = require('../models/User');
 const asyncHandle = require('../middlewares/asyncHandle');
 const ErrorResponse = require('../common/ErrorResponse');
 const sendMail = require('../common/sendMail');
+const jwt = require('jsonwebtoken');
 
 module.exports = {
   // [GET] /auth/register
   registerSite: asyncHandle(async (req, res) => {
-    if (req.signedCookies[process.env.LABEL_ACCESS_TOKEN])
+    let token = req.signedCookies?.[process.env.LABEL_ACCESS_TOKEN];
+    if (!token) {
+      return res.render('auth/register');
+    }
+    // check expires
+    let payload;
+    try {
+      payload = jwt.verify(token, process.env.PRIVATE_KEY);
       return res.redirect('/');
-    res.render('auth/register');
+    } catch (err) {
+      console.log(err);
+      return res.render('auth/register');
+    }
   }),
 
   // [POST] /auth/register
@@ -37,18 +48,17 @@ module.exports = {
 
   // [GET] /auth/login
   loginSite: asyncHandle(async (req, res) => {
-    let tokens = req.signedCookies?.tokens;
-    if (!tokens) {
+    let token = req.signedCookies?.[process.env.LABEL_ACCESS_TOKEN];
+    if (!token) {
       return res.render('auth/login', { msg: '' });
     }
-    let { access } = tokens;
-
     // check expires
     let payload;
     try {
-      payload = jwt.verify(access.token, config.jwt.secret);
+      payload = jwt.verify(token, process.env.PRIVATE_KEY);
       return res.redirect('/');
     } catch (err) {
+      console.log(err);
       return res.render('auth/login', { msg: '' });
     }
   }),
@@ -80,8 +90,11 @@ module.exports = {
       httpOnly: true,
       maxAge: 1000 * 60 * process.env.COOKIE_EXPIRE || 1000 * 60 * 60,
     });
-
-    res.redirect('..');
+    // const curUrl = req.cookies['curUrl'];
+    // res.clearCookie('curUrl', { httpOnly: true });
+    // console.log(curUrl);
+    // if (curUrl) return res.redirect(curUrl);
+    return res.redirect('/');
   }),
   // [GET] /auth/logout
   logout: asyncHandle(async (req, res) => {
