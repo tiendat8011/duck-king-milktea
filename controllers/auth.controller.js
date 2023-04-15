@@ -37,9 +37,20 @@ module.exports = {
 
   // [GET] /auth/login
   loginSite: asyncHandle(async (req, res) => {
-    if (req.signedCookies[process.env.LABEL_ACCESS_TOKEN])
+    let tokens = req.signedCookies?.tokens;
+    if (!tokens) {
+      return res.render('auth/login', { msg: '' });
+    }
+    let { access } = tokens;
+
+    // check expires
+    let payload;
+    try {
+      payload = jwt.verify(access.token, config.jwt.secret);
       return res.redirect('/');
-    res.render('auth/login', { msg: '' });
+    } catch (err) {
+      return res.render('auth/login', { msg: '' });
+    }
   }),
 
   // [POST] /auth/login
