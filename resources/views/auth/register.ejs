@@ -186,9 +186,7 @@
                     <div
                       class="sign__action d-sm-flex justify-content-between mb-10"
                     ></div>
-                    <button type="submit" class="e-btn w-100">
-                      <span></span> Đăng Ký
-                    </button>
+                    <button type="submit" class="e-btn w-100">Đăng Ký</button>
                     <div class="sign__new text-center mt-20">
                       <p>
                         Bạn có tài khoản?
@@ -246,6 +244,7 @@
                 icon: 'error',
                 confirmButtonText: 'OK',
               });
+              $('#register-form button[type="submit"]').text('Đăng ký');
             } else {
               Swal.fire({
                 title: 'Thành công!',
@@ -263,6 +262,7 @@
               icon: 'error',
               confirmButtonText: 'OK',
             });
+            $('#register-form button[type="submit"]').text('Đăng ký');
           }
         });
       });
