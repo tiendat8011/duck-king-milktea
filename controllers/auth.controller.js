@@ -17,19 +17,13 @@ module.exports = {
   createUser: asyncHandle(async (req, res) => {
     const userReq = req.body;
     if (await User.isUsernameExisted(userReq.username)) {
-      return res.status(400).json({
-        msg: 'Tên đăng nhập đã tồn tại!',
-      });
+      return next(new ErrorResponse('Tên đăng nhập đã tồn tại!', 400));
     }
     if (await User.isEmailExisted(userReq.email)) {
-      return res.status(400).json({
-        msg: 'Email đã tồn tại!',
-      });
+      return next(new ErrorResponse('Email đã tồn tại', 400));
     }
     if (userReq.password !== userReq.cfpassword) {
-      return res.status(400).json({
-        msg: 'Mật khẩu không trùng khớp!',
-      });
+      return next(new ErrorResponse('Mật khẩi không trùng khớp!', 400));
     }
     const user = await User.create({
       full_name: userReq.full_name,
@@ -100,9 +94,12 @@ module.exports = {
     const user = await User.findOne({ email });
     // if (!user) return next(new ErrorResponse('Not found email', 401));
     if (!user)
-      return res.status(400).json({
-        msg: 'Không tìm thấy email trong hệ thống!',
-      });
+      return next(
+        new ErrorResponse(
+          'Địa chỉ email chưa được đăng ký hoặc không tồn tại',
+          401
+        )
+      );
 
     await user.createResetPasswordToken();
 
@@ -129,17 +126,21 @@ module.exports = {
     const token = req.query.tk;
 
     const user = await User.findOne({ reset_password_token: token });
-    if (!user) return next(new ErrorResponse('Token không hợp lệ!', 401));
+    if (!user)
+      return next(new ErrorResponse('Token đổi mật khẩu không hợp lệ!', 401));
 
     if (Date.now() > user.reset_password_token_expired)
-      return next(new ErrorResponse('Token hết hạn!', 401));
+      return next(new ErrorResponse('Token đổi mật khẩu hết hạn!', 401));
 
-    const { newPassword } = req.body;
+    const { newPassword, cfNewPassword } = req.body;
+    if (newPassword !== cfNewPassword)
+      return next(new ErrorResponse('Mật khẩu không khớp', 400));
+
     const hashNewPassword = await bcrypt.hash(newPassword, 10);
     await User.findByIdAndUpdate(user._id, { password: hashNewPassword });
 
     if (req.signedCookies[process.env.LABEL_ACCESS_TOKEN])
       res.clearCookie(process.env.LABEL_ACCESS_TOKEN);
-    res.status(200).redirect('/auth/login');
+    res.status(200).json(user);
   }),
 };

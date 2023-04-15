@@ -36,6 +36,23 @@
         -ms-overflow-style: none; /* IE and Edge */
         scrollbar-width: none; /* Firefox */
       }
+      .form-loader {
+        /* background-color: black; */
+        margin: auto;
+        width: 20px;
+        height: 20px;
+        border: 5px solid rgba(255, 255, 255, 0.055);
+        border-top: 5px solid rgb(255, 255, 255);
+        border-bottom: 5px solid rgb(255, 255, 255);
+        border-radius: 100%;
+        animation: roll 2s linear infinite;
+      }
+
+      @keyframes roll {
+        100% {
+          transform: rotate(360deg);
+        }
+      }
     </style>
   </head>
   <body>
@@ -204,6 +221,9 @@
         const registerForm = $('#register-form');
         registerForm.on('submit', async (e) => {
           e.preventDefault();
+          $('#register-form button[type="submit"]').html(
+            '<div class="form-loader"></div>'
+          );
           const formRegister = registerForm.serializeArray();
           const registerData = {};
           formRegister.forEach((field) => {
