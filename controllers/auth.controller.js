@@ -104,8 +104,10 @@ module.exports = {
     await user.createResetPasswordToken();
 
     const linkToReset = `${process.env.BASE_URL}/auth/change-password?tk=${user.reset_password_token}`;
-    const htmlContent = `<h3>Click to this link to reset your password</h3> <a href='${linkToReset}'>${linkToReset}</a>`;
-    await sendMail(user.email, 'Reset Password', htmlContent);
+    const htmlContent = `Để đặt lại mật khẩu vui lòng ấn vào link sau: <a href='${linkToReset}'>${linkToReset}</a>.
+    Nếu bạn không yêu cầu đổi mật khẩu, vui lòng bỏ qua email này
+    `;
+    await sendMail(user.email, 'Đặt lại mật khẩu', htmlContent);
 
     res.status(200).json({ email });
   }),
