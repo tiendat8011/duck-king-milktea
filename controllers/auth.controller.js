@@ -80,9 +80,10 @@ module.exports = {
     }
     if (!(await user.isPasswordMatch(password))) {
       // return next(new ErrorResponse('Invalid password', 401));
-      new ErrorResponse('Tên đăng nhập hoặc mật khẩu không chính xác', 400);
+      return next(
+        new ErrorResponse('Tên đăng nhập hoặc mật khẩu không chính xác', 400)
+      );
     }
-
     const token = await user.signToken();
     // res.setHeader('Authorization', 'Bearer ' + token);
 
