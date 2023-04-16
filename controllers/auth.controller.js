@@ -13,6 +13,7 @@ module.exports = {
     if (!token) {
       return res.render('auth/register');
     }
+    P;
     // check expires
     let payload;
     try {
@@ -34,7 +35,7 @@ module.exports = {
       return next(new ErrorResponse('Email đã tồn tại', 400));
     }
     if (userReq.password !== userReq.cfpassword) {
-      return next(new ErrorResponse('Mật khẩi không trùng khớp!', 400));
+      return next(new ErrorResponse('Mật khẩu không trùng khớp!', 400));
     }
     const user = await User.create({
       full_name: userReq.full_name,
@@ -67,19 +68,19 @@ module.exports = {
   login: asyncHandle(async (req, res, next) => {
     const { username, password } = req.body;
 
-    const user = await User.findOne({ username });
+    const user = await User.findOne({
+      $or: [{ username }, { email: username }],
+    });
 
     if (!user) {
       // return next(new ErrorResponse('Not found user', 401));
-      return res.render('auth/login', {
-        msg: 'Tên đăng nhập hoặc mật khẩu không chính xác',
-      });
+      return next(
+        new ErrorResponse('Tên đăng nhập hoặc mật khẩu không chính xác', 400)
+      );
     }
     if (!(await user.isPasswordMatch(password))) {
       // return next(new ErrorResponse('Invalid password', 401));
-      return res.render('auth/login', {
-        msg: 'Tên đăng nhập hoặc mật khẩu không chính xác',
-      });
+      new ErrorResponse('Tên đăng nhập hoặc mật khẩu không chính xác', 400);
     }
 
     const token = await user.signToken();
@@ -94,7 +95,7 @@ module.exports = {
     // res.clearCookie('curUrl', { httpOnly: true });
     // console.log(curUrl);
     // if (curUrl) return res.redirect(curUrl);
-    return res.redirect('/');
+    return res.status(200).json(user);
   }),
   // [GET] /auth/logout
   logout: asyncHandle(async (req, res) => {
@@ -128,7 +129,7 @@ module.exports = {
     await user.createResetPasswordToken();
 
     const linkToReset = `${process.env.BASE_URL}/auth/change-password?tk=${user.reset_password_token}`;
-    const htmlContent = `Để đặt lại mật khẩu vui lòng ấn vào link sau: <a href='${linkToReset}'>${linkToReset}</a>.
+    const htmlContent = `Để đặt lại mật khẩu vui lòng ấn vào link sau: <a href='${linkToReset}'>${linkToReset}</a> (Token sau 3 phút sẽ hết hạn).
     Nếu bạn không yêu cầu đổi mật khẩu, vui lòng bỏ qua email này
     `;
     await sendMail(user.email, 'Đặt lại mật khẩu', htmlContent);

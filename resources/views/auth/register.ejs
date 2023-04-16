@@ -238,29 +238,60 @@
               })
             ).json();
             if (res.msg) {
-              Swal.fire({
-                title: 'Thất bại!',
-                text: res.msg,
+              const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 4000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer);
+                  toast.addEventListener('mouseleave', Swal.resumeTimer);
+                },
+              });
+
+              Toast.fire({
                 icon: 'error',
-                confirmButtonText: 'OK',
+                text: res.msg,
               });
               $('#register-form button[type="submit"]').text('Đăng ký');
             } else {
-              Swal.fire({
-                title: 'Thành công!',
-                text: 'Tạo tài khoản thành công',
+              const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer);
+                  toast.addEventListener('mouseleave', Swal.resumeTimer);
+                },
+              });
+
+              Toast.fire({
                 icon: 'success',
+                text: 'Tạo tài khoản thành công',
               });
               setTimeout(() => {
                 window.location.href = '/auth/login';
               }, 2000);
             }
           } catch (err) {
-            Swal.fire({
-              title: 'Lỗi!',
-              text: err,
+            const Toast = Swal.mixin({
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer);
+                toast.addEventListener('mouseleave', Swal.resumeTimer);
+              },
+            });
+
+            Toast.fire({
               icon: 'error',
-              confirmButtonText: 'OK',
+              text: err,
             });
             $('#register-form button[type="submit"]').text('Đăng ký');
           }

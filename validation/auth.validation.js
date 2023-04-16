@@ -14,21 +14,19 @@ const passwordValidate = (value, helpers) => {
 
 const register = {
   body: Joi.object().keys({
-    email: Joi.string().required().email(),
+    email: Joi.string().required().email().messages({
+      'string.email': 'Email không hợp lệ!',
+    }),
     password: Joi.string().required().custom(passwordValidate),
     cfpassword: Joi.any()
       .equal(Joi.ref('password'))
       .required()
       .messages({ 'any.only': 'Mật khẩu không khớp!' }),
-    username: Joi.string()
-      .required()
-      .alphanum()
-      .min(6)
-      .max(20)
-      .messages(
-        { 'string.min': 'Tên đăng nhập phải dài ít nhất 6 ký tự!' },
-        { 'string.max': 'Tên đăng nhập không được dài quá 20 ký tự!' }
-      ),
+    username: Joi.string().required().alphanum().min(6).max(20).messages({
+      'string.min': 'Tên đăng nhập phải dài ít nhất 6 ký tự!',
+      'string.max': 'Tên đăng nhập không được dài quá 20 ký tự!',
+      'string.alphanum': 'Tên đăng nhập chỉ được bao gồm chữ cái và số!',
+    }),
     full_name: Joi.string().required(),
     phone_number: Joi.string()
       .required()
@@ -57,9 +55,8 @@ const resetPassword = {
       .custom(passwordValidate)
       .label('Password'),
     cfNewPassword: Joi.any()
-      .equal(Joi.ref('password'))
+      .equal(Joi.ref('newPassword'))
       .required()
-      .label('Confirm password')
       .messages({ 'any.only': 'Mật khẩu không khớp!' }),
   }),
 };

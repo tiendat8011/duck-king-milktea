@@ -41,6 +41,23 @@
         -ms-overflow-style: none; /* IE and Edge */
         scrollbar-width: none; /* Firefox */
       }
+      .form-loader {
+        /* background-color: black; */
+        margin: auto;
+        width: 20px;
+        height: 20px;
+        border: 5px solid rgba(255, 255, 255, 0.055);
+        border-top: 5px solid rgb(255, 255, 255);
+        border-bottom: 5px solid rgb(255, 255, 255);
+        border-radius: 100%;
+        animation: roll 2s linear infinite;
+      }
+
+      @keyframes roll {
+        100% {
+          transform: rotate(360deg);
+        }
+      }
     </style>
 
     <title>Đăng Nhập</title>
@@ -101,14 +118,14 @@
                   </div>
                 </div>
                 <div class="sign__form">
-                  <form method="POST" action="/auth/login">
+                  <form id="login-form" method="POST" action="/auth/login">
                     <div class="sign__input-wrapper mb-25">
-                      <h5>Tên đăng nhập</h5>
+                      <h5>Tên đăng nhập hoặc email</h5>
                       <div class="sign__input">
                         <input
                           type="text"
                           name="username"
-                          placeholder="Tên đăng nhập"
+                          placeholder="Tên đăng nhập hoặc email"
                           required
                         />
                         <i class="fa-solid fa-user"></i>
@@ -161,15 +178,90 @@
       </section>
       <!-- sign up area end -->
     </main>
-    <%-include('../partials/link_js.ejs')%> <%if(msg !== '') {%>
+    <%-include('../partials/link_js.ejs')%>
     <script>
-      Swal.fire({
-        title: 'Lỗi!',
-        text: '<%=msg%>!',
-        icon: 'error',
-        confirmButtonText: 'OK',
+      $(document).ready(function () {
+        const loginForm = $('#login-form');
+        loginForm.on('submit', async (e) => {
+          e.preventDefault();
+          $('#login-form button[type="submit"]').html(
+            '<div class="form-loader"></div>'
+          );
+          const formLogin = loginForm.serializeArray();
+          const loginData = {};
+          formLogin.forEach((field) => {
+            loginData[field.name] = field.value;
+          });
+          try {
+            const res = await (
+              await fetch('/auth/login', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(loginData),
+              })
+            ).json();
+            if (res.msg) {
+              const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 4000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer);
+                  toast.addEventListener('mouseleave', Swal.resumeTimer);
+                },
+              });
+
+              Toast.fire({
+                icon: 'error',
+                text: res.msg,
+              });
+              $('#login-form button[type="submit"]').text('Đăng nhập');
+            } else {
+              const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer);
+                  toast.addEventListener('mouseleave', Swal.resumeTimer);
+                },
+              });
+
+              Toast.fire({
+                icon: 'success',
+                text: 'Đăng nhập thành công',
+              });
+              setTimeout(() => {
+                window.location.href = '/';
+              }, 2000);
+            }
+          } catch (err) {
+            const Toast = Swal.mixin({
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer);
+                toast.addEventListener('mouseleave', Swal.resumeTimer);
+              },
+            });
+
+            Toast.fire({
+              icon: 'error',
+              text: err,
+            });
+            $('#login-form button[type="submit"]').text('Đăng nhập');
+          }
+        });
       });
     </script>
-    <%}%>
   </body>
 </html>

@@ -7,27 +7,24 @@ const authValidation = require('../validation/auth.validation');
 const authRouter = express.Router();
 
 authRouter
-    .route('/login')
-    .get(authController.loginSite)
-    .post(validate(authValidation.login), authController.login);
+  .route('/login')
+  .get(authController.loginSite)
+  .post(validate(authValidation.login), authController.login);
 authRouter.route('/logout').get(authController.logout);
 authRouter
-    .route('/register')
-    .get(authController.registerSite)
-    .post(validate(authValidation.register), authController.createUser);
+  .route('/register')
+  .get(authController.registerSite)
+  .post(validate(authValidation.register), authController.createUser);
 authRouter
-    .route('/forget-password')
-    .get(authController.forgetPasswordSite)
-    .post(
-        validate(authValidation.forgetPassword),
-        authController.forgetPassword
-    );
+  .route('/forget-password')
+  .get(authController.forgetPasswordSite)
+  .post(validate(authValidation.forgetPassword), authController.forgetPassword);
 authRouter
-    .route('/reset-password-successfully')
-    .get(authController.successfullyReset);
+  .route('/reset-password-successfully')
+  .get(authController.successfullyReset);
 authRouter
-    .route('/change-password')
-    .get(authController.changePasswordSite)
-    .put(authController.changePassword);
+  .route('/change-password')
+  .get(authController.changePasswordSite)
+  .put(validate(authValidation.resetPassword), authController.changePassword);
 
 module.exports = authRouter;
