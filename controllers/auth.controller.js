@@ -26,7 +26,7 @@ module.exports = {
   }),
 
   // [POST] /auth/register
-  createUser: asyncHandle(async (req, res) => {
+  createUser: asyncHandle(async (req, res, next) => {
     const userReq = req.body;
     if (await User.isUsernameExisted(userReq.username)) {
       return next(new ErrorResponse('Tên đăng nhập đã tồn tại!', 400));
@@ -115,7 +115,7 @@ module.exports = {
   }),
 
   // [POST] /auth/forget-password
-  forgetPassword: asyncHandle(async (req, res) => {
+  forgetPassword: asyncHandle(async (req, res, next) => {
     const { email } = req.body;
     const user = await User.findOne({ email });
     // if (!user) return next(new ErrorResponse('Not found email', 401));
