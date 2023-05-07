@@ -13,7 +13,6 @@ module.exports = {
     if (!token) {
       return res.render('auth/register');
     }
-    P;
     // check expires
     let payload;
     try {
@@ -109,9 +108,19 @@ module.exports = {
 
   // [GET] /auth/forget-password
   forgetPasswordSite: asyncHandle(async (req, res) => {
-    if (req.signedCookies[process.env.LABEL_ACCESS_TOKEN])
+    let token = req.signedCookies?.[process.env.LABEL_ACCESS_TOKEN];
+    if (!token) {
+      return res.render('auth/forget-password', { msg: '' });
+    }
+    // check expires
+    let payload;
+    try {
+      payload = jwt.verify(token, process.env.PRIVATE_KEY);
       return res.redirect('/');
-    res.render('auth/forget-password');
+    } catch (err) {
+      console.log(err);
+      return res.render('auth/forget-password', { msg: '' });
+    }
   }),
 
   // [POST] /auth/forget-password

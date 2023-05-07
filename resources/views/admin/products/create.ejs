@@ -155,6 +155,15 @@
     <%-include('../../partials/link_js.ejs')%>
     <script>
       const productForm = document.querySelector('.product-form');
+      $('input[name="price"]').on('keyup', function (e) {
+        if (e.which >= 37 && e.which <= 40) {
+          e.preventDefault();
+        }
+
+        $(this).val(function (index, value) {
+          return value.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        });
+      });
 
       productForm.addEventListener('submit', async function (e) {
         e.preventDefault();
@@ -170,7 +179,7 @@
         // console.log(documents.files);
         data.append('image', image.files[0]);
         data.append('name', name.value);
-        data.append('price', price.value);
+        data.append('price', price.value.split('.').join(''));
         data.append('category', category.value);
         data.append('description', description.value);
 
