@@ -58,6 +58,16 @@
           transform: rotate(360deg);
         }
       }
+      .eye-icon > i {
+        right: 30px;
+        left: auto !important;
+        font-size: 14px;
+        opacity: 0.9;
+      }
+      .eye-icon > i:hover {
+        cursor: pointer;
+        opacity: 0.8;
+      }
     </style>
 
     <title>Đăng Nhập</title>
@@ -141,6 +151,9 @@
                           required
                         />
                         <i class="fa-solid fa-lock"></i>
+                        <span style="z-index: 9" class="eye-icon"
+                          ><i class="fa-solid fa-eye"></i
+                        ></span>
                       </div>
                     </div>
                     <div
@@ -181,6 +194,30 @@
     <%-include('../partials/link_js.ejs')%>
     <script>
       $(document).ready(function () {
+        const password = document.querySelector('[name="password"]');
+        const eyeIcon = document.querySelector('.eye-icon');
+        eyeIcon.style.display = 'none';
+
+        eyeIcon.addEventListener('click', function (e) {
+          if (password.type === 'password') {
+            password.type = 'text';
+            eyeIcon.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
+          } else {
+            password.type = 'password';
+            eyeIcon.innerHTML = '<i class="fa-solid fa-eye"></i>';
+          }
+        });
+        password.addEventListener('keyup', function (e) {
+          if (e.target.value) {
+            eyeIcon.style.display = 'inline';
+          } else if (
+            eyeIcon.innerHTML == '<i class="fa-solid fa-eye-slash"></i>'
+          ) {
+            eyeIcon.style.display = 'inline';
+          } else {
+            eyeIcon.style.display = 'none';
+          }
+        });
         const loginForm = $('#login-form');
         loginForm.on('submit', async (e) => {
           e.preventDefault();

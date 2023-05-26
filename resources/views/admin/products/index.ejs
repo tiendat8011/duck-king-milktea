@@ -84,7 +84,9 @@
             <th scope="col">Giá tiền</th>
             <th scope="col">Thể loại</th>
             <th scope="col">Mô tả</th>
-            <th scope="col"></th>
+            <th scope="col" style="text-align: center; width: 135px">
+              Chức năng
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -114,8 +116,16 @@
             <td style="color: #fff"><%= product.description %></td>
             <td class="delete-product" style="text-align: center">
               <i
-                title="move to trash"
+                class="fa-solid fa-pen icon-btn"
+                title="sửa"
+                style="font-size: 16px"
+                onclick="handleEdit('<%=user.id%>')"
+              ></i
+              ><span style="margin-right: 15px"></span>
+              <i
+                title="xóa"
                 class="fa-solid fa-trash"
+                style="font-size: 16px"
                 onClick="handleDelete('<%=product.id%>', '<%= product.name%>')"
               ></i>
             </td>
@@ -168,6 +178,8 @@
           }
         });
       };
+
+      function handleEdit(userId) {}
     </script>
   </body>
 </html>

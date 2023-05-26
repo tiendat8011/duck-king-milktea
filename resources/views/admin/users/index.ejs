@@ -3,7 +3,7 @@
   <head>
     <%-include('../../partials/admin/head.ejs')%>
     <style>
-      .delete-user:hover {
+      .icon-btn:hover {
         transform: scale(1.2);
         cursor: pointer;
       }
@@ -74,7 +74,7 @@
             <th scope="col">SĐT</th>
             <th scope="col">Email</th>
             <th scope="col">Quyền</th>
-            <th scope="col" style="text-align: center">Xóa</th>
+            <th scope="col" style="text-align: center">Chức năng</th>
             <th></th>
           </tr>
         </thead>
@@ -90,10 +90,20 @@
             <td style="color: #fff !important"><%= user.email %></td>
             <td style="color: #fff !important"><%= user.role %></td>
             <td style="text-align: center">
+              <i
+                class="fa-solid fa-pen icon-btn"
+                title="sửa"
+                style="font-size: 15px"
+                onclick="handleEdit('<%=user.id%>')"
+              ></i>
+
               <%if(user.username==='chi' ||
               user.username===process.env.ADMIN_USERNAME) {%> <%} else {%>
+              <span style="margin-right: 20px"></span>
               <i
-                class="fa-solid fa-xmark delete-user"
+                class="fa-solid fa-xmark icon-btn"
+                title="xóa"
+                style="font-size: 18px"
                 onclick="handleDelete('<%=user.id%>', '<%=user.full_name%>')"
               ></i>
               <%}%>
@@ -155,6 +165,8 @@
           }
         });
       }
+
+      function handleEdit(userId) {}
     </script>
   </body>
 </html>
