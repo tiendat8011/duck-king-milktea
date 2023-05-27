@@ -7,6 +7,7 @@ const renderSite = asyncHandle(async (req, res, next) => {
     userFName: user?.full_name,
     userRole: user?.role,
     userId: user?.id,
+    user,
   });
 });
 

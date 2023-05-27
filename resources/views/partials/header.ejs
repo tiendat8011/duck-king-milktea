@@ -4,14 +4,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/font-awesome6.1.1.min.css" />
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/base.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
     <link
       rel="icon"
       href="/images/favicon_io/favicon.ico"
@@ -31,6 +28,36 @@
       body {
         -ms-overflow-style: none; /* IE and Edge */
         scrollbar-width: none; /* Firefox */
+      }
+      .header-user-fullname:hover {
+        cursor: pointer;
+        opacity: 0.8;
+      }
+      #userInfo table {
+        width: 100%;
+      }
+      #userInfo table input[type='text'] {
+        width: 100%;
+        padding: 4px 8px;
+      }
+      #userInfo table td {
+        padding: 10px;
+      }
+      .reset-pw-btn {
+        width: 100%;
+        padding: 4px;
+        background-color: var(--topicColor);
+        color: #fff;
+        border-color: none;
+        text-align: center;
+        border-radius: 2px;
+      }
+      .reset-pw-btn:hover {
+        cursor: pointer;
+        opacity: 0.9;
+      }
+      .username-input:hover {
+        cursor: not-allowed;
       }
     </style>
     <title>Tra Sữa BOBO</title>
@@ -97,7 +124,14 @@
 
             <%}%>
             <div class="header-user">
-              <div class="header-user-fullname"><%=userFName%></div>
+              <div
+                class="header-user-fullname"
+                data-bs-toggle="modal"
+                data-bs-target="#userInfo"
+              >
+                <%=userFName%>
+              </div>
+
               <div class="header-logout">
                 <a href="/auth/logout"
                   ><i class="fa-solid fa-right-from-bracket"></i
@@ -119,6 +153,157 @@
         </div>
       </div>
     </header>
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="userInfo"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+      style="margin-top: 80px; text-align: left"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Thông tin tài khoản
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body" style="color: #000">
+            <table>
+              <tbody>
+                <tr>
+                  <td>Tên đăng nhập:</td>
+                  <td>
+                    <input
+                      class="username-input"
+                      type="text"
+                      disabled
+                      value="<%=user.username%>"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>Mật khẩu:</td>
+                  <td>
+                    <div
+                      data-bs-toggle="modal"
+                      data-bs-target="#changePassword"
+                      class="reset-pw-btn"
+                    >
+                      Đặt lại mật khẩu
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Họ tên:</td>
+                  <td><input type="text" value="<%=user.full_name%>" /></td>
+                </tr>
+                <tr>
+                  <td>Số điện thoại:</td>
+                  <td><input type="text" value="<%=user.phone_number%>" /></td>
+                </tr>
+                <tr>
+                  <td>Email:</td>
+                  <td><input type="text" value="<%=user.email%>" /></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn"
+              style="background-color: var(--topicColor); color: #fff"
+              data-bs-dismiss="modal"
+            >
+              OK
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal fade"
+      id="changePassword"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+      style="margin-top: 80px; text-align: left"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Thông tin tài khoản
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body" style="color: #000">
+            <table>
+              <tbody>
+                <tr>
+                  <td>Tên đăng nhập:</td>
+                  <td>
+                    <input
+                      class="username-input"
+                      type="text"
+                      disabled
+                      value="<%=user.username%>"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>Mật khẩu:</td>
+                  <td>
+                    <div
+                      data-bs-toggle="modal"
+                      data-bs-target="#changePassword"
+                      class="reset-pw-btn"
+                    >
+                      Đặt lại mật khẩu
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Họ tên:</td>
+                  <td><input type="text" value="<%=user.full_name%>" /></td>
+                </tr>
+                <tr>
+                  <td>Số điện thoại:</td>
+                  <td><input type="text" value="<%=user.phone_number%>" /></td>
+                </tr>
+                <tr>
+                  <td>Email:</td>
+                  <td><input type="text" value="<%=user.email%>" /></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn"
+              style="background-color: var(--topicColor); color: #fff"
+              data-bs-dismiss="modal"
+            >
+              OK
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <script>
       window.onscroll = function () {
