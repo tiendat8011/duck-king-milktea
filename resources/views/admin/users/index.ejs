@@ -94,7 +94,8 @@
                 class="fa-solid fa-pen icon-btn"
                 title="sửa"
                 style="font-size: 15px"
-                onclick="handleEdit('<%=user.id%>')"
+                data-bs-toggle="modal"
+                data-bs-target="#userInfo"
               ></i>
 
               <%if(user.username==='chi' ||
@@ -120,6 +121,83 @@
           </tr>
         </tbody>
       </table>
+      <div
+        class="modal fade"
+        id="userInfo"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+        style="margin-top: 80px; text-align: left"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">
+                Thông tin tài khoản
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body" style="color: #000">
+              <table>
+                <tbody>
+                  <tr>
+                    <td>Tên đăng nhập:</td>
+                    <td>
+                      <input
+                        class="username-input"
+                        type="text"
+                        disabled
+                        value="<%=user?.username%>"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Mật khẩu:</td>
+                    <td>
+                      <div
+                        data-bs-toggle="modal"
+                        data-bs-target="#changePassword"
+                        class="reset-pw-btn"
+                      >
+                        Đặt lại mật khẩu
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Họ tên:</td>
+                    <td><input type="text" value="<%=user?.full_name%>" /></td>
+                  </tr>
+                  <tr>
+                    <td>Số điện thoại:</td>
+                    <td>
+                      <input type="text" value="<%=user?.phone_number%>" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Email:</td>
+                    <td><input type="text" value="<%=user?.email%>" /></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn"
+                style="background-color: var(--topicColor); color: #fff"
+                data-bs-dismiss="modal"
+              >
+                Lưu
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
       <%if(users.length===0) {%>
       <p style="width: 100%; text-align: center; color: rgb(218, 218, 218)">
         CHƯA CÓ KHÁCH HÀNG NÀO.
@@ -166,8 +244,6 @@
           }
         });
       }
-
-      function handleEdit(userId) {}
     </script>
   </body>
 </html>
