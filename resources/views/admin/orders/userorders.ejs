@@ -91,7 +91,7 @@
             <th scope="col">Số ĐT</th>
             <th scope="col">Sản phẩm</th>
             <th scope="col">Size</th>
-            <th scope="col">Số lượng</th>
+            <th scope="col" style="text-align: center">Số lượng</th>
             <th scope="col" style="text-align: center">Đơn giá</th>
             <th scope="col" style="text-align: center">Tổng tiền</th>
             <th scope="col" style="text-align: center">Note</th>
@@ -112,16 +112,18 @@
             </td>
             <td style="color: #fff"><%= order.phone_number %></td>
             <td style="color: #fff">
-              <%for (product of order.products) {%>
-              <div><%=product.product?.name%></div>
-              <% } %>
+              <%for (product of order.products) {%> <%if(!product.product) {%>
+              <div style="color: rgb(190, 189, 189)">*Deleted*</div>
+              <%} else { %>
+              <div style="color: #fff"><%= product.product?.name %></div>
+              <%}%> <% } %>
             </td>
             <td style="color: #fff">
               <%for (product of order.products) {%>
               <div><%=product.size%></div>
               <% } %>
             </td>
-            <td style="color: #fff">
+            <td style="text-align: center; color: #fff">
               <%for (product of order.products) {%>
               <div><%=product.quantity%></div>
               <% } %>
@@ -129,14 +131,16 @@
             <td style="text-align: center; color: #fff">
               <%for (product of order.products) {%>
               <div>
-                <%=product.product?.price.toLocaleString("vi", { style:
-                "currency", currency: "VND", })%>
+                <%if(product.product){%> <%if(product.size == 'L') {%>
+                <%product.product.price *= 1.5%> <%}%> <%}else{%> 0 ₫<%}%>
               </div>
-              <% } %>
+              <%=product.product?.price.toLocaleString("vi", { style:
+              "currency", currency: "VND", })%> <% } %>
             </td>
             <td style="text-align: center; color: #fff">
               <%let total = 0; for (product of order.products) {%>
-              <%total+=product.product?.price*product.quantity%> <% } %>
+              <%if(product.product){%>
+              <%total+=product.product?.price*product.quantity%> <%}%> <% } %>
               <div>
                 <%=total.toLocaleString("vi", { style: "currency", currency:
                 "VND", })%>
