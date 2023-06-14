@@ -26,6 +26,23 @@ module.exports = {
     res.status(200).json(user);
   }),
 
+  changePassword: asyncHandle(async (req, res, next) => {
+    const { oldPassword, newPassword, confirmNewPassword } = req.body;
+    if (newPassword !== confirmNewPassword) {
+      return next(new ErrorResponse('Mật khẩu không trùng khớp', 400));
+    }
+    const user = await User.findOne({ username: res.locals.username });
+    if (!(await user.isPasswordMatch(oldPassword))) {
+      return next(new ErrorResponse('Mật khẩu cũ không hợp lệ', 400));
+    }
+    user = {
+      ...user,
+      password: newPassword,
+    };
+    await user.save();
+    res.status(200).json(user);
+  }),
+
   // [PUT] /users/:id
   updateUserById: asyncHandle(async (req, res, next) => {
     let { id } = req.params;

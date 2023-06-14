@@ -15,6 +15,14 @@ userRouter
   );
 
 userRouter
+  .route('/change-password')
+  .post(
+    authMiddleware.protect,
+    authMiddleware.isAuthenticated,
+    userController.changePassword
+  );
+
+userRouter
   .route('/:id')
   .get(authMiddleware.protect, userController.getUser)
   .put(authMiddleware.protect, userController.updateUserById)
